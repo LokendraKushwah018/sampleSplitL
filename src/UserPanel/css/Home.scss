@@ -1,0 +1,33 @@
+.Home-skeleton{
+  height: 100vh;
+  width: 100vw;
+}
+.home-music-container{
+  display: flex;
+  .sidebar-home{
+    flex: 0.2;
+  }
+  .main-home{
+    flex: 0.8;
+    /* background-color:black; */  // background of home page cards will become black 
+  }
+}
+.current-large-banner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90vh;
+}
+
+@media only screen and (max-width: 970px) {
+  .home-music-container {
+    .sidebar-home{
+      flex: 0;
+    }
+    .main-home{
+      flex: 1;
+      /* background-color:black; */  // to turn on black background when on small devices
+    }
+  }
+}
