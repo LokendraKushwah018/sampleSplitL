@@ -9,8 +9,13 @@ import { inputLabelClasses } from "@mui/material/InputLabel";
 import { uploadmusic } from '../../Api/Config'
 import { useRef } from "react";
 import Container from '../../Components/Layout/Backend/Container'
-const BlogPost = () => {
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+const BlogPost = () => {
+  const Uploadtoast = () => {
+    toast.success("Login Successfully !")
+  };
   let token = localStorage.getItem('logintoken')
   const imageinput = useRef();
   const musicinput = useRef();
@@ -56,6 +61,9 @@ const BlogPost = () => {
       setkeyOptional("");
       setprimaryGenre("");
       setType("");
+      if (response.status === 201) {
+        Uploadtoast();
+      }
     }).catch((err) => {
       console.log(err);
     })
@@ -173,6 +181,12 @@ const BlogPost = () => {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </Button>
+          <ToastContainer
+            autoClose={1000}
+            position="top-center"
+            className="toast-container"
+            toastClassName="dark-toast"
+            theme="colored" />
           <Button
             variant="contained"
             component="label"

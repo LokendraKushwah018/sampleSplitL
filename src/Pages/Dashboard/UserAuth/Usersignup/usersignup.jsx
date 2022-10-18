@@ -13,7 +13,9 @@ import { useNavigate , Link} from "react-router-dom";
 
 // import { usersignup } from '../../Api/Api';
 import { usersignup } from "../../../../Api/Config";
-
+import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const useStyles = makeStyles(theme => ({
@@ -42,6 +44,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Usersignup() {
+
+  const userSingUptoast = () => {
+    toast.success("SignUp Successfully !")
+  };
   let Navigate = useNavigate();
   const classes = useStyles();
   let [data, updateData] = useState({ username: '', email: '', password: '' });
@@ -73,9 +79,11 @@ export default function Usersignup() {
     )
       .then((response) => {
         console.log(response);
-        if (response.status === 201) {
-          // window.location.href="/userlogin";
-          Navigate('/userlogin')
+        userSingUptoast();
+          if (response.status === 201) {
+            setTimeout(()=>{
+              Navigate('/userlogin')
+            },2000)
         }
       })
       .catch((err) => {
@@ -108,9 +116,12 @@ export default function Usersignup() {
   }
 
   return (
+    <>
+    <WelcomeNavbar />
     <Container component="main" maxWidth="xs">
       {/* {Object.keys(formErrors).length === 0 && isSubmit && (
                 )} */}
+   
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -183,6 +194,12 @@ export default function Usersignup() {
           >
             Sign Up
           </Button>
+          <ToastContainer
+            autoClose={1000}
+            position="top-center"
+            className="toast-container"
+            toastClassName="dark-toast"
+            theme="colored" />
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/userlogin" variant="body2">
@@ -194,5 +211,6 @@ export default function Usersignup() {
       </div>
 
     </Container>
+    </>
   );
 }

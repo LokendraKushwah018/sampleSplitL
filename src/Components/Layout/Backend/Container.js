@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Sidebar from './Sidebar'
-import Footer from './Footer'
+// import Footer from './Footer'
 function Container({children}) {
   return (
     <div>
@@ -14,7 +14,7 @@ function Container({children}) {
          {children} 
  </div>
  </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
     </div>
   )

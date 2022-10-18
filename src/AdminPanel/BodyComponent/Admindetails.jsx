@@ -7,17 +7,13 @@ import { useEffect } from 'react';
 import { PageHeader } from '../Common/Components';
 import { Box } from '@mui/material';
 import { admindetailsedit, adminprofile, changepassword } from '../../Api/Config';
-// import { useHistory } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
-// import { IconButton } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { Modal } from '@mui/material';
-// import { Button } from '@material-ui/core';
-// import { TextField } from '@mui/material';
-// import { display } from '@mui/system';
-// import { Grid } from '@mui/material';
 import Container from '../../Components/Layout/Backend/Container';
-// import adminprofile from '../../Api/Config';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const style = {
   position: 'absolute',
@@ -36,7 +32,13 @@ export default function AdminDetails() {
   let [changepass, updatechangepass] = useState({ password: "", confirmPassword: "" });
   let [profile, updateprofile] = useState({ name: "", email: "" });
   let token = localStorage.getItem("logintoken")
-
+  const navigate = useNavigate();
+  const adminchangepasswordtoast = () => {
+    toast.success("Password Change Successfully !")
+  };
+  const adminchangedetailstoast = () => {
+    toast.success("Change Details Successfully !")
+  };
   useEffect(() => {
     AdminProfile();
   }, []);
@@ -83,9 +85,12 @@ export default function AdminDetails() {
       }
     ).then((res) => {
       console.log(res);
-      localStorage.clear();
+      adminchangepasswordtoast();
       if (res.status === 200) {
-        window.location.href = "/adminlogin";
+        setTimeout(() => {
+          localStorage.clear();
+          navigate("/adminlogin");
+        }, 2000)
       }
     }).catch((err) => {
       console.log(err);
@@ -123,10 +128,12 @@ export default function AdminDetails() {
       }
     ).then((res) => {
       console.log(res);
-      localStorage.clear();
       if (res.status === 200) {
-        window.location.href = "/adminlogin";
-
+      adminchangedetailstoast();
+        setTimeout(() => {
+          localStorage.clear();
+          navigate("/adminlogin");
+        }, 2000)
       }
     }).catch((err) => {
       console.log(err);
@@ -140,131 +147,146 @@ export default function AdminDetails() {
       {/* )
       })
       } */}
-      {/* <h1> {data.email}</h1> */}
-   <Container>
-      <Box mt={2}>
-        <PageHeader title='Admin Details' />
-      </Box>
-
-      {/* { Admin Profile Start } */}
-      <div className="page-content page-container" id="page-content">
-        <div className="padding">
-          <div className="row container d-flex justify-content-center">
-            <div className="col-xl-12 col-md-12">
-              <div className="card user-card-full">
-                <div className="row m-l-0 m-r-0">
-                  <div className="col-sm-4 bg-c-lite-green user-profile">
-                    <div className="card-block text-center text-white">
-                      <div className="m-b-10">
-                        <img src="https://img.icons8.com/bubbles/100/000000/user.png"
-                          className="img-radius"
-                          alt="" />
-                      </div>
-                      {/* <h6 className="f-w-600">{data.name}</h6> */}
-                      {/* <p>sample split</p> */}
-                      <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
-                    </div>
-                  </div>
-                  <div className="col-sm-8">
-                    <div className="card-block">
-                      {/* <button className='btn btn-primary' style={{float:'right'}}>&nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;</button> */}
-                      <h6 className="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
-                      <div className="row">
-                        <div className="col-sm-6">
-                          <p className="m-b-10 f-w-600">Email</p>
-                          <h6 className="text-muted f-w-400">{data.email}</h6>
+      {/* {/ <h1> {data.email}</h1> /} */}
+      <Container>
+        <Box mt={2}>
+          <PageHeader title='Admin Details' />
+        </Box>
+  
+          {/* Admin Profile Start */}
+        <div className="page-content page-container" id="page-content" >
+          <div className="padding">
+            <div className="row container d-flex justify-content-center">
+              <div className="col-xl-12 col-md-12">
+                <div className="card user-card-full">
+                  <div className="row m-l-0 m-r-0">
+                    <div className="col-sm-4 bg-c-lite-green user-profile">
+                      <div className="card-block text-center text-white">
+                        <div className="m-b-10">
+                          <img src="https://img.icons8.com/bubbles/100/000000/user.png"
+                            className="img-radius"
+                            alt="/" />
                         </div>
-                        <div className="col-sm-6">
-                          <p className="m-b-10 f-w-600">Name</p>
-                          <h6 className="text-muted f-w-400">{data.name}</h6>
-                        </div>
+                        {/* {/ <h6 className="f-w-600">{data.name}</h6> /}
+                        {/ <p>sample split</p> /} */}
+                        <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                       </div>
                     </div>
-                    {/* { Admin Profile End } */}
-
-
-                    {/* { Admin Change Password Start } */}
-                    <button className="btn btn-outline-info"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      data-bs-whatever="@mdo">&nbsp;&nbsp;&nbsp;
-                      Change Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                      <EditIcon></EditIcon>
-                    </button>
-
-                    {/* { Admin Edit Profile Model Start } */}
-                    <div style={{ margin: '5px' }}>
-                      <button onClick={handleOpen} className="btn btn-outline-primary">&nbsp;&nbsp;&nbsp;
-                        Edit Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <EditIcon></EditIcon></button>
-                      <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                      >
-                        <Box sx={style}>
-                          <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Edit Profile
-                          </Typography>
-                          <form onSubmit={updateProfile} >
-                            <div className="form-group m-1">
-                              <label for="exampleInputEmail1">Name</label>
-                              <input type="text" className="form-control" name='name' value={profile.name} onChange={display}
-                                placeholder="Enter email" />
-                            </div>
-                            <div class="form-group m-1">
-                              <label for="exampleInputPassword1">Email</label>
-                              <input type="email" className="form-control" name='email' value={profile.email} onChange={display}
-                                placeholder="Password" />
-                            </div>
-                            <button type="submit" className="btn btn-primary m-1 ">Submit</button>
-                          </form>
-                        </Box>
-                      </Modal>
-                    </div>
-                    {/* { Admin Edit Profile Model End } */}
-
-                    {/* { Admin Change Password Model Start } */}
-                    <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog ">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div className="col-sm-8">
+                      <div className="card-block">
+                        {/* {/ <button className='btn btn-primary' style={{float:'right'}}>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;</button> /} */}
+                        <h6 className="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                        <div className="row">
+                          <div className="col-sm-6">
+                            <p className="m-b-10 f-w-600">Email</p>
+                            <h6 className="text-muted f-w-400">{data.email}</h6>
                           </div>
-                          <form onSubmit={updateAdmin}>
-                            <div class="modal-body">
-                              <div class="mb-3">
-                                <label for="recipient-name" className="col-form-label">New password</label>
-                                <input type="text" value={changepass.password} onChange={show}
-                                  name="password" /* onChange={(e) => setName(e.target.value)} */ className="form-control" id="recipient-name" />
+                          <div className="col-sm-6">
+                            <p className="m-b-10 f-w-600">Name</p>
+                            <h6 className="text-muted f-w-400">{data.name}</h6>
+                          </div>
+                        </div>
+                      </div>
+                      {/* {/ { Admin Profile End } /} */}
+
+
+                      {/* {/ { Admin Change Password Start } /} */}
+                      <button className="btn btn-outline-info"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"
+                        data-bs-whatever="@mdo">&nbsp;&nbsp;&nbsp;
+                        Change Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <EditIcon></EditIcon>
+                      </button>
+
+                      {/* {/ { Admin Edit Profile Model Start } /} */}
+                      <div style={{ margin: '5px' }}>
+                        <button onClick={handleOpen} className="btn btn-outline-primary">&nbsp;&nbsp;&nbsp;
+                          Edit Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <EditIcon></EditIcon></button>
+                        <Modal
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="modal-modal-title"
+                          aria-describedby="modal-modal-description"
+                        >
+                          <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                              Edit Profile
+                            </Typography>
+                            <form onSubmit={updateProfile} >
+                              <div className="form-group m-1">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" className="form-control" name='name' value={profile.name} onChange={display}
+                                  placeholder="Enter email" />
                               </div>
-                              <div class="mb-3">
-                                <label for="message-text" className="col-form-label">Confirm password</label>
-                                <input type="text" name='confirmPassword' value={changepass.confirmPassword} onChange={show}
-                                  className="form-control" id="recipient-name" />
+                              <div class="form-group m-1">
+                                <label for="exampleInputPassword1">Email</label>
+                                <input type="email" className="form-control" name='email' value={profile.email} onChange={display}
+                                  placeholder="Password" />
                               </div>
-                              <button className='btn btn-primary' type="submit">submit</button>
+                              <button type="submit" className="btn btn-primary m-1">Submit</button>
+                              <ToastContainer
+                                autoClose={1000}
+                                position="top-center"
+                                className="toast-container"
+                                toastClassName="dark-toast"
+                                theme="colored" />
+                            </form>
+                          </Box>
+                        </Modal>
+                      </div>
+                      {/* {/ { Admin Edit Profile Model End } /}
+
+                      {/ { Admin Change Password Model Start } /} */}
+                      <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog ">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                          </form>
-                          <div class="modal-footer">
-                            {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form onSubmit={updateAdmin}>
+                              <div class="modal-body">
+                                <div class="mb-3">
+                                  <label for="recipient-name" className="col-form-label">New password</label>
+                                  <input type="text" value={changepass.password} onChange={show}
+                                    name="password" 
+                                    // / onChange={(e) => setName(e.target.value)} 
+                                    className="form-control" id="recipient-name" />
+                                </div>
+                                <div class="mb-3">
+                                  <label for="message-text" className="col-form-label">Confirm password</label>
+                                  <input type="text" name='confirmPassword' value={changepass.confirmPassword} onChange={show}
+                                    className="form-control" id="recipient-name" />
+                                </div>
+                                <button className='btn btn-primary' data-bs-dismiss="modal" type="submit">submit</button>
+                                <ToastContainer
+                                  autoClose={1000}
+                                  position="top-center"
+                                  className="toast-container"
+                                  toastClassName="dark-toast"
+                                  theme="colored" />
+                              </div>
+                            </form>
+                            <div class="modal-footer">
+                              {/* <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                               <button type="submit" class="btn btn-primary" onClick={submit} >Update</button> */}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    {/* { Admin Change Password Model End } */}
+                      {/* {/ { Admin Change Password Model End } /}
 
-                    {/* { Admin Change Password End } */}
+                      {/ { Admin Change Password End } /} */}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div >
+        </div >
       </Container>
     </>
   )

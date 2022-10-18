@@ -1,8 +1,7 @@
 import React from 'react'
 import emailjs from 'emailjs-com'
 import Navbar from '../UserBackend/Navbar';
-// import Container from "../fragment/Container";
-// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Contact = () => {
 
@@ -23,15 +22,8 @@ const Contact = () => {
       email: email.value,
       Subject: Subject.value,
       message: message.value,
-      // setFormStatus: ("")
-      // confom : '',
     }
-    console.log(conFom);
-
-    // name.Value = ("");
-    // email = ("");
-    // Subject = ("");
-    // message = ("");
+    console.log(conFom); 
   }
 
   return (
@@ -77,3 +69,32 @@ const Contact = () => {
   )
 }
 export default Contact
+
+
+
+// import React, { useState } from 'react';
+// import Button from 'react-bootstrap/Button';
+// import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
+// import Toast from 'react-bootstrap/Toast';
+
+// function Contact() {
+//   const [showing, setShow] = useState(false);
+
+//   return (
+//     <Row>
+//       <Col xs={6}>
+//         <Toast onClose={() => setShow(false)} showing={showing} delay={3000} autohide>
+//           <Toast.Header>        
+//             <strong className="me-auto">Bootstrap</strong>
+//           </Toast.Header>
+//         </Toast>
+//       </Col>
+//       <Col xs={6}>
+//         <Button onClick={() => setShow(true)}>Show Toast</Button>
+//       </Col>
+//     </Row>
+//   );
+// }
+
+// export default Contact;

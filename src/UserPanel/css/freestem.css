@@ -1,0 +1,30 @@
+.App {
+    float: left;
+}
+
+.Apps {
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    background: white;
+}
+.search {
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.search_bar{
+    width: 50%;
+    border: 3px solid #1F2D5A;
+    height: 40px;
+    border-radius: 5px 0 0 5px;
+    left:50%;
+}
+.search_bar:focus {
+    color:white;
+    background-color: black;
+}
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+
+margin-left: 450px;}

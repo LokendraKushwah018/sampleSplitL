@@ -9,7 +9,7 @@ const Header = () => {
   let Navigate = useNavigate();
 
   console.log(token)
-  const logout = (token) => {
+  const logout = () => {
     axios(
       {
         url: 'http://localhost:5001/api/admin/logOut',
@@ -22,7 +22,7 @@ const Header = () => {
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
-          localStorage.clear();
+          localStorage.clear('logintoken');
           Navigate("/adminlogin");
           // window.location.href = "/adminlogin";
 
@@ -68,17 +68,19 @@ const Header = () => {
         </form>
       </div> */}
           {/* </li> */}
-          <li className="nav-item" >
+          {/* <li className="nav-item" >
             <Link to="/adminlogin" className="nav-link" onClick={logout}>
-              {/* <i className="nav-icon fas fa-table" /> */}
               <p> LogOut </p>
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link className="nav-link" data-widget="fullscreen" to="#" role="button">
               <i className="fas fa-expand-arrows-alt" />
             </Link>
           </li>
+           <button className="btn btn-outline-success position-right"
+              type="submit"
+              onClick={logout}>Logout</button>
         </ul>
       </nav>
     </div>

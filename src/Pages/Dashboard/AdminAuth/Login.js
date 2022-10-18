@@ -12,6 +12,8 @@ import Container from "@material-ui/core/Container";
 import axios from "axios";
 import {  useNavigate} from "react-router-dom";
 import { adminlogin } from "../../../Api/Config"
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -39,6 +41,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AdminlogIn() {
+  const logintoast = () => {
+    toast.success("Login Successfully !")
+  };
 //   let history = useHistory();
   let Navigate = useNavigate();
   const classes = useStyles();
@@ -68,13 +73,16 @@ export default function AdminlogIn() {
       )
         .then((response) => {
           console.log(response);
-          if (response.status === 200) {
-            const logintoken = response.data.token
-            console.log(response.data.token)
-            localStorage.setItem('logintoken', logintoken)
-              // window.location.href="/dashboard";
-              Navigate('/dashboard');
-          }
+        const logintoken = response.data.token
+        console.log(response.data.token)
+        localStorage.setItem('logintoken', logintoken)
+
+        if (response.status === 200) {
+          logintoast();
+          setTimeout(() => {
+            Navigate('/dashboard');
+          }, 2000)
+        }
         })
         .catch((err) => {
           console.log(err);
@@ -135,6 +143,12 @@ export default function AdminlogIn() {
           >
             Login
           </Button>
+          <ToastContainer
+            autoClose={1000}
+            position="top-center"
+            className="toast-container"
+            toastClassName="dark-toast"
+            theme="colored" />
         </form>
       </div>
 
