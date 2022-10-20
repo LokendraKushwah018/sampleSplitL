@@ -83,13 +83,13 @@ const Blog = () => {
                         onChange={(e) => setImage(e.target.files[0])}
                         ref = {ImageInput}
                     /></Button ><br /><br />
-                    <Button
+                    {/* <Button
                     variant="contained"
                     component="label"
                 >
                     Upload Video&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="file" name="file[]" className="file_multi_video" accept="video/*">
-                    </input></Button ><br /><br />
+                    </input></Button ><br /><br /> */}
                 <Button variant="contained" color="primary" onClick={BlogApi}>
                     Post
                 </Button>

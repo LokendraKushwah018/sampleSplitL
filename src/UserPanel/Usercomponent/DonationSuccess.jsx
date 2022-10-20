@@ -38,6 +38,7 @@ export default function DonationSuccess() {
                 setTimeout(() => {
                     navigate("/Freestem")
                 },2000)
+                localStorage.removeItem("ammount");
             }
         }).catch((err) => {
             console.log(err);

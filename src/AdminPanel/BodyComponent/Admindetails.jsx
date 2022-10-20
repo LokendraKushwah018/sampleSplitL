@@ -20,7 +20,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
@@ -129,7 +129,7 @@ export default function AdminDetails() {
     ).then((res) => {
       console.log(res);
       if (res.status === 200) {
-      adminchangedetailstoast();
+        adminchangedetailstoast();
         setTimeout(() => {
           localStorage.clear();
           navigate("/adminlogin");
@@ -142,24 +142,18 @@ export default function AdminDetails() {
 
   return (
     <>
-      {/* {data.map((item) => {
-        return ( */}
-      {/* )
-      })
-      } */}
-      {/* {/ <h1> {data.email}</h1> /} */}
       <Container>
         <Box mt={2}>
           <PageHeader title='Admin Details' />
         </Box>
-  
-          {/* Admin Profile Start */}
-        <div className="page-content page-container" id="page-content" >
-          <div className="padding">
-            <div className="row container d-flex justify-content-center">
+
+      {/* Admin Profile Start */}
+        <div className="page-content page-container " id="page-content">
+          <div className="padding ">
+            <div className="row container d-flex justify-content-center " >
               <div className="col-xl-12 col-md-12">
-                <div className="card user-card-full">
-                  <div className="row m-l-0 m-r-0">
+                <div className="card user-card-full bg-#BDDD96 " style={{ width: "800px" }}>
+                  <div className="row m-l-0 m-r-0 " style={{ width: '800px', borderRadius: '20px' }}>
                     <div className="col-sm-4 bg-c-lite-green user-profile">
                       <div className="card-block text-center text-white">
                         <div className="m-b-10">
@@ -188,10 +182,10 @@ export default function AdminDetails() {
                           </div>
                         </div>
                       </div>
-                      {/* {/ { Admin Profile End } /} */}
+                     {/* Admin Profile End */}
 
 
-                      {/* {/ { Admin Change Password Start } /} */}
+                     {/* Admin Change Password Start  */}
                       <button className="btn btn-outline-info"
                         data-bs-toggle="modal"
                         data-bs-target="#exampleModal"
@@ -200,7 +194,7 @@ export default function AdminDetails() {
                         <EditIcon></EditIcon>
                       </button>
 
-                      {/* {/ { Admin Edit Profile Model Start } /} */}
+                       {/* Admin Edit Profile Model Start */}
                       <div style={{ margin: '5px' }}>
                         <button onClick={handleOpen} className="btn btn-outline-primary">&nbsp;&nbsp;&nbsp;
                           Edit Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -252,7 +246,7 @@ export default function AdminDetails() {
                                 <div class="mb-3">
                                   <label for="recipient-name" className="col-form-label">New password</label>
                                   <input type="text" value={changepass.password} onChange={show}
-                                    name="password" 
+                                    name="password"
                                     // / onChange={(e) => setName(e.target.value)} 
                                     className="form-control" id="recipient-name" />
                                 </div>

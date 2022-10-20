@@ -127,7 +127,7 @@ export default function UserLogIn() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                // variant="outlined"
                 required
                 fullWidth
                 label="Email Address"
@@ -141,7 +141,7 @@ export default function UserLogIn() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                // variant="outlined"
                 required
                 fullWidth
                 name="password"

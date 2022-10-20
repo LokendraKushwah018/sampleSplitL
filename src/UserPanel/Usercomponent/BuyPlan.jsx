@@ -82,7 +82,7 @@ const BuyPlan = () => {
                             <h4 className="card-text text-center text-white">$&nbsp;{getPeymentDetails.subscriptionPrice}</h4>
                         </div>
                         <button onClick={() => buyPlan(getPeymentDetails.id)}
-                            style={{ width: '370px', height: '50px', background: '#2F76DB', borderRadius: '50px', border: 'none', color: 'white' }}>
+                            style={{ width: '300px', height: '50px', background: '#2F76DB', borderRadius: '50px', border: 'none', color: 'white' }}>
                             <h4><b>Buy</b></h4></button>
                         <ToastContainer
                             autoClose={1500}
@@ -100,7 +100,7 @@ const BuyPlan = () => {
                             <h4 className="card-text text-center text-white">$ 30.99</h4>
                         </div>
                         <button
-                            style={{ width: '370px', height: '50px', background: '#1F2D5A', borderRadius: '50px', border: 'none', color: 'white' }}>
+                            style={{ width: '300px', height: '50px', background: '#1F2D5A', borderRadius: '50px', border: 'none', color: 'white' }}>
                             <h4><b>Buy</b></h4></button>
                     </div>
                 </div>

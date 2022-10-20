@@ -136,7 +136,7 @@ export default function Usersignup() {
               <TextField
                 autoComplete="username"
                 name="username"
-                variant="outlined"
+                // variant="outlined"
                 required
                 fullWidth
                 label="User Name"
@@ -149,7 +149,7 @@ export default function Usersignup() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                // variant="outlined"
                 required
                 fullWidth
                 label="Email Address"
@@ -164,7 +164,7 @@ export default function Usersignup() {
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                // variant="outlined"
                 required
                 fullWidth
                 name="password"

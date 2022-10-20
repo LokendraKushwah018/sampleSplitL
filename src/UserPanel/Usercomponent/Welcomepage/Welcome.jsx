@@ -10,15 +10,15 @@ const Welcome = () => {
   return (
     <div>
       <WelcomeNavbar />
-      <div className="card bg-dark text-white "
+      <div className="nav bg-dark text-white "
         style={{
-          width: "100%", height: "30%", marginTop: 0,
+          width: "Auto", height: "30%", marginTop: 0  ,
           marginLeft: 0, textAlign: 'center', 
         }}
       >
         <img src="./bg2.jpg" className="card-img" alt="..." />
         <div className="card-img-overlay "
-          style={{ margin: 10 }}>
+          style={{ margin: 50 }}>
           <h1 className="display-1">SampleSplit</h1>
           <h4
             // style={{ fontFamily: "Pacifico" }}

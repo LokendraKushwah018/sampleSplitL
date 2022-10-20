@@ -2,7 +2,6 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import Navbar from '../UserBackend/Navbar';
 
-
 const Contact = () => {
 
   const [formStatus, setFormStatus] = React.useState('Send')

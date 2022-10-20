@@ -4,15 +4,13 @@
     /* padding: 20px; */
     margin-top: 30px;
     margin: 20px;
-    width: 450px;
+    width: 750px;
     margin-left: 100px;
     /* display: inline-block; */
-    
-    
-
+   
  }
 .leftcolumn {   
-    float: left;
+    float: center;
     width: 65%;
     height:350px;
     /* margin: 20px; */

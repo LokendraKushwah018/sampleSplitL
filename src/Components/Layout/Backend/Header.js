@@ -2,6 +2,7 @@ import React ,{useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 
 const Header = () => {
@@ -78,9 +79,12 @@ const Header = () => {
               <i className="fas fa-expand-arrows-alt" />
             </Link>
           </li>
+          <span>
            <button className="btn btn-outline-success position-right"
               type="submit"
-              onClick={logout}>Logout</button>
+              onClick={logout}>
+              <LogoutIcon />Logout
+              </button></span>
         </ul>
       </nav>
     </div>
