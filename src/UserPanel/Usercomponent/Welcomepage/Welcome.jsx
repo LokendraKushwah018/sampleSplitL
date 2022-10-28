@@ -13,7 +13,7 @@ const Welcome = () => {
       <div className="nav bg-dark text-white "
         style={{
           width: "Auto", height: "30%", marginTop: 0  ,
-          marginLeft: 0, textAlign: 'center', 
+          marginLeft: 0, textAlign: 'center'
         }}
       >
         <img src="./bg2.jpg" className="card-img" alt="..." />

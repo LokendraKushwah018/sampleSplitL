@@ -115,7 +115,7 @@
 
       $__default["default"](this._element).trigger($__default["default"].Event(EVENT_OVERLAY_REMOVED));
     } // Private
-    ;
+    
 
     _proto._init = function _init() {
       var _this2 = this;
@@ -128,7 +128,7 @@
         this.load();
       }
     } // Static
-    ;
+    
 
     CardRefresh._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$e);
@@ -329,7 +329,7 @@
 
       this.maximize();
     } // Private
-    ;
+    
 
     _proto._init = function _init(card) {
       var _this3 = this;
@@ -345,7 +345,7 @@
         _this3.remove();
       });
     } // Static
-    ;
+    
 
     CardWidget._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$d);
@@ -535,7 +535,7 @@
         this.collapse();
       }
     } // Private
-    ;
+    
 
     _proto._init = function _init() {
       var _this2 = this;
@@ -671,7 +671,7 @@
         });
       }
     } // Static
-    ;
+    
 
     ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
       return this.each(function () {
@@ -884,7 +884,7 @@
         });
       }
     } // Static
-    ;
+    
 
     Dropdown._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -1019,7 +1019,7 @@
         $element.trigger($__default["default"].Event(EVENT_EXPANDED$1));
       }
     } // Static
-    ;
+    
 
     ExpandableTable._jQueryInterface = function _jQueryInterface(operation) {
       return this.each(function () {
@@ -1133,7 +1133,7 @@
         document.msExitFullscreen();
       }
     } // Static
-    ;
+    
 
     Fullscreen._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$8);
@@ -1810,7 +1810,6 @@
         }
       }
     } // Private
-    ;
 
     _proto._init = function _init() {
       var _this = this;
@@ -1874,7 +1873,7 @@
     _proto._isFooterFixed = function _isFooterFixed() {
       return $__default["default"](SELECTOR_FOOTER).css('position') === 'fixed';
     } // Static
-    ;
+    
 
     Layout._jQueryInterface = function _jQueryInterface(config) {
       if (config === void 0) {
@@ -2078,7 +2077,7 @@
         $body.removeClass(CLASS_NAME_COLLAPSED);
       }
     } // Private
-    ;
+    
 
     _proto._init = function _init() {
       var _this2 = this;
@@ -2101,7 +2100,7 @@
       });
       $__default["default"](SELECTOR_WRAPPER).append(overlay);
     } // Static
-    ;
+    
 
     PushMenu._jQueryInterface = function _jQueryInterface(operation) {
       return this.each(function () {
@@ -2283,7 +2282,7 @@
         this.open();
       }
     } // Private
-    ;
+    
 
     _proto._parseItem = function _parseItem(item, path) {
       var _this3 = this;
@@ -2360,7 +2359,7 @@
     _proto._addNotFound = function _addNotFound() {
       $__default["default"](SELECTOR_SEARCH_RESULTS_GROUP).append(this._renderItem(this.options.notFoundText, '#', []));
     } // Static
-    ;
+    
 
     SidebarSearch._jQueryInterface = function _jQueryInterface(config) {
       var data = $__default["default"](this).data(DATA_KEY$4);
@@ -2506,7 +2505,7 @@
         this.open();
       }
     } // Static
-    ;
+    
 
     NavbarSearch._jQueryInterface = function _jQueryInterface(options) {
       return this.each(function () {
@@ -2687,7 +2686,7 @@
         });
       }
     } // Static
-    ;
+    
 
     _proto._getContainerId = function _getContainerId() {
       if (this._config.position == POSITION_TOP_RIGHT) {
@@ -2730,7 +2729,7 @@
         $__default["default"](this._getContainerId()).removeClass('fixed');
       }
     } // Static
-    ;
+    
 
     Toasts._jQueryInterface = function _jQueryInterface(option, config) {
       return this.each(function () {
@@ -2818,7 +2817,7 @@
     _proto.unCheck = function unCheck(item) {
       this._config.onUnCheck.call(item);
     } // Private
-    ;
+    
 
     _proto._init = function _init() {
       var _this = this;
@@ -2829,7 +2828,7 @@
         _this.toggle($__default["default"](event.target));
       });
     } // Static
-    ;
+    
 
     TodoList._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -2986,7 +2985,7 @@
         this.expand($__default["default"](treeviewMenu), parentLi);
       }
     } // Private
-    ;
+    
 
     _proto._setupListeners = function _setupListeners() {
       var _this3 = this;
@@ -3002,7 +3001,7 @@
         $__default["default"](this._config.sidebarButtonSelector).PushMenu('expand');
       }
     } // Static
-    ;
+    
 
     Treeview._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {

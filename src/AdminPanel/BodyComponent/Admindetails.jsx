@@ -88,7 +88,7 @@ export default function AdminDetails() {
       adminchangepasswordtoast();
       if (res.status === 200) {
         setTimeout(() => {
-          localStorage.clear();
+          localStorage.removeItem('logintoken');
           navigate("/adminlogin");
         }, 2000)
       }
@@ -131,7 +131,7 @@ export default function AdminDetails() {
       if (res.status === 200) {
         adminchangedetailstoast();
         setTimeout(() => {
-          localStorage.clear();
+          localStorage.removeItem('logintoken');
           navigate("/adminlogin");
         }, 2000)
       }

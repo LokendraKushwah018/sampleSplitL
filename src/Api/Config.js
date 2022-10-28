@@ -30,5 +30,5 @@ export const usermostplayed = `http://localhost:5001/api/user/mostplayed/`;
 export const userLogOut = `http://localhost:5001/api/user/logOut`;
 export const fourStemps =`http://localhost:5001/api/user/getFourSteamsSong?filterKey=`
 export const twoStemps = `http://localhost:5001/api/user/getTwoSteamsSong?filterKey=`
-
+export const songsdownload = `http://localhost:5001/api/user/getDownloadSong/`;
 

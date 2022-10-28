@@ -4,16 +4,11 @@ import Navbar from '../UserBackend/Navbar'
 import axios from 'axios';
 import { useRef } from "react";
 import Button from '@mui/material/Button';
-// import { Link } from 'react-router-dom';
-// import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
-
-// import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-// import { HelpOutline } from '@mui/icons-material';
-// import ReactLoading from "react-loading";
 
 const Splitsong = () => {
   const musicinput = useRef();
@@ -27,14 +22,12 @@ const Splitsong = () => {
   const [bass, setbass] = useState(false);
   const [drums, setdrums] = useState(false);
   const [other, setother] = useState(false);
-
   const [loading, setLoading] = useState(false);
   const inputRef = React.useRef()
 
-  console.log(stems);
-  console.log(type);
-  console.log(file_name);
-
+  const ErrorToast = ()=>{
+    toast.error("Try Again");
+  }
 
   const models = (event) => {
     event.preventDefault();
@@ -75,22 +68,33 @@ const Splitsong = () => {
       else if (response.data.other) {
         setother(true);
         updateData(response.data);
+     
       }
     }).catch((err) => {
       console.log(err)
+      ErrorToast();
+      setLoading(false)
     });
   }
   return (
     <>
-      <Navbar />
-      {loading ?
-        <Stack sx={{ width: '100%', color: 'grey.500', mb: 1, mt: 1 }} spacing={2}>
-          <LinearProgress color="info" /><span style={{ textAlign: 'center', color: 'black' }}>[ Please wait while song is spliting.... ]</span>
-          <LinearProgress color="primary" />
+      <Navbar />   
+      <ToastContainer
+        autoClose={2000}
+        position="top-center"
+        className="toast-container"
+        toastClassName="dark-toast"
+        theme="colored" />
+      {loading &&
+        <Stack sx={{ width: '100%', color: 'grey.500', mb: 1 }} spacing={2}>
+          <LinearProgress color="info" /><span style={{ textAlign: 'center', color: 'black' }}>
+            [ Please wait while song is spliting.... ]</span>
+          {/* <LinearProgress color="primary" /> */}
            {/* <LinearProgress color="warning" />  */}
-        </Stack> :
-        false
+        </Stack> 
+      
       }
+      
       <div style={{ float: 'left' }}>
         <form
           onSubmit={models}
@@ -127,7 +131,7 @@ const Splitsong = () => {
       </div>
 
       {/* 4Stems Section Start  */}
-      <div style={{ float: 'left' }}>
+      <div style={{ float: 'left'}}>
         <form
           onSubmit={models}
         >
@@ -191,7 +195,7 @@ const Splitsong = () => {
         <audio controls >
           <source src={data.other} type="audio/mpeg"></source>
         </audio>
-      }
+      }      
     </>
   );
 }

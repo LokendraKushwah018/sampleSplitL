@@ -24,10 +24,12 @@ const UserBlog = () => {
             {Blog.map((item, i) => {
                 return (
                     <>
-                        <div class="card">
-                            <img src={"images.jpeg" ? item.imageName : "./images.jpeg"} class="card__image" alt="brown couch" />
-                            <div class="card__content">
-                                <time datetime="2021-03-30" class="card__date">{item.Date}</time>
+                        <div className="card">
+                            <img 
+                            src= {item.imageName}
+                            className="card__image" alt="brown couch" />
+                            <div className="card__content">
+                                <time datetime="2021-03-30" className="card__date">{item.Date}</time>
                               
                                 <span className="card__title" >{item.title}</span>
                                 <p>{item.description}</p>

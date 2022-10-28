@@ -13,7 +13,7 @@ export default function DonationSuccess() {
     const navigate = useNavigate();
     const token = localStorage.getItem("userlogintoken")
     const Donationtoast = () => {
-        toast.success("Donate Successfully !")
+        toast.success("Donated Successfully !")
     };
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');

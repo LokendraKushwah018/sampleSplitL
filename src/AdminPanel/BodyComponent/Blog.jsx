@@ -7,9 +7,14 @@ import { adminblog } from '../../Api/Config';
 import { useRef } from 'react';
 import Container from '../../Components/Layout/Backend/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Blog = () => {
+   
+        const Blogtoastupload = () => {
+          toast.success("Blog Uploaded Successfully!")
+        };
 
     let token = localStorage.getItem('logintoken')
     let [files, setImage] = useState(null);
@@ -37,6 +42,9 @@ const Blog = () => {
             console.log(response);
             setTitle("");
             setDescription("");
+            if(response.status===201){
+                Blogtoastupload()
+            }
             ImageInput.current.value="";
 
         }).catch((err) => {
@@ -47,6 +55,12 @@ const Blog = () => {
 
     return (
         <Container>
+            <ToastContainer
+        autoClose={2000}
+        position="top-center"
+        className="toast-container"
+        toastClassName="dark-toast"
+        theme="colored" />
         <div className="App" style={{ marginTop: '20px' }}>
       <PageHeader  title='Blog' />
             <form >
