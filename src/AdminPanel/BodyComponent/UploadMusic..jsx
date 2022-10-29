@@ -75,7 +75,7 @@ const BlogPost = () => {
       <Box
         component="form"
         sx={{
-          '& .MuiTextField-root': { m: 1, mt: 3, width: '50ch' , ml:20 },
+          '& .MuiTextField-root': { m: 1, mt: 3, width: '50ch' , ml:0 },
         }}
         noValidate
         autoComplete="off"
@@ -171,7 +171,7 @@ const BlogPost = () => {
           <Button
             variant="contained"
             component="label"
-            sx={{ ml: 20 , mt:2 }}
+            sx={{ ml: 0 , mt:2 }}
           >
             Upload Image
             <input
@@ -190,7 +190,7 @@ const BlogPost = () => {
           <Button
             variant="contained"
             component="label"
-            sx={{ ml: 20 , mt:2}}
+            sx={{ ml: 0 , mt:2}}
           >
             Upload Song
             <input
@@ -198,11 +198,11 @@ const BlogPost = () => {
               type="file"
               ref={musicinput}
             />
-          </Button>    
+          </Button><br/>    
           <Button
             onClick={Search}
             variant="contained"
-            sx={{ ml: 35, mt: 5 }}
+            sx={{ ml: 20, mt: 5 }}
           >Upload</Button>
         </div>
       </Box> 

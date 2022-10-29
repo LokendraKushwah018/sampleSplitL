@@ -6,50 +6,39 @@ const WelcomeNavbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark "
-      // style={{fontFamily: "Proxima Nova"}}
-      >
-        <div className="container-fluid">
-          <div className="navbar-brand text-light">SampleSplit</div>
-          <div className="collapse navbar-collapse position-absolute top-50 start-50 translate-middle">
-            <ul className="nav me-auto mb-2 mb-lg-2 "
-            // style={{fontFamily: "Proxima Nova"}}            
-            >
-              <li className="nav-item">
-                <Link className="nav-link active text-light" aria-current="page" to="/">
-                  Home </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light"
-                  aria-current="page" to="#">
-                  FreeStem</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light" aria-current="page" to="#">SplitSong</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light" aria-current="page" to="#">UserBlog</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light" to="#">About</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light" to="#" >Search</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link active text-light" to="#" >ContactUs</Link>
-              </li>
-            </ul>
+     <nav className="navbar navbar-expand-lg navbar-light bg-dark ">
+      <div className="container-fluid text-white">
+      <div className="navbar-brand text-light">SampleSplit</div>
+        <button type="button" className="navbar-toggler text-white" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span className="navbar-toggler-icon text-white" />
+        </button>
+        <div className="collapse navbar-collapse " id="navbarCollapse">
+          <div className="navbar-nav ml-5">
+            <Link className="nav-link active text-light" to="/">Home</Link>
+            <Link className="nav-link active text-light" to="#">FreeStem</Link>
+            <Link className="nav-link active text-light" to="#">SplitSong</Link>
+            <Link className="nav-link active text-light" to="#">UserBlog</Link>
+            <Link className="nav-link active text-light" to="#">About</Link>
+            <Link className="nav-link active text-light" to="#" >ContactUs</Link>
           </div>
-          <div className='position-right'>
-            <Link to="/userlogin" variant="body2"
+          {/* <div className="navbar-nav ms-auto ">
+            <span>
+          <button className="btn btn-outline-success"
+              type="submit"
+              onClick={Userlogout}>
+              <LogoutIcon />Logout
+              </button></span>
+          </div> */}
+          <div className='navbar-nav ms-auto mr-3'>
+            <Link className='mr-1' to="/userlogin" variant="body2"
               style={{ color: 'white' }}>
               Login
             </Link>
-            <Link to="/Usersignup" variant="body2" style={{ color: 'red', margin: 5, marginLeft: 25 }}>
+            <Link to="/Usersignup" variant="body2" style={{ color: 'red', margin: 1, marginLeft: 25 }}>
               <span>Create an Account</span>
             </Link>
           </div>
+        </div>
         </div>
       </nav>
     </div>

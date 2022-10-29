@@ -256,8 +256,9 @@ const ViewMusic = () => {
   return (
     <>
       <Container>
-         {/* Music List Data ..app Api.. START  */}
-         {/* Add Price On Songs Model Start  */}
+
+        {/* Music List Data ..app Api.. START  */}
+        {/* Add Price On Songs Model Start  */}
         {/* <div>
           <Modal
             open={open}
@@ -280,7 +281,7 @@ const ViewMusic = () => {
             </Box>
           </Modal>
         </div> */}
-         {/* Add Price On Songs Model End  */}
+        {/* Add Price On Songs Model End  */}
         <ToastContainer
           autoClose={1000}
           position="top-center"
@@ -290,7 +291,7 @@ const ViewMusic = () => {
 
         <Box mt={2}>
           <PageHeader title='View Music' />
- 
+
           <div style={{ maxWidth: 200 }}  >
             <FormControl fullWidth >
               <InputLabel id="demo-simple-select-label">Your Tracks</InputLabel>
@@ -347,10 +348,10 @@ const ViewMusic = () => {
                    </PaidIcon>
                    </IconButton> */}
 
-                   {/* Edit Songs Start  */}
+                  {/* Edit Songs Start  */}
                   <IconButton hover={hover} >
                     <EditIcon
-                      sx={{ color: '#2F76DB' }}
+                      sx={{ color: 'black' }}
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                       onClick={() => {
@@ -363,7 +364,7 @@ const ViewMusic = () => {
 
                   {/* Delete Songs Start */}
                   <IconButton hover={hover} >
-                    <DeleteIcon sx={{ color: 'red' }} variant="contained" onClick={async () => {
+                    <DeleteIcon sx={{ color: 'black' }} variant="contained" onClick={async () => {
                       let res = await axios.delete(`${deletemusic}${songs.id}`, {
                         headers: {
                           "Authorization": `Bearer ${token}`

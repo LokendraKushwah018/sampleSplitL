@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+// import Footer from '../UserBackend/Footer';
 // import { useEffect } from 'react'
 //  import { Link } from 'react-router-dom'
 import Navbar from '../UserBackend/Navbar'
@@ -53,7 +54,8 @@ const Home = () => {
         </ul>
       </div>
       <div className="dropdown m-5" style={{ display: 'inline' }}>
-        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+        <button className="btn btn-secondary dropdown-toggle" type="button" 
+        id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
           4 Stems
         </button>
         <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
@@ -86,7 +88,9 @@ const Home = () => {
             </>
           )
         })}</div>
+    {/* <Footer /> */}
     </div>
+    
   )
 }
 

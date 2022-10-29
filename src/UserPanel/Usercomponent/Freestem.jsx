@@ -15,6 +15,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 // import background from "../css/backgroundimage.jpg"
 import { Navigate, useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
+// import Footer from '../UserBackend/Footer'
 
 // import { Link } from 'react-router-dom'
 
@@ -63,7 +64,7 @@ const Freestem = () => {
         url: `${search}${query}`,
         method: "get",
       })
-   
+
 
       .then((response) => {
         console.log(response);
@@ -215,7 +216,7 @@ const Freestem = () => {
             onKeyPress={searchApi}
             onChange={(e) => setQuery(e.target.value)}
             placeholder='Search Any Songs and Listen'
-             />
+          />
         </div>
         {songs.filter((user) =>
           user.trackTitle.toLowerCase().includes(query.toLowerCase())).map((item, i) => {
@@ -238,7 +239,7 @@ const Freestem = () => {
 
                         alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
                     </div>
-                    
+
                     <div>
                       <h5 style={{ textAlign: 'center', lineHeight: '41px' }}>{item.trackTitle}</h5>
                     </div>
@@ -270,13 +271,15 @@ const Freestem = () => {
             <img src={beatImg} alt="/" style={{ width: '300px', height: "200px" }} />
           </div>
         </div>
-        <div style={{ float: 'left', marginLeft: '80px' }}>
+        <div style={{ float: 'left', marginLeft: '80px', marginBottom:"50px" }}>
 
           {music.map((value, i) => {
             return (
               <>
                 <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}  >
-                  <div style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName)}>
+                  <div
+                    className="img-div"
+                    style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName)}>
                     <img src={value.imageName} alt="/" style={{ width: '60px', height: '60px', borderRadius: '10px' }} />
                   </div>
                   <div>
@@ -291,8 +294,7 @@ const Freestem = () => {
                       <p>{value.tracktype}</p>
                     </div>
                   </div>
-                  <IconButton
-                  >
+                  <IconButton>
                     <DownloadIcon
                       sx={{ m: 2 }}
                       onClick={() => Download(value.id)}
@@ -367,22 +369,18 @@ const Freestem = () => {
             )
           })}
         </div>
-        <div style={{ width: '100%', height: '500px' }}>
-        </div>
         <div className="Apps">
           <AudioPlayer
-            // style={{ width: "300px" }}
-            style={{ borderRadius: "1rem", textAlign: 'center' }}
-            autoPlay
-            // layout="horizontal"
-            // src={playingMusic.length ? playingMusic : "./_ff.mp3" }
+            style={{ height:'80px',textAlign : 'center',background:"black" ,color:'white'}}
+            autoPlay={false}           
+             layout="horizontal"
+             controls={false}
             src={playingMusic}
-            // onPlay={(e) => console.log("onPlay")}
-            showSkipControls={true}
             showJumpControls={false}
             header={play}
           />
-        </div>    
+        </div>
+        {/* <Footer />    */}
       </div>
     </>
   )

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
@@ -8,12 +7,14 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 export default function DonationSuccess() {
+    const [loading, setloading] = useState(true)
     const navigate = useNavigate();
     const token = localStorage.getItem("userlogintoken")
     const Donationtoast = () => {
-        toast.success("Donated Successfully !")
+        toast.success("Donate Successfully !")
     };
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
@@ -32,12 +33,13 @@ export default function DonationSuccess() {
                 }
             }
         ).then((res) => {
+            setloading(false);
             console.log(res);
             Donationtoast();
             if (res.status === 200) {
                 setTimeout(() => {
                     navigate("/Freestem")
-                },2000)
+                }, 2000)
                 localStorage.removeItem("ammount");
             }
         }).catch((err) => {
@@ -53,9 +55,12 @@ export default function DonationSuccess() {
                 className="toast-container"
                 toastClassName="dark-toast"
                 theme="colored" />
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: "300px" }}>
-                <CircularProgress /><Typography>Loading...</Typography>
-            </Box>
+            {
+                loading &&
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: "300px" }}>
+                    <CircularProgress /><Typography>Loading...</Typography>
+                </Box>
+            }
         </>
     );
 }

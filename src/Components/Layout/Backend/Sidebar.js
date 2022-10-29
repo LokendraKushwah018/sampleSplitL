@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom'
 const Sidebar = () => {
 
   return (
-
     <div>
-
       <aside className="main-sidebar sidebar-dark-primary elevation-4"
         style={{ position: 'fixed' }}>
         <div className="brand-link">
-          <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
+          <img src='./images.png'
+          // src="dist/img/AdminLTELogo.png" 
+          alt="..." className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
           <span className="brand-text font-weight-light">SampleSplit</span>
         </div>
         <div className="sidebar">
@@ -25,7 +25,7 @@ const Sidebar = () => {
               </li>
               <li className="nav-item">
                 <Link to="/BlogPost" className="nav-link">
-                  <i className="nav-icon fas fa-th" />
+                  <i className="nav-icon fa fa-upload" />
                   <p>
                     Upload Music
                   </p>
@@ -47,7 +47,7 @@ const Sidebar = () => {
               </li>
               <li className="nav-item">
                 <Link to="/AdminDetails" className="nav-link">
-                  <i className="nav-icon fas fa-tree" />
+                  <i className="nav-icon fa fa-user" />
                   <p>Admin Details </p>
                 </Link>
               </li>

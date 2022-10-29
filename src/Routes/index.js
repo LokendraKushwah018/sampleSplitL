@@ -22,7 +22,7 @@ import BuyPlan from '../UserPanel/Usercomponent/BuyPlan'
 import DonationSuccess from '../UserPanel/Usercomponent/DonationSuccess'
 import DonationCancell from '../UserPanel/Usercomponent/DonationCancell'
 import PlanSuccess from '../UserPanel/Usercomponent/PlanSuccess'
-// import PlanCancell from '../UserPanel/Usercomponent/PlanCencell'
+import PlanCancell from '../UserPanel/Usercomponent/PlanCancell'
 import NotFound from '../UserPanel/Usercomponent/NotFound'
 
 
@@ -44,7 +44,7 @@ const Index = () => {
       <Route path='/donationsuccess' element={<DonationSuccess />} />
       <Route path='/plansuccess' element={<PlanSuccess />} />
       <Route path='/donationcancell' element={<DonationCancell />} />
-      {/* <Route path='/plancancell' element={<PlanCancell />} /> */}
+      <Route path='/plancancell' element={<PlanCancell />} />
       <Route path='/buyplan' element={<BuyPlan />} />
       <Route path='/' element={<Welcome />} />
       <Route path='/Usersignup' element={<Usersignup />} />

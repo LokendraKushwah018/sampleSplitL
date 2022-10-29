@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
 import "react-h5-audio-player/lib/styles.css";
+import AudioPlayer from "react-h5-audio-player";
 
 const Splitsong = () => {
   const musicinput = useRef();
@@ -17,12 +18,15 @@ const Splitsong = () => {
   const [file_name, setFile_name] = useState();
   const [type, setType] = useState();
   const [data, updateData] = useState();
+  const [dummy, updateDummy] = useState();
   const [vocals, setVocals] = useState(false);
+  const [fourvocals , setfourVocals] = useState(false);
   const [accompaniment, setaccompaniment] = useState(false);
   const [bass, setbass] = useState(false);
   const [drums, setdrums] = useState(false);
   const [other, setother] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [button,setButton] = useState();
   const inputRef = React.useRef()
 
   const ErrorToast = ()=>{
@@ -31,6 +35,7 @@ const Splitsong = () => {
 
   const models = (event) => {
     event.preventDefault();
+    setButton("")
     setLoading(true);
     let formData = new FormData();
     formData.append('stems', stems);
@@ -61,6 +66,7 @@ const Splitsong = () => {
         setbass(true);
         updateData(response.data);
       }
+      
       else if (response.data.drums) {
         setdrums(true);
         updateData(response.data);
@@ -68,8 +74,12 @@ const Splitsong = () => {
       else if (response.data.other) {
         setother(true);
         updateData(response.data);
-     
       }
+      else if (response.status===200) {
+        setfourVocals(true);
+        updateData(response.data);
+      }
+      
     }).catch((err) => {
       console.log(err)
       ErrorToast();
@@ -89,12 +99,8 @@ const Splitsong = () => {
         <Stack sx={{ width: '100%', color: 'grey.500', mb: 1 }} spacing={2}>
           <LinearProgress color="info" /><span style={{ textAlign: 'center', color: 'black' }}>
             [ Please wait while song is spliting.... ]</span>
-          {/* <LinearProgress color="primary" /> */}
-           {/* <LinearProgress color="warning" />  */}
-        </Stack> 
-      
-      }
-      
+        </Stack>       
+      }      
       <div style={{ float: 'left' }}>
         <form
           onSubmit={models}
@@ -130,7 +136,7 @@ const Splitsong = () => {
         </form>
       </div>
 
-      {/* 4Stems Section Start  */}
+      {/* 4Stems Section Start   */}
       <div style={{ float: 'left'}}>
         <form
           onSubmit={models}
@@ -165,39 +171,65 @@ const Splitsong = () => {
               required
             />
           </Button>&nbsp;
-          <button className='btn btn-primary'
+          <button className='btn btn-primary' 
           >Submit</button>
         </form>
       </div>
-      {/* 4Stems Section End  */}
+       {/* 4Stems Section End   */}
       {vocals &&
-        <div style={{margin:'5px'}}>
-          <audio controls style={{margin:'5px'}}>
-            <source src={data.vocals} type="audio/mpeg"></source>
-          </audio>
-        </div>
+        <AudioPlayer
+        style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+        autoPlay={false}           
+        controls={false}
+        src={data.vocals}
+        showJumpControls={false}
+      />
       }
       {accompaniment &&
-        <audio controls >
-          <source src={data.accompaniment} type="audio/mpeg"></source>
-        </audio>
+         <AudioPlayer
+         style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+         autoPlay={false}           
+         controls={false}
+         src={data.accompaniment}
+         showJumpControls={false}
+       />
+      }
+      {fourvocals &&
+        <AudioPlayer
+        style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+        autoPlay={false}           
+        controls={false}
+        src={data.vocals}
+        showJumpControls={false}
+      />
       }
       {bass &&
-        <audio controls >
-          <source src={data.bass} type="audio/mpeg"></source>
-        </audio>
+        <AudioPlayer
+        style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+        autoPlay={false}           
+        controls={false}
+        src={data.bass}
+        showJumpControls={false}
+      />
       }{drums &&
-        <audio controls >
-          <source src={data.drums} type="audio/mpeg"></source>
-        </audio>
+        <AudioPlayer
+         style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+         autoPlay={false}           
+         controls={false}
+         src={data.drums}
+         showJumpControls={false}
+       />
       }
       {other &&
-        <audio controls >
-          <source src={data.other} type="audio/mpeg"></source>
-        </audio>
+       <AudioPlayer
+       style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
+       autoPlay={false}           
+       controls={false}
+       src={data.other}
+       showJumpControls={false}
+     />
       }      
     </>
   );
 }
-
 export default Splitsong

@@ -7,8 +7,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState } from 'react';
 
 export default function PlanSuccess() {
+    const [loading, setloading] = useState(true);
     const token = localStorage.getItem("userlogintoken")
 
     const navigate = useNavigate();
@@ -37,9 +39,10 @@ export default function PlanSuccess() {
                 }
             }
         ).then((res) => {
+            setloading(false);
             console.log(res);
+            Plantoast();
             setTimeout(() => {
-                Plantoast();
                 if (res.status === 200) {
                     navigate("/Freestem")
                 }
@@ -57,9 +60,12 @@ export default function PlanSuccess() {
                 className="toast-container"
                 toastClassName="dark-toast"
                 theme="colored" />
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: "300px" }}>
-                <CircularProgress /><Typography>Loading...</Typography>
-            </Box>
+            {
+                loading &&
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: "300px" }}>
+                    <CircularProgress /><Typography>Loading...</Typography>
+                </Box>
+            }
         </>
     );
 }

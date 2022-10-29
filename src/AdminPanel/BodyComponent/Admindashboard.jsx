@@ -44,8 +44,6 @@ const BlogGraph = () => {
   const [monthData, setMonthData] = useState([])
   const [weekData, setWeekData] = useState([])
   const [todayData, setTodayData] = useState([])
-  
-
 
   const tokenAPI = (token) => {
     return ({
@@ -126,7 +124,8 @@ const BlogGraph = () => {
   return (
     <Container>
     <div 
-    // style={{ width: '120%' }}
+    //  style={{ background:"grey"  ,  position: 'center'}}
+
     >
       <h3 style={{textAlign:'center'}} >User View Bar Chart</h3>
       {
