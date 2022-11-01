@@ -16,26 +16,25 @@ const UserBlog = () => {
     }
     useEffect(() => {
         BlogApi();
-    }, [Blog])
+    }, [])
 
     return (
         <>
             <Navbar />
-            {Blog.map((item, i) => {
-                return (
-                    <>
-                        <div className="card">
-                            <img 
+            {Blog.map((item , index) => {
+                return (                    
+                    
+                        <div className="card" key={index}>
+                            <img                            
                             src= {item.imageName}
                             className="card__image" alt="brown couch" />
                             <div className="card__content">
-                                <time datetime="2021-03-30" className="card__date">{item.Date}</time>
-                              
+                                <time className="card__date">{item.Date}</time>                              
                                 <span className="card__title" >{item.title}</span>
                                 <p>{item.description}</p>
                             </div>
                         </div>
-                    </>
+                    
                 )
             })}
         </>

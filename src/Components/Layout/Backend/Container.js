@@ -10,7 +10,7 @@ function Container({children}) {
       <Header/>  
       
       <div className="content-wrapper">
-      <div section className="col-lg-7 connectedSortable">
+      <div className="col-lg-7 connectedSortable">
          {children} 
  </div>
  </div>

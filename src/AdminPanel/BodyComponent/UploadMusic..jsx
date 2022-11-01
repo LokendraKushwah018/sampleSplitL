@@ -69,6 +69,11 @@ const BlogPost = () => {
     })
   }
 
+  const changecase = (e) =>{
+   e.preventDefault()
+   setType(e.target.value.toLowerCase())
+  }
+
   return (
     <>
     <Container>    
@@ -158,6 +163,7 @@ const BlogPost = () => {
             id="outlined-required"
             label="Type"
             value={type}
+            onMouseEnter={changecase}
             onChange={(e) => setType(e.target.value)}
             InputLabelProps={{
               sx: {

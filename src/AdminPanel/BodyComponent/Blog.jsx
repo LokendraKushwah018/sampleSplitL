@@ -89,6 +89,7 @@ const Blog = () => {
                 <Button
                     variant="contained"
                     component="label"
+                    size="small"
                 >
                     Upload Image&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input
@@ -104,7 +105,8 @@ const Blog = () => {
                     Upload Video&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="file" name="file[]" className="file_multi_video" accept="video/*">
                     </input></Button ><br /><br /> */}
-                <Button variant="contained" color="primary" onClick={BlogApi}>
+                <Button sx={{ml:20}}
+                size="large"  variant="contained" color="primary" onClick={BlogApi}>
                     Post
                 </Button>
             </form>

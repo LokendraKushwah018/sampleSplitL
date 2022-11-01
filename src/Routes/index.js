@@ -24,6 +24,7 @@ import DonationCancell from '../UserPanel/Usercomponent/DonationCancell'
 import PlanSuccess from '../UserPanel/Usercomponent/PlanSuccess'
 import PlanCancell from '../UserPanel/Usercomponent/PlanCancell'
 import NotFound from '../UserPanel/Usercomponent/NotFound'
+import Useraccount from '../UserPanel/Usercomponent/Useraccount'
 
 
 const Index = () => {
@@ -49,6 +50,7 @@ const Index = () => {
       <Route path='/' element={<Welcome />} />
       <Route path='/Usersignup' element={<Usersignup />} />
       <Route path='/UserLogIn' element={<UserLogIn />} />
+      {/* <Route path="/" element={isExpired(localStorage.getItem('token') ? <Home/> : <UserLogIn/> )} /> */}
       <Route element={<Privateroutes />} >
       <Route path='/About' element={<About />} />
       <Route path='/Home' element={<Home />} />
@@ -56,6 +58,7 @@ const Index = () => {
       <Route path='/Contact' element={<Contact />} />
       <Route path='/UserBlog' element={<UserBlog />} />
       <Route path='/Splitsong' element={<Splitsong />} />
+      <Route path='/Useraccount' element={<Useraccount/>} />
 
       </Route>
     </Routes>

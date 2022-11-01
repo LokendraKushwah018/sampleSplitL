@@ -67,7 +67,7 @@ const BlogGraph = () => {
         const res = data.json();
         return res
       }).then((res) => {
-        console.log("ressss", res.sumtData)
+        // console.log("ressss", res.sumtData)
         // for (const val of res) {
         if(c == "TODAY"){
           todayData.push(res.sumtData)
@@ -78,7 +78,7 @@ const BlogGraph = () => {
         setWeekData(weekData)
 
         }else if(c == "MONTH"){
-          console.log(res.sumtData)
+          // console.log(res.sumtData)
           monthData.push(res.sumtData)
         setMonthData(monthData)
 
@@ -87,14 +87,14 @@ const BlogGraph = () => {
         // }
         // console.log(setData.data)
       }).catch(err => {
-        console.log("error", err)
+        // console.log("error", err)
       })
     }
     fetchData("TODAY");
     fetchData("WEEK");
     fetchData("MONTH");
   }, [])
-  console.log(monthData[0])
+  // console.log(monthData[0])
   const datas =  {
     labels: ['Music Viewed'],
     datasets: [

@@ -4,7 +4,7 @@ import { Outlet, Navigate } from 'react-router-dom'
     let  userid = localStorage.getItem("userlogintoken") == null ? false : true;
     return (
         <>
-            {userid ? <Outlet  /> : <Navigate to="/Home" />};
+            {userid ? <Outlet /> : <Navigate to="/Home" />};
         </>
 
     )

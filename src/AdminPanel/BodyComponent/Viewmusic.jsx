@@ -4,18 +4,18 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 // import { deletemusic, viewmusic, editmusic } from "../../../api/config";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import './AdminDetails.css'
 import { PageHeader } from '../Common/Components'
 import { MenuItem } from "@mui/material";
 import { IconButton, Select } from "@material-ui/core";
 import { InputLabel } from "@mui/material";
-import { Modal } from "@mui/material";
-import { Typography } from "@mui/material";
+// import { Modal } from "@mui/material";
+// import { Typography } from "@mui/material";
 import Container from '../../Components/Layout/Backend/Container'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import PaidIcon from '@mui/icons-material/Paid';
+// import PaidIcon from '@mui/icons-material/Paid';
 // import { FormControl } from "@mui/material/FormControl";
 import { FormControl } from "@mui/material";
 import './AdminDetails.css'
@@ -61,8 +61,6 @@ const ViewMusic = () => {
     p: 4,
   }
 
-
-
   let [viewMusic, setViewMusicdetails] = useState([]);
   // let [songsedit, setsongsedit] = useState([]);
   let [imageName, setImage] = useState(null);
@@ -75,7 +73,6 @@ const ViewMusic = () => {
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
   let [data, updatedata] = useState({ price: "" });
-
   let token = localStorage.getItem("logintoken")
   // Edit API
   const setedit = (id) => {
@@ -90,7 +87,8 @@ const ViewMusic = () => {
         },
       }
     ).then((response) => {
-      console.log(response.data.getAudioById);
+      // console.log(response.data.getAudioById);
+      console.log(open)
       // const a = response.data.getAudioById.id;
       const article = response.data.getAudioById
       setImage(article.imageName)
@@ -126,7 +124,7 @@ const ViewMusic = () => {
         },
       }
     ).then((response) => {
-      console.log(response.data.allAudio);
+      // console.log(response.data.allAudio);
       setViewMusicdetails(response.data.allAudio);
 
     }).catch((err) => {
@@ -193,7 +191,7 @@ const ViewMusic = () => {
         data: formData,
       }
     ).then((response) => {
-      console.log(response);
+      // console.log(response);
       if (response.status === 201) {
         Edittoast();
       }
@@ -214,11 +212,11 @@ const ViewMusic = () => {
         }
       }
     ).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.status === 200) {
         ChangeStatustoast();
       }
-      console.log(updatingID)
+      // console.log(updatingID)
       app();
 
     }).catch((err) => {
@@ -232,7 +230,7 @@ const ViewMusic = () => {
   // Add Price On Song API
   const addmusicprice = (e, id) => {
     e.preventDefault()
-    console.log(id)
+    // console.log(id)
     axios(
       {
         url: `${addprice}${updateId}`,
@@ -256,6 +254,12 @@ const ViewMusic = () => {
   return (
     <>
       <Container>
+        <ToastContainer
+          autoClose={1000}
+          position="top-center"
+          className="toast-container"
+          toastClassName="dark-toast"
+          theme="colored" />
 
         {/* Music List Data ..app Api.. START  */}
         {/* Add Price On Songs Model Start  */}
@@ -282,22 +286,17 @@ const ViewMusic = () => {
           </Modal>
         </div> */}
         {/* Add Price On Songs Model End  */}
-        <ToastContainer
-          autoClose={1000}
-          position="top-center"
-          className="toast-container"
-          toastClassName="dark-toast"
-          theme="colored" />
+     
 
         <Box mt={2}>
           <PageHeader title='View Music' />
 
-          <div style={{ maxWidth: 200 }}  >
+          <div style={{ maxWidth: 300 }}  >
             <FormControl fullWidth >
-              <InputLabel id="demo-simple-select-label">Your Tracks</InputLabel>
+              <InputLabel id="demo-simple-select-standard-label">Your Tracks</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
                 defaultValue={10}
 
                 // value={age}
@@ -315,13 +314,14 @@ const ViewMusic = () => {
 
         </Box>
 
-
         <div style={{ overflow: 'hidden', width: '1050px' }}>
           {viewMusic.map((songs, index) => {
             return (
-              <>
-                <div className="bg-purple" style={{ width: '100%', height: '54px', margin: '10px', float: 'left' }}>
-                  <div key={index}>
+              
+                <div className="bg-purple" 
+                style={{ width: '100%', height: '54px', margin: '10px', float: 'left' }}
+                key={index}>
+                  <div >
                     <img src={songs.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
                   </div>
                   <div style={{ height: '54px', float: 'left' }}>
@@ -330,7 +330,8 @@ const ViewMusic = () => {
                     </audio>
                   </div >
                   <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '54px' }}>
-                    <h5>{songs.trackTitle}</h5>
+                    <h5 style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      {songs.trackTitle}</h5>
                     <p>{songs.trackType}</p>
                   </div>
                   <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
@@ -349,22 +350,26 @@ const ViewMusic = () => {
                    </IconButton> */}
 
                   {/* Edit Songs Start  */}
-                  <IconButton hover={hover} >
+                  
                     <EditIcon
-                      sx={{ color: 'black' }}
+                      hover={hover}
+                      sx={{ color: 'black' , mt:2 , ml:3}}
+                      
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
                       onClick={() => {
                         setedit(songs.id)
                       }}
-                      data-bs-whatever="@getbootstrap"></EditIcon> </IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
+                      data-bs-whatever="@getbootstrap"></EditIcon>  &nbsp;&nbsp;&nbsp;&nbsp;
 
                   {/* Edit Songs End  */}
 
 
                   {/* Delete Songs Start */}
-                  <IconButton hover={hover} >
-                    <DeleteIcon sx={{ color: 'black' }} variant="contained" onClick={async () => {
+                 
+                    <DeleteIcon 
+                    hover={hover}
+                    sx={{ color: 'black' , mt:2 , ml:3}} variant="contained" onClick={async () => {
                       let res = await axios.delete(`${deletemusic}${songs.id}`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
@@ -376,7 +381,7 @@ const ViewMusic = () => {
                       app();
                       console.log(res);
 
-                    }}></DeleteIcon></IconButton> &nbsp;&nbsp;&nbsp;&nbsp;
+                    }}></DeleteIcon>&nbsp;&nbsp;&nbsp;&nbsp;
 
                   {/* >DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; 
                   <DeleteIcon />  */}
@@ -385,7 +390,7 @@ const ViewMusic = () => {
 
                   {/* Change Public Privet Start  */}
 
-                  <FormControl sx={{ m: 2, minWidth: 80 }}>
+                  <FormControl sx={{ m: 2, minWidth: 80 , ml:5}}>
                     <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
                     <Select
                       labelId="demo-simple-select-autowidth-label"
@@ -410,7 +415,8 @@ const ViewMusic = () => {
 
                   {/* Edit Songs PopUp Model Start   */}
 
-                  <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style={{ marginTop: "20px" }}>
+                  <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true" style={{ marginTop: "20px" }}>
                     <div className="modal-dialog">
                       <div className="modal-content">
                         <div className="modal-header">
@@ -424,7 +430,7 @@ const ViewMusic = () => {
                               <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
                                 name="trackTitle" type="text" className="form-control" id="recipient-name" />
                             </div><div className="mb-3">
-                              <label a className="col-form-label black" style={{ color: 'black' }}>trackType</label>
+                              <label className="col-form-label black" style={{ color: 'black' }}>trackType</label>
                               <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
                             </div><div className="mb-3">
                               <label className="col-form-label" style={{ color: 'black' }}>bpm</label>
@@ -458,12 +464,7 @@ const ViewMusic = () => {
                               //   submit(songs.id)
                               // }}
                               >Update</button>
-                              <ToastContainer
-                                autoClose={1000}
-                                position="top-center"
-                                className="toast-container"
-                                toastClassName="dark-toast"
-                                theme="colored" />
+
 
                             </div>
                           </div>
@@ -475,7 +476,7 @@ const ViewMusic = () => {
                   {/* Edit Songs PopUp Model Start  */}
 
                 </div>
-              </>
+              
             )
           })}
         </div>

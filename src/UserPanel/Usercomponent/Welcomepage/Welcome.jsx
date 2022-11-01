@@ -3,6 +3,7 @@ import WelcomeNavbar from './WelcomeNavbar';
 import Footer from '../../UserBackend/Footer';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import { Navigate } from 'react-router-dom';
 // import '../../css/welcome.css'
 // import './welcome.css'
 // import { Button } from '@mui/material'
@@ -11,8 +12,12 @@ import ImageListItem from '@mui/material/ImageListItem';
 // import Carousel from 'react-bootstrap/Carousel';
 
 const Welcome = () => {
+
+  let  usertoken = localStorage.getItem("userlogintoken") == null ? false : true;
   return (
-    <div>
+    <>
+      {usertoken ? <Navigate to="/Home" /> :
+      <div>
       <WelcomeNavbar />
       <div className="nav bg-dark text-white "
         style={{
@@ -73,8 +78,8 @@ const Welcome = () => {
           />
         </div></div> */}
       <ImageList sx={{ width: "100%", height: 450 }} variant="woven" cols={3} gap={8}>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
+        {itemData.map((item , index) => (
+          <ImageListItem key={index}>
             <img
               src={`${item.img}?w=161&fit=crop&auto=format`}
               srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
@@ -122,6 +127,8 @@ const Welcome = () => {
       </div>
       <Footer />
     </div>
+}
+    </>
   )
 }
 

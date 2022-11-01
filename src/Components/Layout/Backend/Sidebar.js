@@ -9,7 +9,7 @@ const Sidebar = () => {
       <aside className="main-sidebar sidebar-dark-primary elevation-4"
         style={{ position: 'fixed' }}>
         <div className="brand-link">
-          <img src='./images.png'
+          <img src='./mlsa.jpg'
           // src="dist/img/AdminLTELogo.png" 
           alt="..." className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
           <span className="brand-text font-weight-light">SampleSplit</span>

@@ -18,7 +18,6 @@ const Splitsong = () => {
   const [file_name, setFile_name] = useState();
   const [type, setType] = useState();
   const [data, updateData] = useState();
-  const [dummy, updateDummy] = useState();
   const [vocals, setVocals] = useState(false);
   const [fourvocals , setfourVocals] = useState(false);
   const [accompaniment, setaccompaniment] = useState(false);
@@ -26,8 +25,6 @@ const Splitsong = () => {
   const [drums, setdrums] = useState(false);
   const [other, setother] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [button,setButton] = useState();
-  const inputRef = React.useRef()
 
   const ErrorToast = ()=>{
     toast.error("Try Again");
@@ -35,7 +32,12 @@ const Splitsong = () => {
 
   const models = (event) => {
     event.preventDefault();
-    setButton("")
+    setVocals(false);
+    setaccompaniment(false);
+    setbass(false);
+    setdrums(false);
+    setfourVocals(false);
+    setother(false);
     setLoading(true);
     let formData = new FormData();
     formData.append('stems', stems);
@@ -50,13 +52,17 @@ const Splitsong = () => {
     }).then((response) => {
       console.log(response);
       if (response.status === 200) {
+        event.target.reset();
         setLoading(false);
+        
       }
-      musicinput.current.value = "";
+      // musicinput.current.value = "";
+
       setType("")
       if (response.data.vocals) {
         setVocals(true);
         updateData(response.data);
+        
       }
       else if (response.data.accompaniment) {
         setaccompaniment(true);
@@ -75,7 +81,7 @@ const Splitsong = () => {
         setother(true);
         updateData(response.data);
       }
-      else if (response.status===200) {
+      else if (response.data.fourStemsVocals) {
         setfourVocals(true);
         updateData(response.data);
       }
@@ -199,7 +205,7 @@ const Splitsong = () => {
         style={{ height:'120px',textAlign : 'center',background:'#2F76DB',color:'black',width:'300px',margin:"50px"}}
         autoPlay={false}           
         controls={false}
-        src={data.vocals}
+        src={data.fourStemsVocals}
         showJumpControls={false}
       />
       }

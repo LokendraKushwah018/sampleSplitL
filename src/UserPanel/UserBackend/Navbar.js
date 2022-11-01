@@ -56,8 +56,6 @@ const Navbar = () => {
     //   </div>
     // </nav>  
 
-
-
     <nav className="navbar navbar-expand-lg navbar-light bg-dark ">
       <div className="container-fluid text-white">
         <div className="navbar-brand text-light">SampleSplit</div>
@@ -72,9 +70,11 @@ const Navbar = () => {
             <Link className="nav-link active text-light" to="/Home">Home</Link>
             <Link className="nav-link active text-light" to="/Freestem">FreeStem</Link>
             <Link className="nav-link active text-light" to="/Splitsong">SplitSong</Link>
-            <Link className="nav-link active text-light" aria-current="page" to="/UserBlog">UserBlog</Link>
+            <Link className="nav-link active text-light" aria-current="page" to="/UserBlog">Blog</Link>
             <Link className="nav-link active text-light" to="/About">About</Link>
             <Link className="nav-link active text-light" to="/Contact" >ContactUs</Link>
+            <Link className="nav-link active text-light" to="/Useraccount" >My Account</Link>
+
           </div>
           <div className="navbar-nav ms-auto ">
             <span>

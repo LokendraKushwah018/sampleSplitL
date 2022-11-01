@@ -1,11 +1,9 @@
 import { makeStyles } from "@material-ui/core";
-// import { colors } from "../Theme";
 import { colors } from "./Theme";
 
 export const useStyles = makeStyles((theme) => ({
   section: {
-    margin: theme.spacing(2, 0),
-    
+    margin: theme.spacing(2, 0) 
     
   },
   pageLabel: {

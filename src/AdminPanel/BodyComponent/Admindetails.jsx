@@ -7,7 +7,7 @@ import { PageHeader } from '../Common/Components';
 import { Box } from '@mui/material';
 import { admindetailsedit, adminprofile, changepassword } from '../../Api/Config';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { Modal } from '@mui/material';
 import Container from '../../Components/Layout/Backend/Container';
 import { useNavigate } from 'react-router-dom';
@@ -150,7 +150,7 @@ export default function AdminDetails() {
         <section className="profile">
           <header className="header">
             <div className="details">
-              <img src="./mlsa.jpg" alt="John Doe" class="profile-pic" />
+              <img src="./mlsa.jpg" alt="John Doe" className="profile-pic" />
               <h1 className="heading">{data.name}</h1>
               <div className="stats">
                 <div className="col-6">
@@ -187,12 +187,12 @@ export default function AdminDetails() {
             </Typography>
             <form onSubmit={updateProfile} >
               <div className="form-group m-1">
-                <label for="exampleInputEmail1">Name</label>
+                <label>Name</label>
                 <input type="text" className="form-control" name='name' value={profile.name} onChange={display}
                   placeholder="Enter email" />
               </div>
-              <div class="form-group m-1">
-                <label for="exampleInputPassword1">Email</label>
+              <div className="form-group m-1">
+                <label>Email</label>
                 <input type="email" className="form-control" name='email' value={profile.email} onChange={display}
                   placeholder="Password" />
               </div>
@@ -210,24 +210,24 @@ export default function AdminDetails() {
           {/* Admin Change Profile Model End  */}
 
         {/* Admin Change Password Model Start  */}
-        <div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog ">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div className="modal fade mt-5" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog ">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Edit Details</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <form onSubmit={updateAdmin}>
-                <div class="modal-body">
-                  <div class="mb-3">
-                    <label for="recipient-name" className="col-form-label">New password</label>
+                <div className="modal-body">
+                  <div className="mb-3">
+                    <label className="col-form-label">New password</label>
                     <input type="text" value={changepass.password} onChange={show}
                       name="password"
                       // / onChange={(e) => setName(e.target.value)} 
                       className="form-control" id="recipient-name" />
                   </div>
-                  <div class="mb-3">
-                    <label for="message-text" className="col-form-label">Confirm password</label>
+                  <div className="mb-3">
+                    <label className="col-form-label">Confirm password</label>
                     <input type="text" name='confirmPassword' value={changepass.confirmPassword} onChange={show}
                       className="form-control" id="recipient-name" />
                   </div>

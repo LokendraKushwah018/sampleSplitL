@@ -200,7 +200,7 @@ export default function Usersignup() {
             className="toast-container"
             toastClassName="dark-toast"
             theme="colored" />
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Link to="/userlogin" variant="body2">
                 Already have an account? LogIn

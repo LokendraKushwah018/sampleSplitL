@@ -12,24 +12,12 @@ import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
 import IconButton from '@mui/material/IconButton';
 import DownloadIcon from '@mui/icons-material/Download';
-// import background from "../css/backgroundimage.jpg"
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 // import Footer from '../UserBackend/Footer'
 
-// import { Link } from 'react-router-dom'
-
-
 const Freestem = () => {
-  // const Wrap = styled.div`
-  // background:black; 
-  // border:1px solid black;
-  // &:hover {
-  //   background:black;
-  //   border : 1px solid white ;
-  // }
 
-  // `
   const [music, setMusic] = useState([]);
   const [play, setPlay] = useState([])
   const [playingMusic, setPlayingMusic] = useState([])
@@ -40,19 +28,12 @@ const Freestem = () => {
   const [gaana, setGaana] = useState([]);
   const [input, setinput] = useState();
   const [visible, setVisible] = useState(true);
-
-
   const [donate, setDonate] = useState({ title: "", amount: "" });
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
   const navigate = useNavigate();
   const token = localStorage.getItem("userlogintoken");
 
-  // console.log("queryr ", query)
-  // const [play , setPlay] = useState([])
-  // const removeElement = () => {
-
-  // };
   const Warningtoast = () => {
     toast.info("Wait For a second");
   }
@@ -70,6 +51,7 @@ const Freestem = () => {
         console.log(response);
         setSongs(response.data.getSong);
         console.log(response.data.getSong);
+        console.log(Id , state)
       }).catch((err) => {
         console.log(err);
       })
@@ -101,11 +83,12 @@ const Freestem = () => {
         console.log(response.data);
       }).catch((err) => {
         console.log(err);
+        // console.log(MostPlayed)
       })
   }
   useEffect(() => {
     handleClick("public");
-    //  MostPlayed();
+      MostPlayed();
   }, []);
 
   const show = (event) => {
@@ -231,12 +214,11 @@ const Freestem = () => {
                       display: 'block',
                       margin: '10px',
                       marginLeft: "500px",
+                      
                     }}>
                     <div>
-
                       <img src={item.imageName}
                         onClick={() => SearchPlayer(item.id, item.music, item.trackTitle)}
-
                         alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
                     </div>
 
@@ -249,34 +231,43 @@ const Freestem = () => {
             )
           })}
         <div style={{
-          display: 'inline-flex', margin: '0px 0px 0px 70px'
+          float: 'left', margin: '0px 0px 0px 70px'
         }}>
-          <div onClick={() => handleClick('Drums')}>
+          <div 
+          style={{float:'left' , margin:10}}
+          onClick={() => handleClick('Drums')}>
             <h2 style={{ textAlign: 'center' }} >Drums</h2>
-            <img src={drumsImg} alt="/" style={{ width: '300px', height: "200px" }} />
+            <img src={drumsImg} alt="/" style={{ width: '250px', height: "200px" }} />
           </div>
           &nbsp;
-          <div onClick={() => handleClick('Vocals')}>
+          <div 
+          style={{float:'left' , margin:10}}
+          onClick={() => handleClick('Vocals')}>
             <h2 style={{ textAlign: 'center' }} >Vocals</h2>
-            <img src={vocalImg} alt="/" style={{ width: '300px', height: "200px" }} />
+            <img src={vocalImg} alt="/" style={{ width: '250px', height: "200px" }} />
           </div>
           &nbsp;
-          <div onClick={() => handleClick('Samples')}>
+          <div 
+          style={{float:'left' , margin:10}}
+          onClick={() => handleClick('Samples')}>
             <h2 style={{ textAlign: 'center' }} >Sample</h2>
-            <img src={sampleImg} alt="/" style={{ width: '300px', height: "200px" }} />
+            <img src={sampleImg} alt="/" style={{ width: '250px', height: "200px" }} />
           </div>
           &nbsp;
-          <div onClick={() => handleClick('Beats')}>
+          <div 
+          style={{float:'left' , margin:10}}
+          onClick={() => handleClick('Beats')}>
             <h2 style={{ textAlign: 'center' }} >Beats</h2>
-            <img src={beatImg} alt="/" style={{ width: '300px', height: "200px" }} />
+            <img src={beatImg} alt="/" style={{ width: '250px', height: "200px" }} />
           </div>
         </div>
-        <div style={{ float: 'left', marginLeft: '80px', marginBottom:"50px" }}>
+        <div style={{ float: 'left', marginLeft: '80px', marginBottom: "50px" }}>
 
-          {music.map((value, i) => {
+          {music.map((value , index) => {
             return (
-              <>
-                <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}  >
+            
+                <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
+                key={index}>
                   <div
                     className="img-div"
                     style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName)}>
@@ -290,17 +281,17 @@ const Freestem = () => {
                         textAlign: 'center',
                         float: 'left',
                       }}>
-                      <h5 style={{ lineHeight: '30px' }}>{value.trackTitle}</h5>
+                      <h5 style={{ lineHeight: '30px' ,whiteSpace: "nowrap",overflow: "hidden",  textOverflow: "ellipsis"}}>{value.trackTitle}</h5>
                       <p>{value.tracktype}</p>
                     </div>
                   </div>
-                  <IconButton>
+                  
                     <DownloadIcon
                       sx={{ m: 2 }}
                       onClick={() => Download(value.id)}
                       data-bs-toggle="modal" href="#exampleModalToggle" role="button"
                     />
-                  </IconButton>
+                  
                   <div className="modal fade" id="exampleModalToggle" aria-hidden="true"
                     aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                     <div className="modal-dialog modal-dialog-centered">
@@ -311,13 +302,13 @@ const Freestem = () => {
                         </div>
                         <div className="modal-body">
                           Download This Song
-                          <IconButton>
+                      
                             <DownloadIcon
                               onClick={BuyPlan}
                               aria-label="Close"
                               data-bs-dismiss="modal"
                               sx={{ color: '#1F2D5A' }} />
-                          </IconButton>
+                      
                           <a href="_ff (6).mp3" download><img src={gaana.music} alt="/" />d</a>
                         </div>
                         <div className="modal-footer">
@@ -339,14 +330,14 @@ const Freestem = () => {
                           <form >
                             <div className="form-group">
                               <label className="col-form-label">Title</label>
-                              <input type="text" class="form-control" id="recipient-name"
+                              <input type="text" className="form-control" id="recipient-name"
                                 name="title" value={title}
-                                onChange={(e) => setTitle(e.target.value)} className="form-control"
+                                onChange={(e) => setTitle(e.target.value)} 
                                 required
                               />
                             </div>
                             <div className="form-group">
-                              <label for="message-text" className="col-form-label">Amount</label>
+                              <label htmlFor="message-text" className="col-form-label">Amount</label>
                               <input id="message-text"
                                 type="amount" name="amount" value={amount}
                                 onChange={(e) => setAmount(e.target.value)} className="form-control"
@@ -354,7 +345,6 @@ const Freestem = () => {
                               ></input>
                             </div>
                             <button onClick={donation} className="btn btn-outline-success">Submit</button>
-
                           </form>
                         </div>
                         <div className="modal-footer">
@@ -365,16 +355,16 @@ const Freestem = () => {
                     </div>
                   </div>
                 </div>
-              </>
+              
             )
           })}
         </div>
         <div className="Apps">
           <AudioPlayer
-            style={{ height:'80px',textAlign : 'center',background:"black" ,color:'white'}}
-            autoPlay={false}           
-             layout="horizontal"
-             controls={false}
+            style={{ height: '80px', textAlign: 'center', background: "black", color: 'white' }}
+            autoPlay={false}
+            layout="horizontal"
+            controls={false}
             src={playingMusic}
             showJumpControls={false}
             header={play}
