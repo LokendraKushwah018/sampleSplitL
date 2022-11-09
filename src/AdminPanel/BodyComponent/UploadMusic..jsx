@@ -12,12 +12,14 @@ import Container from '../../Components/Adminlayout/Container'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { PageHeader } from '../Common/Components'
+import { useSelector } from "react-redux";
 
 const BlogPost = () => {
   const Uploadtoast = () => {
     toast.success("Upload Successfully!")
   };
-  let token = localStorage.getItem('logintoken')
+  // let token = localStorage.getItem('logintoken')
+  const token = useSelector(state=>state.admin.adminlogintoken)  
   const imageinput = useRef();
   const musicinput = useRef();
 

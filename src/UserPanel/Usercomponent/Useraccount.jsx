@@ -5,13 +5,15 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { getUserDetail } from '../../Api/Config'
+import { useSelector } from 'react-redux'
 
 const Useraccount = () => {
-    const token = localStorage.getItem("userlogintoken")
+    // const token = localStorage.getItem("userlogintoken")
+    const token = useSelector(state=>state.auth.userlogintoken)
     const [data, setData] = useState([]);
     const [plandata, setPlandata] = useState(false);
-
     const [plandetails, setPlandetails] = useState([]);
+    
     const plan = () => {
         axios(  
             {

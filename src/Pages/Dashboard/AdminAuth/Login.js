@@ -11,9 +11,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import {  useNavigate} from "react-router-dom";
-import { adminlogin } from "../../../Api/Config"
+import { loginAdmin } from "../../../Api/Config"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import { adminlogin } from "../Auth/AdminSlice";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -46,6 +48,7 @@ export default function AdminlogIn() {
   };
 //   let history = useHistory();
   let Navigate = useNavigate();
+  const dispatch = useDispatch()
   const classes = useStyles();
   let [data, updateData] = useState({ email: '', password: '' });
   const display = (e) => {
@@ -60,7 +63,7 @@ export default function AdminlogIn() {
     const AdminlogInApi = () => {
       axios(
         {
-          url: `${adminlogin}`,
+          url: `${loginAdmin}`,
           method: "post",
           header: {
             'Content-Type': 'application/json'
@@ -73,9 +76,10 @@ export default function AdminlogIn() {
       )
         .then((response) => {
           console.log(response);
-        const logintoken = response.data.token
+        const adminlogintoken = response.data.token
         console.log(response.data.token)
-        localStorage.setItem('logintoken', logintoken)
+        dispatch(adminlogin(adminlogintoken))
+        // localStorage.setItem('logintoken', logintoken)
 
         if (response.status === 200) {
           logintoast();

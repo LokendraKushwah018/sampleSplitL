@@ -24,6 +24,7 @@ import { addprice, changestatus, deletemusic, editmusic, updatemusic, viewmusic 
 // import "./music.js"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from "react-redux";
 
 const ViewMusic = () => {
 
@@ -77,8 +78,9 @@ const ViewMusic = () => {
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
   let [data, updatedata] = useState({ price: "" });
-  let token = localStorage.getItem("logintoken")
-  // Edit API
+  // let token = localStorage.getItem("logintoken")
+  const token = useSelector(state=>state.admin.adminlogintoken)
+    // Edit API
   const setedit = (id) => {
     // console.log(id)
     // api call 

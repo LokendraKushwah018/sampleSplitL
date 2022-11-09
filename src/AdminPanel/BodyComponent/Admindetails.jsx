@@ -13,6 +13,7 @@ import Container from '../../Components/Adminlayout/Container';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 const style = {
   position: 'absolute',
@@ -30,7 +31,7 @@ export default function AdminDetails() {
   let [data, updatedata] = useState([]);
   let [changepass, updatechangepass] = useState({ password: "", confirmPassword: "" });
   let [profile, updateprofile] = useState({ name: "", email: "" });
-  let token = localStorage.getItem("logintoken")
+  const token = useSelector(state=>state.admin.adminlogintoken)
   const navigate = useNavigate();
   const adminchangepasswordtoast = () => {
     toast.success("Password Change Successfully !")

@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +10,9 @@ import { userbuyplan, userSubscription } from '../../Api/Config';
 import '../css/buyplan.css'
 
 const BuyPlan = () => {
-    const token = localStorage.getItem("userlogintoken");
+    // const token = localStorage.getItem("userlogintoken");
+    const token = useSelector(state=>state.auth.userlogintoken)
+
     const [getPeymentDetails, setPeymentDetails] = useState('');
     let [plan, setPlan] = useState([]);
     console.log(token);

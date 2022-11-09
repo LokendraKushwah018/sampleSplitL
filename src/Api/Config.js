@@ -1,7 +1,7 @@
 
 // ADMIN PANLE API'S
 
-export const adminlogin = `http://localhost:5001/api/admin/login`;
+export const loginAdmin = `http://localhost:5001/api/admin/login`;
 export const adminprofile = `http://localhost:5001/api/admin/getAdminProfile`;
 export const uploadmusic = `http://localhost:5001/api/admin/audioUpload`;
 export const adminblog = `http://localhost:5001/api/admin/createBlog`;

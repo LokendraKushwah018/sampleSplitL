@@ -14,6 +14,8 @@ import { userlogin } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from "react-redux";
+import { login } from "../../Auth/AuthSlice";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -51,6 +53,7 @@ export default function UserLogIn() {
   let [formErrors, setformErrors] = useState({});
   let [isSubmit, setIsSubmit] = useState(false);
   let [data, updateData] = useState({ username: '', email: '', password: '' });
+  const dispatch = useDispatch()
   const display = (e) => {
     updateData({ ...data, [e.target.name]: e.target.value });
   };
@@ -77,7 +80,8 @@ export default function UserLogIn() {
       .then((response) => {
         console.log(response);
         const userlogintoken = response.data.token
-        localStorage.setItem('userlogintoken', userlogintoken)          
+        dispatch(login(userlogintoken))
+        // localStorage.setItem('userlogintoken', userlogintoken)          
             if (response.status === 200) {
               userlogintoast();
               setTimeout(() => {

@@ -4,6 +4,7 @@ import Footer from '../../Userlayout/Footer';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 // import '../../css/welcome.css'
 // import './welcome.css'
 // import { Button } from '@mui/material'
@@ -13,7 +14,7 @@ import { Navigate } from 'react-router-dom';
 
 const Welcome = () => {
 
-  let  usertoken = localStorage.getItem("userlogintoken") == null ? false : true;
+  let  usertoken = useSelector(state=>state.auth.isLoggedIn === true)
   return (
     <>
       {usertoken ? <Navigate to="/Home" /> :

@@ -14,6 +14,7 @@ import {
 } from 'chart.js';
 
 import { Bar } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -41,8 +42,8 @@ const options = {
 };
 
 const BlogGraph = () => {
-
-  const token = localStorage.getItem("logintoken")
+     const token = useSelector(state=>state.admin.adminlogintoken)
+  // const token = localStorage.getItem("logintoken")
   const [monthData, setMonthData] = useState([])
   const [weekData, setWeekData] = useState([])
   const [todayData, setTodayData] = useState([])

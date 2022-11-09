@@ -9,14 +9,15 @@ import Container from '../../Components/Adminlayout/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux';
 
 const Blog = () => {
 
     const Blogtoastupload = () => {
         toast.success("Blog Uploaded Successfully!")
     };
-
-    let token = localStorage.getItem('logintoken')
+    const token = useSelector(state=>state.admin.adminlogintoken)   
+     // let token = localStorage.getItem('logintoken')
     let [files, setImage] = useState(null);
     let [title, setTitle] = useState('');
     let [description, setDescription] = useState('');

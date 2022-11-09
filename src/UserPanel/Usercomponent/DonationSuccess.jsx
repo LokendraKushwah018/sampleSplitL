@@ -9,11 +9,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { SuccessDonation } from '../../Api/Config'
+import { useSelector } from 'react-redux';
 
 export default function DonationSuccess() {
     const [loading, setloading] = useState(true)
+    const token = useSelector(state=>state.auth.userlogintoken)
+
     const navigate = useNavigate();
-    const token = localStorage.getItem("userlogintoken")
+    // const token = localStorage.getItem("userlogintoken")
     const Donationtoast = () => {
         toast.success("Donate Successfully !")
     };

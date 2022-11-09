@@ -3,11 +3,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import LogoutIcon from '@mui/icons-material/Logout'
 import './Navbar.css';
+import { logout } from '../../Pages/Dashboard/Auth/AuthSlice';
+import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
   const token = localStorage.getItem("userlogintoken")
+  const dispatch = useDispatch()
   let Navigate = useNavigate();
   const Userlogout = () => {
+
     axios(
       {
         url: 'http://localhost:5001/api/user/logOut',
@@ -24,6 +28,11 @@ const Navbar = () => {
       }).catch((err) => {
         console.log(err)
       })
+  }
+  const userlogout = (e) => {
+    e.preventDefault()
+    dispatch(logout())
+    Navigate("/")
   }
 
   return (
@@ -80,7 +89,7 @@ const Navbar = () => {
             <span>
               <button className="btn btn-outline-success"
                 type="submit"
-                onClick={Userlogout}>
+                onClick={userlogout}>
                 <LogoutIcon />Logout
               </button></span>
           </div>

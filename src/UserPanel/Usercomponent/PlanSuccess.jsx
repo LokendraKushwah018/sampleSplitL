@@ -8,10 +8,13 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function PlanSuccess() {
     const [loading, setloading] = useState(true);
-    const token = localStorage.getItem("userlogintoken")
+    const token = useSelector(state=>state.auth.userlogintoken)
+
+    // const token = localStorage.getItem("userlogintoken")
 
     const navigate = useNavigate();
     const id = localStorage.getItem("ID")

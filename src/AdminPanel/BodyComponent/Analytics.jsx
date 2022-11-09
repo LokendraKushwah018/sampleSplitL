@@ -9,10 +9,11 @@ import { useState } from 'react';
 import { Avatar } from '@material-ui/core';
 import { Stack } from '@mui/system';
 import Container from '../../Components/Adminlayout/Container';
+import { useSelector } from 'react-redux';
 
 const Analytics = () => {
-
-  let token = localStorage.getItem('logintoken');
+  const token = useSelector(state=>state.admin.adminlogintoken) 
+   // let token = localStorage.getItem('logintoken');
   let [toptrack, setToptracks] = useState([]);
   let [topfan, setTopfans] = useState([]);
 

@@ -19,6 +19,7 @@ import FileSaver from 'file-saver'
 import '../css/search.css'
 // import { MusicNoteRounded } from '@mui/icons-material'
 import InfoIcon from '@mui/icons-material/Info';
+import { useSelector } from 'react-redux'
 
 const Freestem = () => {
 
@@ -38,9 +39,10 @@ const Freestem = () => {
   const [amount, setAmount] = useState('')
   const [ playingmusicImgae, setplayingmusicImgae] = useState([])
   const [musicplayerimage , setMusicplayerimage] = useState(false)
+  const token = useSelector(state=>state.auth.userlogintoken)
   const navigate = useNavigate();
-  const token = localStorage.getItem("userlogintoken");
-
+  // const token = localStorage.getItem("userlogintoken");
+     
   const Warningtoast = () => {
     toast.info("Wait For a second");
   }
@@ -338,7 +340,6 @@ const Freestem = () => {
 
           {music.map((value, index) => {
             return (
-
               <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
                 key={index}>
                 <div
