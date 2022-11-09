@@ -1,6 +1,6 @@
 import React from 'react'
 import WelcomeNavbar from './WelcomeNavbar';
-import Footer from '../../UserBackend/Footer';
+import Footer from '../../Userlayout/Footer';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Navigate } from 'react-router-dom';

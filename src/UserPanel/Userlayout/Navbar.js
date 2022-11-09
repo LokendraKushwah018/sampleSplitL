@@ -69,7 +69,7 @@ const Navbar = () => {
           <div className="navbar-nav ml-5">
             <Link className="nav-link active text-light" to="/Home">Home</Link>
             <Link className="nav-link active text-light" to="/Freestem">FreeStem</Link>
-            <Link className="nav-link active text-light" to="/Splitsong">SplitSong</Link>
+            {/* <Link className="nav-link active text-light" to="/Splitsong">SplitSong</Link> */}
             <Link className="nav-link active text-light" aria-current="page" to="/UserBlog">Blog</Link>
             <Link className="nav-link active text-light" to="/About">About</Link>
             <Link className="nav-link active text-light" to="/Contact" >ContactUs</Link>

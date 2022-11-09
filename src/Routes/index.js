@@ -17,7 +17,7 @@ import Contact from '../UserPanel/Usercomponent/Contact'
 import Privateroutes from '../Pages/Dashboard/Privateroute'
 import AdminPrivateroutes from '../Pages/Dashboard/AdminPrivateroutes'
 import Welcome from '../UserPanel/Usercomponent/Welcomepage/Welcome'
-import Splitsong from '../UserPanel/Usercomponent/Splitsong'
+// import Splitsong from '../UserPanel/Usercomponent/Splitsong'
 import BuyPlan from '../UserPanel/Usercomponent/BuyPlan'
 import DonationSuccess from '../UserPanel/Usercomponent/DonationSuccess'
 import DonationCancell from '../UserPanel/Usercomponent/DonationCancell'
@@ -29,8 +29,8 @@ import Useraccount from '../UserPanel/Usercomponent/Useraccount'
 
 const Index = () => {
   return <div>
+    {/* Admin Routing */}
     <Routes>
-
       <Route path="/adminlogin" element={<AdminlogIn />} />
       <Route element={<AdminPrivateroutes />}>
         <Route path='/dashboard' element={<BlogGraph />} />
@@ -50,14 +50,13 @@ const Index = () => {
       <Route path='/' element={<Welcome />} />
       <Route path='/Usersignup' element={<Usersignup />} />
       <Route path='/UserLogIn' element={<UserLogIn />} />
-      {/* <Route path="/" element={isExpired(localStorage.getItem('token') ? <Home/> : <UserLogIn/> )} /> */}
       <Route element={<Privateroutes />} >
       <Route path='/About' element={<About />} />
       <Route path='/Home' element={<Home />} />
       <Route path='/Freestem' element={<Freestem />} />
       <Route path='/Contact' element={<Contact />} />
       <Route path='/UserBlog' element={<UserBlog />} />
-      <Route path='/Splitsong' element={<Splitsong />} />
+      {/* <Route path='/Splitsong' element={<Splitsong />} /> */}
       <Route path='/Useraccount' element={<Useraccount/>} />
 
       </Route>

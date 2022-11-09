@@ -46,8 +46,23 @@
       padding: 32px;
     }
   }
-  
   .card__image {
+    width: 100%;
+    max-height: 300px;
+    border-radius: var(--border-radius-primary);
+    object-fit: cover;
+    margin-bottom: 18px;
+    
+    @include mediaBig {
+      width: 45%;
+      max-height: none;
+      min-height: 400px;
+      margin-bottom: 0;
+    }
+  }
+  
+  
+  .card__video {
     width: 100%;
     max-height: 300px;
     border-radius: var(--border-radius-primary);

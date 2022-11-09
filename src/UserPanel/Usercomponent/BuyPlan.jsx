@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { userbuyplan, userSubscription } from '../../Api/Config';
+import '../css/buyplan.css'
 
 const BuyPlan = () => {
     const token = localStorage.getItem("userlogintoken");
@@ -23,7 +25,7 @@ const BuyPlan = () => {
         // BuyPlantoast();
         axios(
             {
-                url: 'http://localhost:5001/api/user/getAllSubscription',
+                url: `${userSubscription}`,
                 method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -48,7 +50,7 @@ const BuyPlan = () => {
         console.log(id);
         axios(
             {
-                url: `http://localhost:5001/api/user/Pay/${id}`,
+                url: `${userbuyplan}${id}`,
                 method: 'post',
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -69,42 +71,102 @@ const BuyPlan = () => {
         })
     }
     return (
+        // <>
+        //     <div>
+        //         <h1><b>Unlimited Downloads , Excusive Original Content and More</b></h1>
+        //     </div>
+        //     <div style={{ display: 'flex', flexDirection: 'row', margin: '50px' }}>
+        //         <div className="card" style={{ width: '400px', background: '#1F2D5A', borderRadius: '10px', margin: '50px' }}>
+        //             <div className="card-body">
+        //                 <h5 className="card-title text-white"><b>SampleSplit</b></h5>
+        //                 <div style={{ margin: '100px' }}>
+        //                     <h1 className="card-subtitle mb-2 text-muted text-center">{getPeymentDetails.subscriptionTitle}</h1>
+        //                     <h4 className="card-text text-center text-white">$&nbsp;{getPeymentDetails.subscriptionPrice}</h4>
+        //                 </div>
+        //                 <button onClick={() => buyPlan(getPeymentDetails.id)}
+        //                     style={{ width: '300px', height: '50px', background: '#2F76DB', borderRadius: '50px', border: 'none', color: 'white' }}>
+        //                     <h4><b>Buy</b></h4></button>
+        //                 <ToastContainer
+        //                     autoClose={1500}
+        //                     position="top-center"
+        //                     className="toast-container"
+        //                     toastClassName="dark-toast"
+        //                     theme="colored" />
+        //             </div>
+        //         </div>
+        //         <div className="card" style={{ width: '400px', background: '#2F76DB', borderRadius: '10px', margin: '50px' }}>
+        //             <div className="card-body">
+        //                 <h5 className="card-title text-white"><b>SampleSplit</b></h5>
+        //                 <div style={{ margin: '100px' }}>
+        //                     <h1 className="card-subtitle mb-2 text-muted text-center">1 Year</h1>
+        //                     <h4 className="card-text text-center text-white">$ 30.99</h4>
+        //                 </div>
+        //                 <button
+        //                     style={{ width: '300px', height: '50px', background: '#1F2D5A', borderRadius: '50px', border: 'none', color: 'white' }}>
+        //                     <h4><b>Buy</b></h4></button>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </>
         <>
-            <div>
-                <h1><b>Unlimited Downloads , Excusive Original Content and More</b></h1>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'row', margin: '50px' }}>
-                <div className="card" style={{ width: '400px', background: '#1F2D5A', borderRadius: '10px', margin: '50px' }}>
-                    <div className="card-body">
-                        <h5 className="card-title text-white"><b>SampleSplit</b></h5>
-                        <div style={{ margin: '100px' }}>
-                            <h1 className="card-subtitle mb-2 text-muted text-center">{getPeymentDetails.subscriptionTitle}</h1>
-                            <h4 className="card-text text-center text-white">$&nbsp;{getPeymentDetails.subscriptionPrice}</h4>
+            <ToastContainer
+                autoClose={1500}
+                position="top-center"
+                className="toast-container"
+                toastClassName="dark-toast"
+                theme="colored" />
+            <div className="container">
+                <h2><b>Unlimited Downloads , Excusive Original Content and More</b></h2>
+                <div className="row">
+                    <div className="col-md-5 col-sm-6">
+                        <div className="pricingTable">
+                            <div className="pricing_heading">
+                                <h3 className="title">Pricing Plan</h3>
+                                <span className="value">
+                                    $2.99
+                                    <span className="month">per month</span>
+                                </span>
+                            </div>
+                            <div className="content">
+                                <ul>
+                                    <h3>SampleSplit.Com</h3>
+                                    <li><b>Unlimited Split the Song</b></li>
+                                    <li><b>Unlimited Listening</b></li>
+                                    <li><b>Unlimited Downloading</b></li>
+
+                                </ul>
+                                <div className="button">
+                                    <button onClick={() => buyPlan(getPeymentDetails.id)}>Buy Plan</button>
+                                </div>
+                            </div>
                         </div>
-                        <button onClick={() => buyPlan(getPeymentDetails.id)}
-                            style={{ width: '300px', height: '50px', background: '#2F76DB', borderRadius: '50px', border: 'none', color: 'white' }}>
-                            <h4><b>Buy</b></h4></button>
-                        <ToastContainer
-                            autoClose={1500}
-                            position="top-center"
-                            className="toast-container"
-                            toastClassName="dark-toast"
-                            theme="colored" />
+                    </div>
+
+                    <div className="col-md-5 col-sm-6">
+                        <div className="pricingTable">
+                            <div className="pricing_heading">
+                                <h3 className="title">Pricing Plan</h3>
+                                <span className="value">
+                                    $30.99
+                                    <span className="month">per year</span>
+                                </span>
+                            </div>
+                            <div className="content">
+                                <ul>
+                                    <h3><b>SampleSplit.Com</b></h3>
+                                    <li><b>Unlimited Split the Song</b></li>
+                                    <li><b>Unlimited Listening</b></li>
+                                    <li><b>Unlimited Downloading</b></li>
+                                </ul>
+                                <div className="button">
+                                    <button>Buy Plan</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div className="card" style={{ width: '400px', background: '#2F76DB', borderRadius: '10px', margin: '50px' }}>
-                    <div className="card-body">
-                        <h5 className="card-title text-white"><b>SampleSplit</b></h5>
-                        <div style={{ margin: '100px' }}>
-                            <h1 className="card-subtitle mb-2 text-muted text-center">1 Year</h1>
-                            <h4 className="card-text text-center text-white">$ 30.99</h4>
-                        </div>
-                        <button
-                            style={{ width: '300px', height: '50px', background: '#1F2D5A', borderRadius: '50px', border: 'none', color: 'white' }}>
-                            <h4><b>Buy</b></h4></button>
-                    </div>
-                </div>
             </div>
+
         </>
     )
 }

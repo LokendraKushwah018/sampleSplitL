@@ -9,7 +9,7 @@ import { admindetailsedit, adminprofile, changepassword } from '../../Api/Config
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography } from '@material-ui/core';
 import { Modal } from '@mui/material';
-import Container from '../../Components/Layout/Backend/Container';
+import Container from '../../Components/Adminlayout/Container';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -158,7 +158,8 @@ export default function AdminDetails() {
                   <p>{data.name}</p>
                 </div>
                 <div className="col-6">
-                  <h5>Email&nbsp;<sup><EditIcon onClick={handleOpen} sx={{height:'20px'}}  /></sup></h5>
+                  <h5>Email&nbsp;
+                  <sup><EditIcon onClick={handleOpen} sx={{height:'20px'}}  /></sup></h5>
                   <p >{data.email}</p>
                 </div>
               </div>
@@ -188,13 +189,15 @@ export default function AdminDetails() {
             <form onSubmit={updateProfile} >
               <div className="form-group m-1">
                 <label>Name</label>
-                <input type="text" className="form-control" name='name' value={profile.name} onChange={display}
-                  placeholder="Enter email" />
+                <input type="text" className="form-control" 
+                name='name' value={profile.name} onChange={display}
+                placeholder="Enter email" />
               </div>
               <div className="form-group m-1">
                 <label>Email</label>
-                <input type="email" className="form-control" name='email' value={profile.email} onChange={display}
-                  placeholder="Password" />
+                <input type="email" className="form-control" 
+                name='email' value={profile.email} onChange={display}
+                placeholder="Password" />
               </div>
               <button type="submit" className="btn btn-primary m-1">Submit</button>
               <ToastContainer

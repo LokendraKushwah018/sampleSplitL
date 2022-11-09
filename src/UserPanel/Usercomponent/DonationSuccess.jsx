@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
+import { SuccessDonation } from '../../Api/Config'
 
 export default function DonationSuccess() {
     const [loading, setloading] = useState(true)
@@ -26,7 +27,7 @@ export default function DonationSuccess() {
         axios(
             {
                 //http://localhost:5001/api/user/successDonation?PayerID=UUNF2ES4R8LUL&paymentId=PAYID-MNFKHUA4M036060DK8155434&amount=20
-                url: `http://localhost:5001/api/user/successDonation?PayerID=${PayerID}&paymentId=${paymentId}&amount=${amount}`,
+                url: `${SuccessDonation}${PayerID}&paymentId=${paymentId}&amount=${amount}`,
                 method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -45,12 +46,11 @@ export default function DonationSuccess() {
         }).catch((err) => {
             console.log(err);
         })
-
     }, [])
     return (
         <>
             <ToastContainer
-                autoClose={1000}
+                autoClose={3000}
                 position="top-center"
                 className="toast-container"
                 toastClassName="dark-toast"

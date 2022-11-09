@@ -16,6 +16,7 @@ export const topfans = `http://localhost:5001/api/admin/getTopFans`;
 export const changestatus = `http://localhost:5001/api/admin/changeStatus/`;
 export const addprice = `http://localhost:5001/api/admin/AddPayment/`;
 export const changepassword = `http://localhost:5001/api/admin/changePassword`
+export const adminDashboard = `http://localhost:5001/api/admin/toptrackByDate?filterkey=`
 
 
 
@@ -31,4 +32,11 @@ export const userLogOut = `http://localhost:5001/api/user/logOut`;
 export const fourStemps =`http://localhost:5001/api/user/getFourSteamsSong?filterKey=`
 export const twoStemps = `http://localhost:5001/api/user/getTwoSteamsSong?filterKey=`
 export const songsdownload = `http://localhost:5001/api/user/getDownloadSong/`;
-
+export const samplesplitsong = `http://192.168.29.237:5001/api/user/getstemsAudio`
+export const userSubscription = `http://localhost:5001/api/user/getAllSubscription`
+export const userbuyplan = `http://localhost:5001/api/user/Pay/`
+export const Donationpay = `http://localhost:5001/api/user/DonationPay`
+export const SuccessDonation = `http://localhost:5001/api/user/successDonation?PayerID=`
+export const userdownload = `http://localhost:5001/api/user/getDownloadSong/`
+export const userdownloader = `http://localhost:5001/api/user/downloadedSong/`
+export const getUserDetail = `http://localhost:5001/api/user/getUserDetail`

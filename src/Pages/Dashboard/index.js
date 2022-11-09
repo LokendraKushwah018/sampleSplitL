@@ -8,8 +8,7 @@ const Home = () => {
     <div>
     
          <Container>
-      
-    kjgkdjghdkjghkjghjkghk
+
     </Container>
     
     </div> 

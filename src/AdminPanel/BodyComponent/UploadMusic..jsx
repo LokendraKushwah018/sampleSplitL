@@ -8,13 +8,14 @@ import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { PageHeader } from "../../Common/Components";
 import { uploadmusic } from '../../Api/Config'
 import { useRef } from "react";
-import Container from '../../Components/Layout/Backend/Container'
+import Container from '../../Components/Adminlayout/Container'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PageHeader } from '../Common/Components'
 
 const BlogPost = () => {
   const Uploadtoast = () => {
-    toast.success("Login Successfully !")
+    toast.success("Upload Successfully!")
   };
   let token = localStorage.getItem('logintoken')
   const imageinput = useRef();
@@ -22,13 +23,12 @@ const BlogPost = () => {
 
   let [files, setImage] = useState(null);
   let [music, setMusic] = useState();
-  let [trackTitle, settrackTitle] = useState();
-  let [trackType, settrackType] = useState();
-  let [bpm, setbpm] = useState();
-  let [keyOptional, setkeyOptional] = useState();
-  let [primaryGenre, setprimaryGenre] = useState();
-  let [type, setType] = useState();
-
+  let [trackTitle, settrackTitle] = useState('');
+  let [trackType, settrackType] = useState('');
+  let [bpm, setbpm] = useState('');
+  let [keyOptional, setkeyOptional] = useState('');
+  let [primaryGenre, setprimaryGenre] = useState('');
+  let [type, setType] = useState('');
 
   const Search = () => {
     let formData = new FormData();
@@ -73,10 +73,15 @@ const BlogPost = () => {
    e.preventDefault()
    setType(e.target.value.toLowerCase())
   }
+   const changecaseone = (e) => {
+    e.preventDefault()
+    settrackType(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase())
+  };
 
   return (
     <>
-    <Container>    
+    <Container> 
+    <PageHeader title='Upload Music' />   
       <Box
         component="form"
         sx={{
@@ -106,6 +111,7 @@ const BlogPost = () => {
             id="outlined-required"
             label="Track Type"
             value={trackType}
+            onKeyUp={changecaseone}
             onChange={(e) => settrackType(e.target.value)}
             InputLabelProps={{
               sx: {
@@ -163,7 +169,8 @@ const BlogPost = () => {
             id="outlined-required"
             label="Type"
             value={type}
-            onMouseEnter={changecase}
+            name="type"
+            onKeyUp={changecase}
             onChange={(e) => setType(e.target.value)}
             InputLabelProps={{
               sx: {

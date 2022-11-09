@@ -8,11 +8,12 @@ import { useEffect } from "react";
 import './AdminDetails.css'
 import { PageHeader } from '../Common/Components'
 import { MenuItem } from "@mui/material";
-import { IconButton, Select } from "@material-ui/core";
+import { Select } from "@material-ui/core";
 import { InputLabel } from "@mui/material";
 // import { Modal } from "@mui/material";
 // import { Typography } from "@mui/material";
-import Container from '../../Components/Layout/Backend/Container'
+// import Container from '../Adminlayout/Container'
+import Container from '../../Components/Adminlayout/Container'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 // import PaidIcon from '@mui/icons-material/Paid';
@@ -32,6 +33,9 @@ const ViewMusic = () => {
 
   const [open, setOpen] = React.useState(false);
   const [updateId, SetupdateID] = useState("")
+  const [pages, setPages] = useState([]);
+  // const [dataupdata, setDataupdate] = useState(true)
+
   const handleOpen = (id) => {
     console.log(id)
     SetupdateID(id)
@@ -111,13 +115,37 @@ const ViewMusic = () => {
   // useEffect(() => {
   //   app("Default");
   // }, [])
+
+
+  // const Click = (h) => {
+  //   // setDataupdate(false)
+  //   axios(
+  //     {
+  //       url: `${caturl}?filterkey=Drums&page=${h}`,
+  //       method: "get",
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`
+  //       }
+  //     }
+  //   ).then((response) => {
+  //     console.log(response);
+  //     setPages(response.data.allAudio)
+  //     // setDataupdate(true)
+
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
+
   const caturl = viewmusic;
 
   // View Music API
-  const app = (c) => {
+  const app = (c ) => {
+    // setDataupdate(false)
+    // setViewMusicdetails(true)
     axios(
       {
-        url: `${caturl}?filterkey=${c}`,
+        url: `${caturl}?filterkey=${c}&page=${1}`,
         method: "get",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -126,6 +154,8 @@ const ViewMusic = () => {
     ).then((response) => {
       // console.log(response.data.allAudio);
       setViewMusicdetails(response.data.allAudio);
+      // setDataupdate(false)
+      // setDataupdate(true)
 
     }).catch((err) => {
       console.log(err);
@@ -133,6 +163,8 @@ const ViewMusic = () => {
   }
   useEffect(() => {
     app('');
+    // Click('')
+
   }, [])
 
   // Update Music  API
@@ -180,7 +212,6 @@ const ViewMusic = () => {
     formData.append('primaryGenre', primaryGenre);
     formData.append('type', type);
 
-
     axios(
       {
         url: `${updatemusic}${updatingID}`,
@@ -191,7 +222,7 @@ const ViewMusic = () => {
         data: formData,
       }
     ).then((response) => {
-      // console.log(response);
+      console.log(response);
       if (response.status === 201) {
         Edittoast();
       }
@@ -253,40 +284,13 @@ const ViewMusic = () => {
   }
   return (
     <>
-      <Container>
+      <Container >
         <ToastContainer
           autoClose={1000}
           position="top-center"
           className="toast-container"
           toastClassName="dark-toast"
           theme="colored" />
-
-        {/* Music List Data ..app Api.. START  */}
-        {/* Add Price On Songs Model Start  */}
-        {/* <div>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-          >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Add Price
-              </Typography>
-              <form onSubmit={pp}>
-                <div className="form-group m-1">
-                  <label>Price</label>
-                  <input type="number" className="form-control" name='price' value={data.price} onChange={show}
-                    placeholder="price" />
-                </div>
-                <button type="submit" className="btn btn-primary m-1" >Submit</button>
-              </form>
-            </Box>
-          </Modal>
-        </div> */}
-        {/* Add Price On Songs Model End  */}
-     
 
         <Box mt={2}>
           <PageHeader title='View Music' />
@@ -311,175 +315,255 @@ const ViewMusic = () => {
               </Select>
             </FormControl>
           </div>
-
         </Box>
-
         <div style={{ overflow: 'hidden', width: '1050px' }}>
           {viewMusic.map((songs, index) => {
             return (
-              
-                <div className="bg-purple" 
+
+              <div className="bg-purple"
                 style={{ width: '100%', height: '54px', margin: '10px', float: 'left' }}
                 key={index}>
-                  <div >
-                    <img src={songs.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
-                  </div>
-                  <div style={{ height: '54px', float: 'left' }}>
-                    <audio controls controlsList="nodownload noplaybackrate " style={{ backgroundColor: "#C8C8C8" }}>
-                      <source src={songs.music} type="audio/ogg" />
-                    </audio>
-                  </div >
-                  <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '54px' }}>
-                    <h5 style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                      {songs.trackTitle}</h5>
-                    <p>{songs.trackType}</p>
-                  </div>
-                  <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
-                    <h5>{songs.bpm}</h5>
-                    <p>{songs.keyOptional}</p>
-                  </div>
-                  <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
-                    <h5>{songs.primaryGenre}</h5>
-                    <p>{songs.type}</p>
-                  </div>
+                <div >
+                  <img src={songs.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
+                </div>
+                <div style={{ height: '54px', float: 'left' }}>
+                  <audio controls controlsList="nodownload noplaybackrate " style={{ backgroundColor: "#C8C8C8" }}>
+                    <source src={songs.music} type="audio/ogg" />
+                  </audio>
+                </div >
+                <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '54px' }}>
+                  <h5 style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {songs.trackTitle}</h5>
+                  <p>{songs.trackType}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
+                  <h5>{songs.bpm}</h5>
+                  <p>{songs.keyOptional}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
+                  <h5>{songs.primaryGenre}</h5>
+                  <p>{songs.type}</p>
+                </div>
+                <EditIcon
+                  hover={hover}
+                  sx={{ color: 'black', mt: 2, ml: 3 }}
 
-                  {/* <IconButton hover={hover}> 
-                   <PaidIcon onClick={() => handleOpen(songs.id)} sx={{ color: '#1F2D5A' }} >
-                   Add Price
-                   </PaidIcon>
-                   </IconButton> */}
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={() => {
+                    setedit(songs.id)
+                  }}
+                  data-bs-whatever="@getbootstrap"></EditIcon>  &nbsp;&nbsp;&nbsp;&nbsp;
 
-                  {/* Edit Songs Start  */}
-                  
-                    <EditIcon
-                      hover={hover}
-                      sx={{ color: 'black' , mt:2 , ml:3}}
-                      
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      onClick={() => {
-                        setedit(songs.id)
-                      }}
-                      data-bs-whatever="@getbootstrap"></EditIcon>  &nbsp;&nbsp;&nbsp;&nbsp;
-
-                  {/* Edit Songs End  */}
+                {/* Edit Songs End  */}
 
 
-                  {/* Delete Songs Start */}
-                 
-                    <DeleteIcon 
-                    hover={hover}
-                    sx={{ color: 'black' , mt:2 , ml:3}} variant="contained" onClick={async () => {
-                      let res = await axios.delete(`${deletemusic}${songs.id}`, {
-                        headers: {
-                          "Authorization": `Bearer ${token}`
-                        }
-                      });
-                      if (res.status === 200) {
-                        Deletetoast();
+                {/* Delete Songs Start */}
+
+                <DeleteIcon
+                  hover={hover}
+                  sx={{ color: 'black', mt: 2, ml: 3 }} variant="contained" onClick={async () => {
+                    let res = await axios.delete(`${deletemusic}${songs.id}`, {
+                      headers: {
+                        "Authorization": `Bearer ${token}`
                       }
-                      app();
-                      console.log(res);
+                    });
+                    if (res.status === 200) {
+                      Deletetoast();
+                    }
+                    app();
+                    console.log(res);
 
-                    }}></DeleteIcon>&nbsp;&nbsp;&nbsp;&nbsp;
+                  }}></DeleteIcon>&nbsp;&nbsp;&nbsp;&nbsp;
 
-                  {/* >DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; 
+                {/* >DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; 
                   <DeleteIcon />  */}
 
-                  {/* Delete Songs End  */}
+                {/* Delete Songs End  */}
 
-                  {/* Change Public Privet Start  */}
+                {/* Change Public Privet Start  */}
 
-                  <FormControl sx={{ m: 2, minWidth: 80 , ml:5}}>
-                    <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-autowidth-label"
-                      id="demo-simple-select-autowidth"
-                      value={songs.type}
-                      // onChange={handleChange}
-                      autoWidth
-                      label="Age"
-                    >
-                      <MenuItem value="public" onClick={() => songstype(songs.id, 'public')}>public</MenuItem>
-                      <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <ToastContainer
-                    autoClose={1000}
-                    position="top-center"
-                    className="toast-container"
-                    toastClassName="dark-toast"
-                    theme="colored" />
+                <FormControl sx={{ m: 2, minWidth: 80, ml: 5 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={songs.type}
+                    // onChange={handleChange}
+                    autoWidth
+                    label="Age"
+                  >
+                    <MenuItem value="public" onClick={() => songstype(songs.id, 'public')}>public</MenuItem>
+                    <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
+                  </Select>
+                </FormControl>
+                <ToastContainer
+                  autoClose={1000}
+                  position="top-center"
+                  className="toast-container"
+                  toastClassName="dark-toast"
+                  theme="colored" />
 
-                  {/* Change Public Privet End  */}
-
-                  {/* Edit Songs PopUp Model Start   */}
-
-                  <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" style={{ marginTop: "20px" }}>
-                    <div className="modal-dialog">
-                      <div className="modal-content">
-                        <div className="modal-header">
-                          <h5 className="modal-title text-black" id="exampleModalLabel">New message</h5>
-                          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form onSubmit={submit} >
-                          <div className="modal-body">
-                            <div className="mb-3" >
-                              <label className="col-form-label  " style={{ color: 'black' }}>trackTitle</label>
-                              <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
-                                name="trackTitle" type="text" className="form-control" id="recipient-name" />
-                            </div><div className="mb-3">
-                              <label className="col-form-label black" style={{ color: 'black' }}>trackType</label>
-                              <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
-                            </div><div className="mb-3">
-                              <label className="col-form-label" style={{ color: 'black' }}>bpm</label>
-                              <input value={bpm} type="text" onChange={(e) => setbpm(e.target.value)} className="form-control" id="recipient-name" />
-                            </div><div className="mb-3">
-                              <label className="col-form-label" style={{ color: 'black' }}>keyOptional</label>
-                              <input value={keyOptional} type="text" onChange={(e) => setkeyOptional(e.target.value)} className="form-control" id="recipient-name" />
-                            </div><div className="mb-3">
-                              <label className="col-form-label" style={{ color: 'black' }}>primaryGenre</label>
-                              <input value={primaryGenre} type="text" onChange={(e) => setprimaryGenre(e.target.value)} className="form-control" id="recipient-name" />
-                            </div><div className="mb-3">
-                              <label className="col-form-label" style={{ color: 'black' }}>type</label>
-                              <input value={type} type="text" onChange={(e) => setType(e.target.value)} className="form-control" id="recipient-name" />
-                            </div>
-                            <div className="mb-3">
-                              <label className="col-form-label">Image</label>
-                              <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
-                              <img src={imageName} alt="/" style={{ width: '100px', height: '100px' }} />
-                            </div>
-                            <div className="mb-3">
-                              <label className="col-form-label">Music</label>
-                              <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
-                              <audio controls >
-                                <source src={music} type="audio/ogg" />
-                              </audio>
-                            </div>
-                            <div className="modal-footer">
-                              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
-                              //  onClick={() => {
-                              //   submit(songs.id)
-                              // }}
-                              >Update</button>
+                {/* Change Public Privet End  */}
 
 
-                            </div>
-                          </div>
-                        </form>
+                {/* Edit Songs PopUp Model Start   */}
+
+                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true" style={{ marginTop: "20px" }}>
+                  <div className="modal-dialog">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title text-black" id="exampleModalLabel">New message</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
+                      <form onSubmit={submit} >
+                        <div className="modal-body">
+                          <div className="mb-3" >
+                            <label className="col-form-label  " style={{ color: 'black' }}>trackTitle</label>
+                            <input value={trackTitle} onChange={(e) => settrackTitle(e.target.value)}
+                              name="trackTitle" type="text" className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label className="col-form-label black" style={{ color: 'black' }}>trackType</label>
+                            <input value={trackType} onChange={(e) => settrackType(e.target.value)} type="text" className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label className="col-form-label" style={{ color: 'black' }}>bpm</label>
+                            <input value={bpm} type="text" onChange={(e) => setbpm(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label className="col-form-label" style={{ color: 'black' }}>keyOptional</label>
+                            <input value={keyOptional} type="text" onChange={(e) => setkeyOptional(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label className="col-form-label" style={{ color: 'black' }}>primaryGenre</label>
+                            <input value={primaryGenre} type="text" onChange={(e) => setprimaryGenre(e.target.value)} className="form-control" id="recipient-name" />
+                          </div><div className="mb-3">
+                            <label className="col-form-label" style={{ color: 'black' }}>type</label>
+                            <input value={type} type="text" onChange={(e) => setType(e.target.value)} className="form-control" id="recipient-name" />
+                          </div>
+                          <div className="mb-3">
+                            <label className="col-form-label">Image</label>
+                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
+                            <img src={imageName} alt="/" style={{ width: '100px', height: '100px' }} />
+                          </div>
+                          <div className="mb-3">
+                            <label className="col-form-label">Music</label>
+                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
+                            <audio controls >
+                              <source src={music} type="audio/ogg" />
+                            </audio>
+                          </div>
+                          <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
+                            //  onClick={() => {
+                            //   submit(songs.id)
+                            // }}
+                            >Update</button>
+
+
+                          </div>
+                        </div>
+                      </form>
+
+
                     </div>
                   </div>
-
-                  {/* Edit Songs PopUp Model Start  */}
-
                 </div>
-              
+
+
+
+                {/* Edit Songs PopUp Model Start  */}
+
+              </div>
+
             )
           })}
+
         </div>
+        {/* <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className="page-item"><button className="page-link" onClick={() => app('1')}>1</button></li>
+            <li className="page-item"><button className="page-link" onClick={() => app('2')}>2</button></li>
+            <li className="page-item"><button className="page-link" onClick={() => app('3')}>3</button></li>
+            <li className="page-item"><button className="page-link" onClick={() => app('4')}>4</button></li>
+            <li className="page-item"><button className="page-link" onClick={() => app('5')}>5</button></li>
+          </ul>
+        </nav> */}
+        {/* {dataupdata && */}
+        {/* <div style={{ overflow: 'hidden', width: '1050px' }}>
+          {viewMusic.map((songs, index) => {
+            return (
+
+              <div className="bg-purple"
+                style={{ width: '100%', height: '54px', margin: '10px', float: 'left' }}
+                key={index}>
+                <div >
+                  <img src={songs.imageName} alt="/" style={{ width: '100px', height: '54px', float: 'left' }} />
+                </div>
+                <div style={{ height: '54px', float: 'left' }}>
+                  <audio controls controlsList="nodownload noplaybackrate " style={{ backgroundColor: "#C8C8C8" }}>
+                    <source src={songs.music} type="audio/ogg" />
+                  </audio>
+                </div >
+                <div style={{ float: 'left', textAlign: 'center', width: '150px', height: '54px' }}>
+                  <h5 style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {songs.trackTitle}</h5>
+                  <p>{songs.trackType}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
+                  <h5>{songs.bpm}</h5>
+                  <p>{songs.keyOptional}</p>
+                </div>
+                <div style={{ float: 'left', textAlign: 'center', width: '100px', height: '54px' }}>
+                  <h5>{songs.primaryGenre}</h5>
+                  <p>{songs.type}</p>
+                </div>
+                <EditIcon
+                  hover={hover}
+                  sx={{ color: 'black', mt: 2, ml: 3 }}
+
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  onClick={() => {
+                    setedit(songs.id)
+                  }}
+                  data-bs-whatever="@getbootstrap"></EditIcon>  &nbsp;&nbsp;&nbsp;&nbsp;
+
+                <DeleteIcon
+                  hover={hover}
+                  sx={{ color: 'black', mt: 2, ml: 3 }} variant="contained" onClick={async () => {
+                    let res = await axios.delete(`${deletemusic}${songs.id}`, {
+                      headers: {
+                        "Authorization": `Bearer ${token}`
+                      }
+                    });
+                    if (res.status === 200) {
+                      Deletetoast();
+                    }
+                    app();
+                    console.log(res);
+
+                  }}>
+                </DeleteIcon>&nbsp;&nbsp;&nbsp;&nbsp;
+                <FormControl sx={{ m: 2, minWidth: 80, ml: 5 }}>
+                  <InputLabel id="demo-simple-select-autowidth-label">Type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-autowidth-label"
+                    id="demo-simple-select-autowidth"
+                    value={songs.type}
+                    autoWidth
+                    label="Age"
+                  >
+                    <MenuItem value="public" onClick={() => songstype(songs.id, 'public')}>public</MenuItem>
+                    <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
+                  </Select>
+                </FormControl>
+              </ div>
+            )
+          }
+          )}
+
+        </div> */}
+
       </Container>
     </>
   )

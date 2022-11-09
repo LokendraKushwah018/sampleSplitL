@@ -1,6 +1,6 @@
 import React from 'react'
 import emailjs from 'emailjs-com'
-import Navbar from '../UserBackend/Navbar';
+import Navbar from '../Userlayout/Navbar';
 
 const Contact = () => {
 
@@ -67,7 +67,7 @@ const Contact = () => {
         </div>
       </div> */}
 
- <section className="mb-0 " >
+ <section className="mb-0 text-white" >
   <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
   <p className="text-center w-responsive mx-auto mb-5">
     Do you have any questions? Please do not hesitate to contact us directly. 
@@ -139,7 +139,7 @@ const Contact = () => {
     </div>
   </div>
 </section> 
-  
+
     </>
   )
 }

@@ -1,65 +1,106 @@
+
 .App {
-    float: left;
+  float: left;
+ 
 }
 
 .Apps {
-    width: 100%;
-    bottom: 0;
-    position: fixed;
-    background: rgb(238, 212, 212);
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+  background: rgb(238, 212, 212);
+
 }
 .search {
-    width: 100%;
-    position: relative;
-    display: block;
+  width: 100%;
+  position: relative;
+  display: block;
 }
 .search_bar{
-    width: 50%;
-    border: 3px solid #1F2D5A;
-    height: 40px;
-    border-radius: 5px 0 0 5px;
-    left:50%;
+  width: 50%;
+  border: 3px solid #1F2D5A;
+  height: 40px;
+  border-radius: 5px 0 0 5px;
+  left:50%;
 }
 .search_bar:focus {
-    color:white;
-    background-color: black;
+  color:white;
+  background-color: black;
 }
 /*Resize the wrap to see the search bar change!*/
 .wrap {
 margin-left: 450px;
 }
 .img-div{
-    position:relative; display: inline-block;
+  position:relative; display: inline-block;
 }
 
 .img-div:hover:after{
-    content:'';
-    position:absolute;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    width: 100%;
-    background: url("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-4.jpg") center no-repeat;
-    background-size: 50px;
+  content:'';
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  background: url("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-4.jpg") center no-repeat;
+  background-size: 50px;
 }
 
 .rhap_progress-indicator {
-    background: #2F76DB !important;
+  background: #2F76DB !important;
+}
+
+.rhap_progress-filled {
+  background: #2F76DB !important;
+}
+.rhap_play-pause-button {
+  color: white !important;
+  margin-top: 10%;
+}
+.rhap_volume-controls {
+  color: white !important;
+}
+.rhap_time{
+  color: white !important;
+}
+.rhap_repeat-button {
+  color: black !important;
+}
+.img__name
+{
+  width: 100%;
+  height: 100%;
+}
+.img__model {
+  position:relative; display: inline-block;
+
+}
+.img__model:hover:after{
+  content:'';
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  background: url("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-4.jpg") center no-repeat;
+  background-size: 100px;
+}
+.bg-black {
+  background: #000;
+}
+
+.skill-block {
+  width: 50%;
+}
+
+@media (min-width: 991px) and (max-width:1200px) {
+  .skill-block {
+    padding: 32px !important;
   }
-  
-  .rhap_progress-filled {
-    background: #2F76DB !important;
+}
+
+@media (min-width: 1200px) {
+  .skill-block {
+    padding: 56px !important;
   }
-  .rhap_play-pause-button {
-    color: white !important;
-    margin-top: 10%;
-  }
-  .rhap_volume-controls {
-    color: white !important;
-  }
-  .rhap_time{
-    color: white !important;
-  }
-  .rhap_repeat-button {
-    color: black !important;
-  }
+}

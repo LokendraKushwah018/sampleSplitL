@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { userblog } from '../../Api/Config';
-import Navbar from '../UserBackend/Navbar';
+import Navbar from '../Userlayout/Navbar';
 import '../css/userblog.scss';
 
 const UserBlog = () => {
@@ -22,19 +22,22 @@ const UserBlog = () => {
         <>
             <Navbar />
             {Blog.map((item , index) => {
-                return (                    
-                    
+                return (                 
                         <div className="card" key={index}>
+                               {item.type === 'video' ?  <video className="card__video" 
+                               controls controlsList='nodownload'>
+                                <source src={item.imageName} type="video/mp4">
+                                </source>
+                            </video> : 
                             <img                            
                             src= {item.imageName}
-                            className="card__image" alt="brown couch" />
+                            className="card__image" alt="brown couch" />}
                             <div className="card__content">
                                 <time className="card__date">{item.Date}</time>                              
                                 <span className="card__title" >{item.title}</span>
                                 <p>{item.description}</p>
                             </div>
-                        </div>
-                    
+                        </div>                    
                 )
             })}
         </>

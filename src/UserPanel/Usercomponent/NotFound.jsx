@@ -1,8 +1,12 @@
 import React from 'react'
 import '../css/Notfound.scss'
-import { Link } from 'react-router-dom'
+import { Link,  useNavigate } from 'react-router-dom'
+
 
 const NotFound = () => {
+
+const navigate = useNavigate();
+
     return (
         <> 
   {/* <p className="zoom-area"><b>CSS</b> animations to make a cool 404 page. </p> */}
@@ -13,7 +17,7 @@ const NotFound = () => {
     <span>4</span> 
     <h1 className='text-dark'>Error : Page Not Found </h1>
   <div className="link-container">
-    <Link target="_blank" to="/home" className="more-link">Go Back To Home</Link>
+    <p target="_blank" onClick={()=>navigate(-1)} className="more-link">Go Back To Home</p>
   </div>
   </section>
         </>

@@ -1,31 +1,94 @@
 import React from 'react';
-import Navbar from '../UserBackend/Navbar'
+import Navbar from '../Userlayout/Navbar'
+// import '../css/about.css'
+
 const About = () => {
+ 
+    const styles = {
+        card: {
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            margin: '8px',           
+          },        
+           container: {
+            padding: '0 16px',
+          },
+          'about-section': {
+            padding: '30px',
+            textAlign: 'center',
+            // backgroundColor: '#474e5d',
+            // Color: 'white',
+            color:'white'
+           
+            
+          },
+          button: {
+            border: 'none',
+            outline: 0,
+            display: 'inline-block',
+            padding: '8px',
+            color: 'white',
+            backgroundColor: '#000',
+            textAlign: 'center',
+            cursor: 'pointer',
+            width: '100%',
+           
+          },
+          
+          'button:hover': {
+            backgroundColor: '#555'
+          } 
+       
+    }
+
     return (
         <>
             <Navbar />
-            <div className={"About"}>
-                <div>
-                    <div style={{ margin: '20px' }}>
-                        <h3>About</h3>
-                        <h1 style={{ marginTop: '20px' }}><span style={{ color: '#4169e1' }}>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sample Split</span></h1>
-                        <p style={{ color: '#2F76DB', marginTop: '10px' }}>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Illo aut at perspiciatis velit ut expedita placeat tenetur excepturi deserunt incidunt repellat eum quo illum,
-                            reprehenderit id quis corporis odio tempora!
-                            It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
-                            The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
-                            as opposed to using 'Content here, content here', making it look like readable English.
-                            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
-                            and a search for 'lorem ipsum' will uncover many web sites still in their infancy.
-                            Various versions have evolved over the years, sometimes by accident,
-                            sometimes on purpose (injected humour and the like).
-                        </p>
-                    </div>
-                </div>
-            </div>
-            {/* <Attribution/> */}
+           <div >
+  <div style={styles['about-section']}>
+    <h1><b>About - SampleSplit.Com</b></h1>
+    <p>We are providing you best song quality experiance.</p>
+    <p>Now you can play the Track and also split song from your Musiclist</p>
+  </div>
+  <h2 style={{textAlign: 'center' , color:'white'}}><u>Our Team</u></h2>
+  <div style={styles.card}>
+    <div className="column">
+      <div className="card">
+        <img src="./team1.jpg" alt="Jane" style={{width: '100%'}} />
+        <div className="container">
+          <h2>Jane Doe</h2>
+          <p className="title">CEO &amp; Founder</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>jane@example.com</p>
+          <p><button style={styles.button}>Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div className="column">
+      <div className="card">
+        <img src="./team2.jpg" alt="Mike" style={{width: '100%'}} />
+        <div className="container">
+          <h2>Mike Ross</h2>
+          <p className="title">Art Director</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>mike@example.com</p>
+          <p><button style={styles.button}>Contact</button></p>
+        </div>
+      </div>
+    </div>
+    <div className="column">
+      <div className="card">
+        <img src="./team3.jpg" alt="John" style={{width: '100%'}} />
+        <div className="container">
+          <h2>John Doe</h2>
+          <p className="title">Designer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>john@example.com</p>
+          <p><button style={styles.button}>Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         </>
     );
 }

@@ -16,7 +16,7 @@ const WelcomeNavbar = () => {
           <div className="navbar-nav ml-5">
             <Link className="nav-link active text-light" to="/">Home</Link>
             <Link className="nav-link active text-light" to="#">FreeStem</Link>
-            <Link className="nav-link active text-light" to="#">SplitSong</Link>
+            {/* <Link className="nav-link active text-light" to="#">SplitSong</Link> */}
             <Link className="nav-link active text-light" to="#">UserBlog</Link>
             <Link className="nav-link active text-light" to="#">About</Link>
             <Link className="nav-link active text-light" to="#" >ContactUs</Link>

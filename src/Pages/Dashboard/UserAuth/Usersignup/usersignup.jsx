@@ -10,12 +10,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate , Link} from "react-router-dom";
-
+import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { usersignup } from '../../Api/Api';
 import { usersignup } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { color } from "@mui/system";
 
 
 const useStyles = makeStyles(theme => ({
@@ -134,6 +135,7 @@ export default function Usersignup() {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
+               sx={{backgroundColor:'white'}}
                 autoComplete="username"
                 name="username"
                 // variant="outlined"
@@ -143,6 +145,7 @@ export default function Usersignup() {
                 autoFocus
                 value={data.username}
                 onChange={display}
+             
               />
               <p style={{ color: 'red' }} >{formErrors.username}</p>
 

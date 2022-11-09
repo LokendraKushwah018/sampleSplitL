@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import Container from '../../Components/Layout/Backend/Container'
+import Container from '../../Components/Adminlayout/Container'
+import { adminDashboard} from '../../Api/Config'
+import { PageHeader } from '../Common/Components'
 
 import {
   Chart as ChartJS,
@@ -60,7 +62,7 @@ const BlogGraph = () => {
       const weekData = [];
       const monthData = [];
     const fetchData = async (c) => {
-      const url = `http://localhost:5001/api/admin/toptrackByDate?filterkey=${c}`
+      const url = `${adminDashboard}${c}`
       //  const token = localStorage.getItem("logintoken");
       await fetch(url, tokenAPI(token)).then((data) => {
         // console.log("Api data", data)
@@ -69,19 +71,18 @@ const BlogGraph = () => {
       }).then((res) => {
         // console.log("ressss", res.sumtData)
         // for (const val of res) {
-        if(c == "TODAY"){
+        if(c === "TODAY"){
           todayData.push(res.sumtData)
           setTodayData(todayData)
 
-        }else if(c == "WEEK"){
+        }else if(c === "WEEK"){
           weekData.push(res.sumtData)
         setWeekData(weekData)
 
-        }else if(c == "MONTH"){
+        }else if(c === "MONTH"){
           // console.log(res.sumtData)
           monthData.push(res.sumtData)
         setMonthData(monthData)
-
         }
         //     // labelSet.push(val.name)
         // }
@@ -101,22 +102,22 @@ const BlogGraph = () => {
       {
         label: 'Today',
         data: todayData,
-        // borderColor: 'rgb(255, 99, 132)',
+        borderColor: '#98b4db',
         // backgroundColor: 'rgba(25, 90, 13, 0.5)',
-        backgroundColor :'#90f7c9',
+        backgroundColor :'#2F76DB',
       },
       {
         label: 'WEEK',
         data: weekData,
-        // borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: '#43f6f6',
+        borderColor: 'rgb(146, 143, 143)',
+        backgroundColor: 'rgb(216, 212, 212)',
       },
       {
         label: 'MONTH',
         data: monthData,
-        // borderColor: 'rgb(53, 162, 235)',
+        borderColor: '#373f5a',
         // backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        backgroundColor: '#fcb045',
+        backgroundColor: '#1F2D5A',
         
       },
     ],
@@ -128,6 +129,7 @@ const BlogGraph = () => {
 
     >
       <h3 style={{textAlign:'center'}} >User View Bar Chart</h3>
+      <PageHeader title='Dashboard' />
       {
         // console.log("dataaaaaa", data)
       }
