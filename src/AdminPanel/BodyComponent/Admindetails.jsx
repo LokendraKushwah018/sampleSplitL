@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { PageHeader } from '../Common/Components';
 import { Box } from '@mui/material';
-import { admindetailsedit, adminprofile, changepassword } from '../../Api/Config';
+import { AdminAPI, admindetailsedit, adminprofile, changepassword } from '../../Api/Config';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography } from '@material-ui/core';
 import { Modal } from '@mui/material';
@@ -45,10 +45,9 @@ export default function AdminDetails() {
 
   // Admin Details API
   const AdminProfile = () => {
-    axios(
+    AdminAPI(
       {
         url: `${adminprofile}`,
-        method: "get",
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -70,7 +69,7 @@ export default function AdminDetails() {
   // Admin Change Password API
   const updateAdmin = (e) => {
     e.preventDefault();
-    axios(
+    AdminAPI(
       {
         url: `${changepassword}`,
         method: "post",
@@ -113,7 +112,7 @@ export default function AdminDetails() {
     e.preventDefault();
     console.log(profile.name)
     console.log(profile.email)
-    axios(
+    AdminAPI(
       {
         url: `${admindetailsedit}`,
         method: "post",

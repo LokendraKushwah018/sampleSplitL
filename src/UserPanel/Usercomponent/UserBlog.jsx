@@ -1,16 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import axios from 'axios';
-import { userblog } from '../../Api/Config';
+// import axios from 'axios';
+import { userblog  } from '../../Api/Config';
+import { API } from '../../Api/Config'
 import Navbar from '../Userlayout/Navbar';
 import '../css/userblog.scss';
+
 
 const UserBlog = () => {
     const [Blog, SetBlog] = useState([]);
 
     async function BlogApi() {
-        const response = await axios.get(`${userblog}`);
+        const response = await API(`${userblog}`);
         SetBlog(response.data.findBlog);
         console.log(response.data.findBlog);
     }
@@ -44,4 +46,3 @@ const UserBlog = () => {
     );
 }
 export default UserBlog;
-

@@ -12,7 +12,7 @@ import axios from "axios";
 import { useNavigate , Link} from "react-router-dom";
 import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { usersignup } from '../../Api/Api';
-import { usersignup } from "../../../../Api/Config";
+import { API, usersignup } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -67,7 +67,7 @@ export default function Usersignup() {
     axios(
       {
         url: `${usersignup}`,
-        method: "post",
+        method: 'post',
         header: {
           'Content-Type': 'application/json'
         },

@@ -1,42 +1,46 @@
 import React  from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+// import axios from 'axios';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useDispatch } from 'react-redux';
+import { adminlogout } from '../../Pages/Dashboard/Auth/AdminSlice';
+// import { AdminAPI } from '../../Api/Config';
 
 
 const Header = () => {
-  const token = localStorage.getItem("logintoken")
+  // const token = localStorage.getItem("logintoken")
   let Navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const logout = () => {
-    axios(
-      {
-        url: 'http://localhost:5001/api/admin/logOut',
-        method: "delete",
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      }
-    )
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          localStorage.removeItem('logintoken');
-          Navigate("/adminlogin");
-          // window.location.href = "/adminlogin";
+  // const logout = () => {
+  //   AdminAPI(
+  //     {
+  //       url: 'http://localhost:5001/api/admin/logOut',
+  //       method: "delete",
+  //       headers: {
+  //         "Authorization": `Bearer ${token}`
+  //       }
+  //     }
+  //   )
+  //     .then((response) => {
+  //       console.log(response);
+  //       if (response.status === 200) {
+  //         localStorage.removeItem('logintoken');
+  //         Navigate("/adminlogin");
+  //         // window.location.href = "/adminlogin";
 
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-        
-
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // }
+  const Logout = (e) => {
+    e.preventDefault()
+    dispatch(adminlogout())
+    Navigate("/adminlogin")
   }
-  // useEffect(()=> {
-  //  logout(token)
-  // },[])
 
   return (
     <div>
@@ -81,7 +85,7 @@ const Header = () => {
           <span>
            <button className="btn btn-outline-success position-right"
               type="submit"
-              onClick={logout}>
+              onClick={Logout}>
               <LogoutIcon />Logout
               </button></span>
         </ul>

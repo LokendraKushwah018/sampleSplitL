@@ -1,10 +1,9 @@
 import React from 'react'
 import Navbar from '../Userlayout/Navbar'
 import "../css/useraccount.css"
-import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { getUserDetail } from '../../Api/Config'
+import { API, getUserDetail } from '../../Api/Config'
 import { useSelector } from 'react-redux'
 
 const Useraccount = () => {
@@ -15,10 +14,9 @@ const Useraccount = () => {
     const [plandetails, setPlandetails] = useState([]);
     
     const plan = () => {
-        axios(  
+        API(  
             {
                 url: `${getUserDetail}`,
-                method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
                 },

@@ -20,7 +20,7 @@ import EditIcon from '@mui/icons-material/Edit';
 // import { FormControl } from "@mui/material/FormControl";
 import { FormControl } from "@mui/material";
 import './AdminDetails.css'
-import { addprice, changestatus, deletemusic, editmusic, updatemusic, viewmusic } from '../../Api/Config';
+import { addprice, AdminAPI, changestatus, deletemusic, editmusic, updatemusic, viewmusic } from '../../Api/Config';
 // import "./music.js"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -51,6 +51,11 @@ const ViewMusic = () => {
   const ChangeStatustoast = () => {
     toast.success("Changed Successfully !");
   };
+
+  const WarningStatustoast = () => {
+    toast.error("Please Enter A new tarckTitle !");
+  };
+
   const handleClose = () => setOpen(false);
 
   const style = {
@@ -78,16 +83,16 @@ const ViewMusic = () => {
   let [type, setType] = useState('');
   let [updatingID, setId] = useState("");
   let [data, updatedata] = useState({ price: "" });
+  let [selecttwoinput, setSelecttwoinput] = useState('')
   // let token = localStorage.getItem("logintoken")
   const token = useSelector(state=>state.admin.adminlogintoken)
     // Edit API
   const setedit = (id) => {
     // console.log(id)
     // api call 
-    axios(
+    AdminAPI(
       {
         url: `${editmusic}${id}`,
-        method: "get",
         headers: {
           "Authorization": `Bearer ${token}`
         },
@@ -145,10 +150,9 @@ const ViewMusic = () => {
   const app = (c ) => {
     // setDataupdate(false)
     // setViewMusicdetails(true)
-    axios(
+    AdminAPI(
       {
-        url: `${caturl}?filterkey=${c}&page=${1}`,
-        method: "get",
+        url: `${caturl}?filterkey=${c}`,
         headers: {
           "Authorization": `Bearer ${token}`
         },
@@ -214,7 +218,7 @@ const ViewMusic = () => {
     formData.append('primaryGenre', primaryGenre);
     formData.append('type', type);
 
-    axios(
+    AdminAPI(
       {
         url: `${updatemusic}${updatingID}`,
         method: "post",
@@ -225,21 +229,31 @@ const ViewMusic = () => {
       }
     ).then((response) => {
       console.log(response);
+      // console.log(response.data.message)
+      setSelecttwoinput(response.data.message)
       if (response.status === 201) {
         Edittoast();
       }
+      if(response.status === 200) {
+        WarningStatustoast();
+      }
+      // const choosetwoinputtype  = () => {
+      //   console.log(data.message)
+      //   setSelecttwoinput(data.message)
+      // }
+      // console.log(choosetwoinputtype);
       app();
     }).catch((err) => {
       console.log(err);
     })
-  }
+
+}
   // Make Public Private API
   const songstype = (updatingID, c) => {
     console.log(updatingID);
-    axios(
+    AdminAPI(
       {
         url: `${changestatus}${updatingID}?type=${c}`,
-        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -260,11 +274,17 @@ const ViewMusic = () => {
     updatedata({ ...data, [e.target.name]: e.target.value });
   };
 
+// const musicinputselect = () => {
+//   WarningStatustoast()
+// }
+
+ 
+
   // Add Price On Song API
   const addmusicprice = (e, id) => {
     e.preventDefault()
     // console.log(id)
-    axios(
+    AdminAPI(
       {
         url: `${addprice}${updateId}`,
         method: "post",
@@ -288,7 +308,7 @@ const ViewMusic = () => {
     <>
       <Container >
         <ToastContainer
-          autoClose={1000}
+          autoClose={2000}
           position="top-center"
           className="toast-container"
           toastClassName="dark-toast"
@@ -296,6 +316,7 @@ const ViewMusic = () => {
 
         <Box mt={2}>
           <PageHeader title='View Music' />
+          {/* <p>{selecttwoinput}</p> */}
 
           <div style={{ maxWidth: 300 }}  >
             <FormControl fullWidth >
@@ -304,7 +325,6 @@ const ViewMusic = () => {
                 labelId="demo-simple-select-standard-label"
                 id="demo-simple-select-standard"
                 defaultValue={10}
-
                 // value={age}
                 label="Age"
               // onChange={handleChange}
@@ -365,7 +385,7 @@ const ViewMusic = () => {
                 <DeleteIcon
                   hover={hover}
                   sx={{ color: 'black', mt: 2, ml: 3 }} variant="contained" onClick={async () => {
-                    let res = await axios.delete(`${deletemusic}${songs.id}`, {
+                    let res = await AdminAPI.delete(`${deletemusic}${songs.id}`, {
                       headers: {
                         "Authorization": `Bearer ${token}`
                       }
@@ -448,9 +468,10 @@ const ViewMusic = () => {
                           </div>
                           <div className="mb-3">
                             <label className="col-form-label">Music</label>
-                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setMusic(e.target.files[0])} />
+                            <input type="file" className="form-control" id="recipient-name" 
+                            onChange={(e) => setMusic(e.target.files[0])} />                           
                             <audio controls >
-                              <source src={music} type="audio/ogg" />
+                              <source src={music} type="audio/ogg"  />
                             </audio>
                           </div>
                           <div className="modal-footer">

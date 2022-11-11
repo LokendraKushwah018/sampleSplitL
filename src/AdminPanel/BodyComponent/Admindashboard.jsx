@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Container from '../../Components/Adminlayout/Container'
-import { adminDashboard} from '../../Api/Config'
+import { AdminAPI, adminDashboard} from '../../Api/Config'
 import { PageHeader } from '../Common/Components'
 
 import {
@@ -63,7 +63,7 @@ const BlogGraph = () => {
       const weekData = [];
       const monthData = [];
     const fetchData = async (c) => {
-      const url = `${adminDashboard}${c}`
+      const url =  `${adminDashboard}${c}`
       //  const token = localStorage.getItem("logintoken");
       await fetch(url, tokenAPI(token)).then((data) => {
         // console.log("Api data", data)

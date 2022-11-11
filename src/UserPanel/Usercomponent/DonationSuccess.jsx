@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
-import { SuccessDonation } from '../../Api/Config'
+import { API, SuccessDonation } from '../../Api/Config'
 import { useSelector } from 'react-redux';
 
 export default function DonationSuccess() {
@@ -27,11 +27,10 @@ export default function DonationSuccess() {
     console.log(PayerID);
     const amount = localStorage.getItem("ammount");
     useEffect(() => {
-        axios(
+        API(
             {
                 //http://localhost:5001/api/user/successDonation?PayerID=UUNF2ES4R8LUL&paymentId=PAYID-MNFKHUA4M036060DK8155434&amount=20
                 url: `${SuccessDonation}${PayerID}&paymentId=${paymentId}&amount=${amount}`,
-                method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

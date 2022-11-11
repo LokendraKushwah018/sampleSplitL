@@ -4,7 +4,7 @@ import vocalImg from '../../Components/Assets/img/vocals.jpg'
 import sampleImg from '../../Components/Assets/img/sample.jpg'
 import beatImg from '../../Components/Assets/img/beat.jpg'
 import axios from 'axios'
-import { categoryMusic, Donationpay, mostdiscussed, search, userdownload, userdownloader, usermostplayed } from '../../Api/Config'
+import { API, categoryMusic, Donationpay, mostdiscussed, search, userdownload, userdownloader, usermostplayed } from '../../Api/Config'
 import Navbar from '../Userlayout/Navbar'
 import 'react-audio-player-pro/dist/style.css';
 import '../css/freestem.css'
@@ -53,10 +53,9 @@ const Freestem = () => {
   const searchApi = () => {
     // console.log("queryr1111 ", query)
     setVisible(true)
-    axios(
+    API(
       {
         url: `${search}${query}`,
-        method: "get",
       })
 
       .then((response) => {
@@ -71,10 +70,9 @@ const Freestem = () => {
   const url = categoryMusic;
 
   const handleClick = (c) => {
-    axios(
+    API(
       {
-        url: `${url}?filterKey=${c}&page=${1}`,
-        method: "get"
+        url: `${url}?filterKey=${c}`,
       }
     ).then((response) => {
       console.log(response);
@@ -113,7 +111,7 @@ const Freestem = () => {
     Warningtoast();
     e.preventDefault();
     e.target.reset();
-    axios(
+    API(
       {
         url: `${Donationpay}`,
         method: 'post',
@@ -138,7 +136,7 @@ const Freestem = () => {
       console.log(err);
     })
   }
-  const SearchPlayer = (id, music, trackTitle) => {
+  const SearchPlayer = (id, music, trackTitle , imageName) => {
     // setTimeout(() => {
     //   setinput("");
     //   setVisible((prev) => !prev);
@@ -151,11 +149,11 @@ const Freestem = () => {
     setShowplayer(true);
     setMusicplayerimage(true);
     setPlayingMusic(music);
+    setplayingmusicImgae(imageName);
     setPlay(trackTitle);
-    axios(
+    API(
       {
         url: `${mostdiscussed}${id}`,
-        method: "get"
       })
       .then((response) => {
         console.log(response.data);
@@ -179,10 +177,9 @@ const Freestem = () => {
     setShowplayer(true);
     console.log("musiccName22222", playingMusic)
     console.log("tracktitleName22222", play)
-    axios(
+    API(
       {
-        url: `${usermostplayed}${id}`,
-        method: "get"
+        url: `${usermostplayed}${id}`
       })
       .then((response) => {
         console.log(response.data);
@@ -196,10 +193,9 @@ const Freestem = () => {
   const Download = (id) => {
     setId(id);
     console.log(id);
-    axios(
+    API(
       {
         url: `${userdownload}${id}`,
-        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         },
@@ -215,9 +211,8 @@ const Freestem = () => {
   }
   const downloader = (song, id) => {
     console.log(id);
-    axios({
+    API({
       url: `${userdownloader}${id}`,
-      method: 'get',
       headers: {
         "Authorization": `Bearer ${token}`
       }
@@ -275,30 +270,31 @@ const Freestem = () => {
              <button onClick={searchApi}>Search</button>
         </div> */}
         {songs.filter((user) =>
-          user.trackTitle.toLowerCase().includes(query.toLowerCase())).map((item, i) => {
+          user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0,6).map((item, i) => {
             return (
               <div key={i}>
                 {visible && (
                   <div
-
+                  onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.imageName)}
                     style={{
-                      width: '400px',
+                      width: '240px',
                       height: '41px',
                       color: 'black',
-                      display: 'block',
+                      // display: 'block',
                       margin: '10px',
-                      marginLeft: "500px",
+                      marginLeft: "75px",
+                      float: 'left'
 
                     }}>
-                    <div>
+                    <div style={{float: 'left'}}>
                       <img src={item.imageName}
                         onClick={() => SearchPlayer(item.id, item.music, item.trackTitle)}
                         alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
 
                     </div>
 
-                    <div>
-                      <h5 style={{ textAlign: 'center', lineHeight: '41px' }}>{item.trackTitle}</h5>
+                    <div style={{float: 'left' , width: '170px'}}>
+                      <h5 style={{ textAlign: 'center', lineHeight: '41px' , whiteSpace: 'nowrap' , overflow: 'hidden' , textOverflow:'ellipsis'}}>{item.trackTitle}</h5>
                     </div>
                   </div>
                 )}

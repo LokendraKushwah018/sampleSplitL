@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { PageHeader } from '../Common/Components'
-import { adminblog } from '../../Api/Config';
+import { AdminAPI, adminblog } from '../../Api/Config';
 import { useRef } from 'react';
 import Container from '../../Components/Adminlayout/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -31,7 +31,7 @@ const Blog = () => {
         formData.append('title', title);
         formData.append('description', description);
 
-        axios(
+        AdminAPI(
             {
                 url: `${adminblog}`,
                 method: "post",
@@ -53,7 +53,6 @@ const Blog = () => {
             console.log(err);
         })
     }
-
 
     return (
         <Container>
@@ -85,7 +84,6 @@ const Blog = () => {
                         value={description}
                         rows={10}
                         onChange={(e) => setDescription(e.target.value)}
-
                     />
                     <br />
                     <Button

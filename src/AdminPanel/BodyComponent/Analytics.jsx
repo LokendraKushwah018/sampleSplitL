@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import { PageHeader } from '../Common/Components'
 import axios from 'axios';
-import { topfans, toptracks } from '../../Api/Config';
+import { AdminAPI, topfans, toptracks } from '../../Api/Config';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Avatar } from '@material-ui/core';
@@ -24,10 +24,9 @@ const Analytics = () => {
 
   // Top Track API
   const ttrack = () => {
-    axios(
+    AdminAPI(
       {
         url: `${toptracks}`,
-        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -41,10 +40,9 @@ const Analytics = () => {
   }
     // Top Fans API   
   const tfans = () => {
-    axios(
+    AdminAPI(
       {
         url: `${topfans}`,
-        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         }

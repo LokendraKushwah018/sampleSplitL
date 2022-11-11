@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { PageHeader } from "../../Common/Components";
-import { uploadmusic } from '../../Api/Config'
+import { AdminAPI, uploadmusic } from '../../Api/Config'
 import { useRef } from "react";
 import Container from '../../Components/Adminlayout/Container'
 import { toast, ToastContainer } from 'react-toastify';
@@ -22,7 +22,7 @@ const BlogPost = () => {
   const token = useSelector(state=>state.admin.adminlogintoken)  
   const imageinput = useRef();
   const musicinput = useRef();
-
+  // let [formerrors , setformErrors] = useState({});
   let [files, setImage] = useState(null);
   let [music, setMusic] = useState();
   let [trackTitle, settrackTitle] = useState('');
@@ -33,6 +33,7 @@ const BlogPost = () => {
   let [type, setType] = useState('');
 
   const Search = () => {
+    // setformErrors(specialcharacter(data));
     let formData = new FormData();
     formData.append('image', files);
     formData.append('music', music);
@@ -44,7 +45,7 @@ const BlogPost = () => {
     formData.append('type', type);
 
 
-    axios(
+    AdminAPI(
       {
         url: `${uploadmusic}`,
         method: "post",
@@ -79,6 +80,15 @@ const BlogPost = () => {
     e.preventDefault()
     settrackType(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase())
   };
+  // (/[^\w\s]/gi, "")
+  const specialcharacter = (e) => {
+    // const setformErrors = {}
+    e.preventDefault()
+    settrackTitle(e.target.value.replace(/[^\w\s]/gi, ""))
+    // if (settrackTitle != e.replace){
+    //   alert('Input is not alphanumeric');
+  }
+  
 
   return (
     <>
@@ -99,6 +109,7 @@ const BlogPost = () => {
             id="outlined-required"
             label="Track Title"
             value={trackTitle}
+            onKeyUp={specialcharacter}
             onChange={(e) => settrackTitle(e.target.value)}
             InputLabelProps={{
               sx: {

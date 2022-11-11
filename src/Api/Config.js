@@ -1,42 +1,68 @@
+import axios from "axios";
+import { useSelector } from "react-redux";
+
+export const API = axios.create({
+    
+    // const token = useSelector(state=>state.auth.userlogintoken),
+
+    baseURL: "http://localhost:5001/api/user/",
+    method: 'get',
+    // headers: {
+    //     "Authorization" : `Bearer ${token}`
+        
+    // }
+    
+})
+
+
+export const AdminAPI = axios.create ({
+    baseURL: 'http://localhost:5001/api/admin/',
+    method: "get",
+})
+
+// axios.defaults.baseURL = "http://localhost:5001/api/user/"
+// axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 // ADMIN PANLE API'S
 
-export const loginAdmin = `http://localhost:5001/api/admin/login`;
-export const adminprofile = `http://localhost:5001/api/admin/getAdminProfile`;
-export const uploadmusic = `http://localhost:5001/api/admin/audioUpload`;
-export const adminblog = `http://localhost:5001/api/admin/createBlog`;
-export const adminlogout = `http://localhost:5001/api/admin/logOut`;
-export const viewmusic = `http://localhost:5001/api/admin/getAllAudio`;
-export const deletemusic = `http://localhost:5001/api/admin/deleteAudio/`;
-export const editmusic = `http://localhost:5001/api/admin/editAudio/`;
-export const updatemusic = `http://localhost:5001/api/admin/updateAudioById/`;
-export const admindetailsedit = `http://localhost:5001/api/admin/updateProfile`;
-export const toptracks = `http://localhost:5001/api/admin/topTrack`;
-export const topfans = `http://localhost:5001/api/admin/getTopFans`;
-export const changestatus = `http://localhost:5001/api/admin/changeStatus/`;
-export const addprice = `http://localhost:5001/api/admin/AddPayment/`;
-export const changepassword = `http://localhost:5001/api/admin/changePassword`
+export const loginAdmin = `login`;
+export const adminprofile = `getAdminProfile`;
+export const uploadmusic = `audioUpload`;
+export const adminblog = `createBlog`;
+export const adminlogout = `logOut`;
+export const viewmusic = `getAllAudio`;
+export const deletemusic = `deleteAudio/`;
+export const editmusic = `editAudio/`;
+export const updatemusic = `updateAudioById/`;
+export const admindetailsedit = `updateProfile`;
+export const toptracks = `topTrack`;
+export const topfans = `getTopFans`;
+export const changestatus = `changeStatus/`;
+export const addprice = `AddPayment/`;
+export const changepassword = `changePassword`
 export const adminDashboard = `http://localhost:5001/api/admin/toptrackByDate?filterkey=`
 
 
-
 // USER API'S
-export const userblog = `http://localhost:5001/api/user/getBloges`;
-export const userlogin = `http://localhost:5001/api/user/login`;
+export const userblog = `getBloges`;
+export const userlogin = `login`;
 export const usersignup = `http://localhost:5001/api/user/singup`;
-export const categoryMusic = `http://localhost:5001/api/user/getSongByTracktype`;
-export const search = `http://localhost:5001/api/user/search?keyWord=`;
-export const mostdiscussed = `http://localhost:5001/api/user/mostDiscuss/`;
-export const usermostplayed = `http://localhost:5001/api/user/mostplayed/`;
-export const userLogOut = `http://localhost:5001/api/user/logOut`;
-export const fourStemps =`http://localhost:5001/api/user/getFourSteamsSong?filterKey=`
-export const twoStemps = `http://localhost:5001/api/user/getTwoSteamsSong?filterKey=`
-export const songsdownload = `http://localhost:5001/api/user/getDownloadSong/`;
+export const categoryMusic = `getSongByTracktype`;
+export const search = `search?keyWord=`;
+export const mostdiscussed = `mostDiscuss/`;
+export const usermostplayed = `mostplayed/`;
+export const userLogOut = `logOut`;
+export const fourStemps =`getFourSteamsSong?filterKey=`
+export const twoStemps = `getTwoSteamsSong?filterKey=`
+export const songsdownload = `getDownloadSong/`;
 export const samplesplitsong = `http://192.168.29.237:5001/api/user/getstemsAudio`
-export const userSubscription = `http://localhost:5001/api/user/getAllSubscription`
-export const userbuyplan = `http://localhost:5001/api/user/Pay/`
-export const Donationpay = `http://localhost:5001/api/user/DonationPay`
-export const SuccessDonation = `http://localhost:5001/api/user/successDonation?PayerID=`
-export const userdownload = `http://localhost:5001/api/user/getDownloadSong/`
-export const userdownloader = `http://localhost:5001/api/user/downloadedSong/`
-export const getUserDetail = `http://localhost:5001/api/user/getUserDetail`
+export const userSubscription = `getAllSubscription`
+export const userbuyplan = `Pay/`
+export const Donationpay = `DonationPay`
+export const SuccessDonation = `successDonation?PayerID=`
+export const userdownload = `getDownloadSong/`
+export const userdownloader = `downloadedSong/`
+export const getUserDetail = `getUserDetail`
+export const SuccessPayment = `paymentSuccess/`

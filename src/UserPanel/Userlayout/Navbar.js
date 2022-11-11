@@ -1,34 +1,34 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import LogoutIcon from '@mui/icons-material/Logout'
 import './Navbar.css';
 import { logout } from '../../Pages/Dashboard/Auth/AuthSlice';
 import { useDispatch } from 'react-redux';
 
 const Navbar = () => {
-  const token = localStorage.getItem("userlogintoken")
+  // const token = localStorage.getItem("userlogintoken")
   const dispatch = useDispatch()
   let Navigate = useNavigate();
-  const Userlogout = () => {
+  // const Userlogout = () => {
 
-    axios(
-      {
-        url: 'http://localhost:5001/api/user/logOut',
-        method: 'delete',
-        headers: {
-          "Authorization": `Bearer ${token}`
-        }
-      }).then((response) => {
-        console.log(response.data)
-        if (response.status === 200) {
-          localStorage.removeItem('userlogintoken');
-          Navigate("/userlogin");
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-  }
+  //   axios(
+  //     {
+  //       url: 'http://localhost:5001/api/user/logOut',
+  //       method: 'delete',
+  //       headers: {
+  //         "Authorization": `Bearer ${token}`
+  //       }
+  //     }).then((response) => {
+  //       console.log(response.data)
+  //       if (response.status === 200) {
+  //         localStorage.removeItem('userlogintoken');
+  //         Navigate("/userlogin");
+  //       }
+  //     }).catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
   const userlogout = (e) => {
     e.preventDefault()
     dispatch(logout())

@@ -10,12 +10,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate , Link} from "react-router-dom";
-import { userlogin } from "../../../../Api/Config";
+import { API, userlogin } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
+import { logInApi } from "../../../../Api/Config";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -63,11 +64,12 @@ export default function UserLogIn() {
     setformErrors(validate(data));
     setIsSubmit(true);
   };
+
   const logInApi = () => {
-    axios(
+    API(
       {
         url: `${userlogin}`,
-        method: "post",
+        method: 'post',
         header: {
           'Content-Type': 'application/json'
         },
@@ -94,7 +96,6 @@ export default function UserLogIn() {
       })
       .catch((err) => {
         console.log(err);
-
       })
   }
   useEffect(() => {

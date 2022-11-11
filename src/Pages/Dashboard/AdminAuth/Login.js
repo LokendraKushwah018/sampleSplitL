@@ -11,7 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import {  useNavigate} from "react-router-dom";
-import { loginAdmin } from "../../../Api/Config"
+import { AdminAPI, loginAdmin } from "../../../Api/Config"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
@@ -61,7 +61,7 @@ export default function AdminlogIn() {
     // setIsSubmit(true);
   };
     const AdminlogInApi = () => {
-      axios(
+      AdminAPI(
         {
           url: `${loginAdmin}`,
           method: "post",
