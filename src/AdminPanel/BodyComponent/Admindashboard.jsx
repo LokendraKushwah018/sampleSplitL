@@ -15,6 +15,7 @@ import {
 
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -47,6 +48,7 @@ const BlogGraph = () => {
   const [monthData, setMonthData] = useState([])
   const [weekData, setWeekData] = useState([])
   const [todayData, setTodayData] = useState([])
+  const [subammount , setSubammount] = useState([])
 
   const tokenAPI = (token) => {
     return ({
@@ -57,8 +59,24 @@ const BlogGraph = () => {
       }
     })
   }
+
+  const total = () => {
+    axios({
+      url: "http://localhost:5001/api/admin/getTotalSubAmount",
+      method: "get",
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      }
+    }).then((response) => {
+      console.log(response)
+      setSubammount(response.data.getTotal)
+    }).catch((error) => {
+      console.log(error)
+    })
+  }
  
   useEffect(() => {
+    total();
     const todayData = [];
       const weekData = [];
       const monthData = [];
@@ -125,15 +143,10 @@ const BlogGraph = () => {
   }
   return (
     <Container>
-    <div 
-    //  style={{ background:"grey"  ,  position: 'center'}}
-
-    >
-      <h3 style={{textAlign:'center'}} >User View Bar Chart</h3>
-      <PageHeader title='Dashboard' />
-      {
-        // console.log("dataaaaaa", data)
-      }
+    <div> 
+     <PageHeader title='Dashboard' />
+    <h6><div>Sales This Month</div>${subammount}</h6>
+      <h3 style={{textAlign:'center'}} >Play This Month</h3>
       <Bar data={datas} options={options} />
     </div>
     </Container>

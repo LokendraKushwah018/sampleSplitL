@@ -64,5 +64,6 @@ export const Donationpay = `DonationPay`
 export const SuccessDonation = `successDonation?PayerID=`
 export const userdownload = `getDownloadSong/`
 export const userdownloader = `downloadedSong/`
-export const getUserDetail = `getUserDetail`
+// export const getUserDetail = `getUserDetail`
 export const SuccessPayment = `paymentSuccess/`
+export const getUserDetail = `http://localhost:5001/api/user/getUserDetail`
