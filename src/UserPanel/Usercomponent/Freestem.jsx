@@ -3,59 +3,48 @@ import drumsImg from '../../Components/Assets/img/drums.jpg'
 import vocalImg from '../../Components/Assets/img/vocals.jpg'
 import sampleImg from '../../Components/Assets/img/sample.jpg'
 import beatImg from '../../Components/Assets/img/beat.jpg'
-import axios from 'axios'
-import { API, categoryMusic, Donationpay, mostdiscussed, search, userdownload, userdownloader, usermostplayed } from '../../Api/Config'
+// import { API, categoryMusic, Donationpay, mostdiscussed, search,usermostplayed } from '../../Api/Config'
+import { categoryMusic, userbaseurl  } from '../../Api/Config'
 import Navbar from '../Userlayout/Navbar'
 import 'react-audio-player-pro/dist/style.css';
 import '../css/freestem.css'
 import AudioPlayer from "react-h5-audio-player";
 import "react-h5-audio-player/lib/styles.css";
-// import IconButton from '@mui/material/IconButton';
 import DownloadIcon from '@mui/icons-material/Download';
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-// import Footer from '../UserBackend/Footer'
-import FileSaver from 'file-saver'
 import '../css/search.css'
-// import { MusicNoteRounded } from '@mui/icons-material'
 import InfoIcon from '@mui/icons-material/Info';
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const Freestem = () => {
 
   const [music, setMusic] = useState([]);
   const [play, setPlay] = useState([])
+  const [demo, setDemo] = useState([]);
   const [playingMusic, setPlayingMusic] = useState([])
   const [state, setstate] = useState([])
   const [songs, setSongs] = useState([]);
   const [query, setQuery] = useState([]);
   const [Id, setId] = useState([]);
-  const [gaana, setGaana] = useState([]);
-  const [showplayer,setShowplayer] = useState(false)
-  // const [input, setinput] = useState();
+  const [showplayer, setShowplayer] = useState(false)
   const [visible, setVisible] = useState(true);
-  const [donate, setDonate] = useState({ title: "", amount: "" });
   const [title, setTitle] = useState('')
   const [amount, setAmount] = useState('')
-  const [ playingmusicImgae, setplayingmusicImgae] = useState([])
-  const [musicplayerimage , setMusicplayerimage] = useState(false)
-  const token = useSelector(state=>state.auth.userlogintoken)
+  const [playingmusicImgae, setplayingmusicImgae] = useState([])
+  const [musicplayerimage, setMusicplayerimage] = useState(false)
+  const token = useSelector(state => state.auth.userlogintoken)
   const navigate = useNavigate();
-  // const token = localStorage.getItem("userlogintoken");
-     
+
   const Warningtoast = () => {
     toast.info("Wait For a second");
   }
-
-  const DownloadToast = () => {
-    toast.info("Your Daily Downloading Limit Expired");
-  }
   const searchApi = () => {
-    // console.log("queryr1111 ", query)
     setVisible(true)
-    API(
+    axios(
       {
-        url: `${search}${query}`,
+        url: `${userbaseurl}search?keyWord=${query}`,
       })
 
       .then((response) => {
@@ -70,9 +59,9 @@ const Freestem = () => {
   const url = categoryMusic;
 
   const handleClick = (c) => {
-    API(
+    axios(
       {
-        url: `${url}?filterKey=${c}`,
+        url: `${userbaseurl}${url}?filterKey=${c}`,
       }
     ).then((response) => {
       console.log(response);
@@ -82,38 +71,16 @@ const Freestem = () => {
       console.log(err);
     })
   }
-  // const MostPlayed = (id) => {
-  //   axios(
-  //     {
-  //       url: `${usermostplayed}${id}`,
-  //       method: "get"
-  //     })
-  //     .then((response) => {
-  //       // setMost(response.data);
-  //       console.log(response.data);
-  //     }).catch((err) => {
-  //       console.log(err);
-  //       // console.log(MostPlayed)
-  //     })
-  // }
   useEffect(() => {
     handleClick("public");
-    // MostPlayed();
   }, []);
-
-  const show = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setDonate({ ...donate, [name]: value })
-    console.log(setDonate)
-  }
   const donation = (e) => {
     Warningtoast();
     e.preventDefault();
     e.target.reset();
-    API(
+    axios(
       {
-        url: `${Donationpay}`,
+        url: `${userbaseurl}DonationPay`,
         method: 'post',
         data: {
           title,
@@ -136,14 +103,7 @@ const Freestem = () => {
       console.log(err);
     })
   }
-  const SearchPlayer = (id, music, trackTitle , imageName) => {
-    // setTimeout(() => {
-    //   setinput("");
-    //   setVisible((prev) => !prev);
-    // })
-    // console.log(id);
-    // console.log(music);
-    // console.log(trackTitle);
+  const SearchPlayer = (id, music, trackTitle, imageName, trackType) => {
     setQuery('')
     setVisible(false)
     setShowplayer(true);
@@ -151,21 +111,19 @@ const Freestem = () => {
     setPlayingMusic(music);
     setplayingmusicImgae(imageName);
     setPlay(trackTitle);
-    API(
+    setDemo(trackType)
+    axios(
       {
-        url: `${mostdiscussed}${id}`,
+        url: `${userbaseurl}mostDiscuss/${id}`,
       })
       .then((response) => {
         console.log(response.data);
       }).catch((err) => {
         console.log(err);
       })
-
-    // console.log("musiccName11111", playingMusic)
-    // console.log("trackname111111", play);
   }
 
-  const Bottom = (id, music, trackTitle, imageName) => {
+  const Bottom = (id, music, trackTitle, imageName, tracktype) => {
     console.log(id);
     console.log(music);
     console.log(trackTitle);
@@ -173,13 +131,15 @@ const Freestem = () => {
     setPlayingMusic(music);
     setPlay(trackTitle);
     setplayingmusicImgae(imageName);
-     setMusicplayerimage(true);
+    setDemo(tracktype)
+
+    setMusicplayerimage(true);
     setShowplayer(true);
     console.log("musiccName22222", playingMusic)
     console.log("tracktitleName22222", play)
-    API(
+    axios(
       {
-        url: `${usermostplayed}${id}`
+        url: `${userbaseurl}mostplayed/${id}`
       })
       .then((response) => {
         console.log(response.data);
@@ -187,56 +147,14 @@ const Freestem = () => {
         console.log(err);
       })
   }
-  const BuyPlan = () => {
-    navigate("/buyplan");
-  }
-  const Download = (id) => {
-    setId(id);
-    console.log(id);
-    API(
-      {
-        url: `${userdownload}${id}`,
-        headers: {
-          "Authorization": `Bearer ${token}`
-        },
-      }
-    ).then((res) => {
-      console.log(res.data.data);
-      setGaana(res.data.data)
-      console.log("gana", gaana)
-    }).catch((err) => {
-      console.log(err);
-    })
-
-  }
-  const downloader = (song, id) => {
-    console.log(id);
-    API({
-      url: `${userdownloader}${id}`,
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    }).then((res) => {
-      console.log(res);
-      if (res.data.message === "Download Success") {
-        FileSaver.saveAs(song)
-      }
-      if (res.data.status === "false") {
-        DownloadToast();
-        setTimeout(() => {
-          navigate("/buyplan");
-        }, 2000);
-      }
-    }).catch((err) => {
-      console.log(err);
-
-    })
-  }
   const modelsong = (music, trackTitle, imageName) => {
     setPlayingMusic(music);
     setPlay(trackTitle);
     setplayingmusicImgae(imageName);
     setShowplayer(true);
+  }
+  const handleClickNext = () => {
+
   }
   return (
     <>
@@ -247,7 +165,7 @@ const Freestem = () => {
         className="toast-container"
         toastClassName="dark-toast"
         theme="colored" />
-      <div style={{color:'white'}}>
+      <div style={{ color: 'white' }}>
         <div className="container">
           <div className="col-md-8 ">
             <div className="search-2">
@@ -258,43 +176,32 @@ const Freestem = () => {
               <button onClick={searchApi}>Search</button>
             </div> </div> </div>
 
-        {/* <div className='wrap'>
-          <input className='search_bar mt-1'
-            style={{ borderRadius: '50px' }}
-            type="text"
-            value={query}
-            // onKeyPress={searchApi}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder='Search Any Songs and Listen'
-          />
-             <button onClick={searchApi}>Search</button>
-        </div> */}
+      
         {songs.filter((user) =>
-          user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0,6).map((item, i) => {
+          user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0, 6).map((item, i) => {
             return (
               <div key={i}>
                 {visible && (
                   <div
-                  onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.imageName)}
+                    onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.imageName, item.trackType)}
                     style={{
                       width: '240px',
                       height: '41px',
                       color: 'black',
-                      // display: 'block',
                       margin: '10px',
                       marginLeft: "75px",
                       float: 'left'
 
                     }}>
-                    <div style={{float: 'left'}}>
+                    <div style={{ float: 'left' }}>
                       <img src={item.imageName}
-                        onClick={() => SearchPlayer(item.id, item.music, item.trackTitle)}
+                        onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.trackType)}
                         alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
 
                     </div>
 
-                    <div style={{float: 'left' , width: '170px'}}>
-                      <h5 style={{ textAlign: 'center', lineHeight: '41px' , whiteSpace: 'nowrap' , overflow: 'hidden' , textOverflow:'ellipsis'}}>{item.trackTitle}</h5>
+                    <div style={{ float: 'left', width: '170px' }}>
+                      <h5 style={{ textAlign: 'center', lineHeight: '41px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.trackTitle}</h5>
                     </div>
                   </div>
                 )}
@@ -311,7 +218,7 @@ const Freestem = () => {
             <img src={drumsImg} alt="/" style={{ width: '280px', height: "200px" }} />
           </div>
           &nbsp;
-          <div 
+          <div
             style={{ float: 'left', margin: 10 }}
             onClick={() => handleClick('Vocals')}>
             <h2 style={{ textAlign: 'center' }} >Vocals</h2>
@@ -340,7 +247,7 @@ const Freestem = () => {
                 key={index}>
                 <div
                   className="img-div"
-                  style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName)}>
+                  style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName, value.tracktype)}>
                   <img src={value.imageName} alt="/" style={{ width: '60px', height: '60px', borderRadius: '10px' }} />
                 </div>
                 <div>
@@ -365,7 +272,7 @@ const Freestem = () => {
                   data-target={`#exampleModal${index}`}
                 />
                 <div className="modal fade " id={`exampleModal${index}`} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog modal-fullscreen-xxl-down "  role="document" >
+                  <div className="modal-dialog modal-fullscreen-xxl-down " role="document" >
                     <div className="modal-content bg-dark" >
                       <div className="modal-header">
                         <h5 className="modal-title " id="exampleModalLabel">Song Details</h5>
@@ -376,20 +283,18 @@ const Freestem = () => {
                       <div className="modal-body">
                         <div className="container mt-5 mb-5">
                           <div className="row no-gutters">
-                            <div className="col-md-4 col-lg-4 img__model" data-dismiss="modal" type="button" onClick={()=>modelsong( value.music, value.trackTitle, value.imageName)}><img src={value.imageName} className="img__name" alt='...'/></div>
+                            <div className="col-md-4 col-lg-4 img__model" data-dismiss="modal" type="button" onClick={() => modelsong(value.music, value.trackTitle, value.imageName)}><img src={value.imageName} className="img__name" alt='...' /></div>
                             <div className="col-md-8 col-lg-8">
                               <div className="d-flex flex-column">
                                 <div className="d-flex flex-row justify-content-between align-items-center p-5 bg-secondary text-white">
                                   <h3 className="display-5">{value.trackTitle}</h3>
-                                  {/* <i className="fa fa-facebook"></i><i className="fa fa-google"></i>
-                                  <i className="fa fa-youtube-play"></i><i className="fa fa-dribbble"></i>
-                                  <i className="fa fa-linkedin"></i> */}
-                                  </div>
+                                
+                                </div>
                                 <div className="p-3 bg-black text-white">
                                   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{value.tracktype}</h4>
                                 </div>
                                 <div className="d-flex flex-row text-white">
-                                  <div className="p-4 bg-warning text-center skill-block">
+                                  <div className="p-4 bg-warning text-center skill-block  text-white">
                                     <h4>{value.bpm}</h4>
                                     <h6>Bpm</h6>
                                   </div>
@@ -397,24 +302,14 @@ const Freestem = () => {
                                     <h4>{value.keyOptional}</h4>
                                     <h6>Key</h6>
                                   </div>
-                                  {/* <div className="p-3 bg-warning text-center skill-block">
-                                <h4>{value.bpm}</h4>
-                                <h6>Bpm</h6>
-                            </div>
-                            <div className="p-3 bg-danger text-center skill-block">
-                                <h4>75%</h4>
-                                <h6>PHP</h6>
-                            </div> */}
+                            
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      {/* <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Save changes</button>
-                      </div> */}
+                    
                     </div>
                   </div>
                 </div>
@@ -428,10 +323,8 @@ const Freestem = () => {
                       </div>
                       <div className="modal-body text-dark">
                         Download This Song
-                        <button className='btn btn-primary m-5'
-                          onClick={() => downloader(value.music, value.id)}
-                          data-bs-dismiss="modal">Download</button>
-                        {/* <a href="_ff (6).mp3" download><img src={gaana.music} alt="/" />d</a> */}
+                       <a href={value.music} download> <button className='btn btn-primary m-5'
+                          data-bs-dismiss="modal">Download</button></a>
                       </div>
                       <div className="modal-footer">
                         <button className="btn btn-outline-info" data-bs-target={`#exampleModalToggle2${index}`}
@@ -480,38 +373,42 @@ const Freestem = () => {
             )
           })}
         </div>
-        {showplayer && 
-        <div className="Apps">
-          <div style={{ float: 'left', width: '7%' }}  >              
+        {showplayer &&
+          <div className="Apps">
+            <div style={{ float: 'left', width: '30%', background: 'black' }}   >
+              <div style={{ float: 'left' }}>
                 <img
                   src={playingmusicImgae}
                   alt="/"
-                  style={{ width: '100%', height: "80px" }}
+                  style={{ height: "75px", width: '100px' }} 
                 />
+              </div>
+              <div style={{ float: 'left', width: '300px', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }} >
+                <h5 style={{ lineHeight: '40px' }}>{play}</h5>
+                <h6>{demo}</h6>
+              </div>
+            </div>
+            <div style={{ width: '70%', height: "75px", float: 'left' }}>
+              <AudioPlayer
+                style={{ height: "75px", textAlign: 'center', background: "black", color: 'white' }}
+                autoPlay={true}
+                layout="horizontal"
+                controls={false}
+                src={playingMusic}
+                showJumpControls={false}
+                showSkipControls={false}
+                onClickNext={handleClickNext}
+              />
+            </div>
           </div>
-          <div style={{ width: '93%', height: "80px", float: 'left' }}>
-            <AudioPlayer
-              style={{ height: "80px", textAlign: 'center', background: "black", color: 'white' }}
-              autoPlay={true}
-              layout="horizontal"
-              controls={false}
-              src={playingMusic}
-              showJumpControls={false}
-              header={play}
-            />
-          </div>
-        </div>
-}
-        
-      
+        }
+
+
       </div>
-    
-</>
+
+    </>
   )
 }
 
 export default Freestem
-
-
-
 

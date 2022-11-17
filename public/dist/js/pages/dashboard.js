@@ -101,12 +101,12 @@ $(function () {
   // sparkline3.draw([15, 19, 20, 22, 33, 27, 31, 27, 19, 30, 21])
 
   // The Calender
-  // $('#calendar').datetimepicker({
-  //   format: 'L',
-  //   inline: true
-  // })
+  $('#calendar').datetimepicker({
+    format: 'L',
+    inline: true
+  })
 
-  // // SLIMSCROLL FOR CHAT WIDGET
+  // SLIMSCROLL FOR CHAT WIDGET
   // $('#chat-box').overlayScrollbars({
   //   height: '250px'
   // })

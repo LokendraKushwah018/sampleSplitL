@@ -9,7 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { API, SuccessPayment } from '../../Api/Config';
+import { SuccessPayment, userbaseurl } from '../../Api/Config';
 
 export default function PlanSuccess() {
     const [loading, setloading] = useState(true);
@@ -26,7 +26,6 @@ export default function PlanSuccess() {
 
     console.log(id);
 
-
     const urlParams = new URLSearchParams(window.location.search);
     const paymentId = urlParams.get('paymentId');
     const PayerID = urlParams.get('PayerID');
@@ -34,9 +33,10 @@ export default function PlanSuccess() {
     console.log(PayerID);
 
     useEffect(() => {
-        API(
+        axios(
             {
-                url: `${SuccessPayment}${id}?PayerID=${PayerID}&paymentId=${paymentId}`,
+                url: `${userbaseurl}paymentSuccess/${id}?PayerID=${PayerID}&paymentId=${paymentId}`,
+                method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
                 }

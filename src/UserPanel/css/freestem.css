@@ -8,7 +8,8 @@
   width: 100%;
   bottom: 0;
   position: fixed;
-  background: rgb(238, 212, 212);
+  /* / background: rgb(238, 212, 212); / */
+  background-color: #000;
 
 }
 .search {
@@ -55,7 +56,7 @@ margin-left: 450px;
 }
 .rhap_play-pause-button {
   color: white !important;
-  margin-top: 10%;
+  margin-top: 0%;
 }
 .rhap_volume-controls {
   color: white !important;

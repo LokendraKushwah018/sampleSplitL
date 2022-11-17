@@ -1,17 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import axios from 'axios';
-import { API, userblog } from '../../Api/Config';
+import axios from 'axios';
+import {  userbaseurl, userblog } from '../../Api/Config';
 import Navbar from '../Userlayout/Navbar';
 import '../css/userblog.scss';
-// import styled from 'styled-components';
 
 const UserBlog = () => {
     const [Blog, SetBlog] = useState([]);
 
     async function BlogApi() {
-        const response = await API.get(`${userblog}`);
+        const response = await axios.get(`${userbaseurl}getBloges`);
         SetBlog(response.data.findBlog);
         console.log(response.data.findBlog);
         if (!response || response) {

@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { API, userlogin } from "../../../../Api/Config";
+import { userbaseurl, userlogin } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -44,13 +44,9 @@ const useStyles = makeStyles(theme => ({
     color: "white"
   }, multilineColor: {
     color: 'red'
-  },input : {
-    color:'white'
   }
+
 }));
-
-
-
 
 export default function UserLogIn() {
 
@@ -73,9 +69,9 @@ export default function UserLogIn() {
     setIsSubmit(true);
   };
   const logInApi = () => {
-    API(
+    axios(
       {
-        url: `${userlogin}`,
+        url: `${userbaseurl}login`,
         method: "post",
         header: {
           'Content-Type': 'application/json'
@@ -121,8 +117,8 @@ export default function UserLogIn() {
     }
     if (!values.password) {
       errors.password = "Pasword is Required ! ";
-    } else if (values.password < 6) {
-      errors.password = "password must be more than 6 characters"
+    } else if (values.password.length < 4) {
+      errors.password = "password must be more than 4 characters"
     }
 
     return errors;
@@ -150,7 +146,7 @@ export default function UserLogIn() {
                     className: classes.floatingLabelFocusStyle,
                   }}
                   // sx={{ input: { color: 'red !important' } }}
-                  className={classes.input}
+                  className={classes.multilineColor}
 
                   required
                   fullWidth
@@ -170,9 +166,7 @@ export default function UserLogIn() {
                   InputLabelProps=
                   {{
                     className: classes.floatingLabelFocusStyle,
-                    classes: {
-                      input: classes.multilineColor
-                    }
+                  
 
                     // color : "white"
                   }}
@@ -184,6 +178,7 @@ export default function UserLogIn() {
                   autoComplete="current-password"
                   value={data.password}
                   onChange={display}
+                  className={classes.input}
 
                 />
                 <p style={{ color: 'red' }} >{formErrors.password}</p>

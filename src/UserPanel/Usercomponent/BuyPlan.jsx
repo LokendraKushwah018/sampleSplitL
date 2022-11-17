@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { API, userbuyplan, userSubscription } from '../../Api/Config';
+import { userbaseurl, userbuyplan, userSubscription } from '../../Api/Config';
 import '../css/buyplan.css'
 
 const BuyPlan = () => {
@@ -26,9 +26,10 @@ const BuyPlan = () => {
 
     const payment = () => {
         // BuyPlantoast();
-        API(
+        axios(
             {
-                url: `${userSubscription}`,
+                url: `${userbaseurl}getAllSubscription`,
+                method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
                 },
@@ -50,9 +51,9 @@ const BuyPlan = () => {
     const buyPlan = (id) => {
         Waittoast();
         console.log(id);
-        API(
+        axios(
             {
-                url: `${userbuyplan}${id}`,
+                url: `${userbaseurl}Pay/${id}`,
                 method: 'post',
                 headers: {
                     "Authorization": `Bearer ${token}`

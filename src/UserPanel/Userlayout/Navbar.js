@@ -83,7 +83,6 @@ const Navbar = () => {
             <Link className="nav-link active text-light" to="/About">About</Link>
             <Link className="nav-link active text-light" to="/Contact" >ContactUs</Link>
             <Link className="nav-link active text-light" to="/Useraccount" >My Account</Link>
-
           </div>
           <div className="navbar-nav ms-auto ">
             <span>

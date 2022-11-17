@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Container from '../../Components/Adminlayout/Container'
-import { AdminAPI, adminDashboard} from '../../Api/Config'
+import { adminbaseurl, adminDashboard} from '../../Api/Config'
 import { PageHeader } from '../Common/Components'
 
 import {
@@ -16,6 +16,9 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+// import { Today } from '@mui/icons-material';
+// import { Button } from 'bootstrap';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -43,12 +46,13 @@ const options = {
 };
 
 const BlogGraph = () => {
-     const token = useSelector(state=>state.admin.adminlogintoken)
+  const token = useSelector(state=>state.admin.adminlogintoken)
   // const token = localStorage.getItem("logintoken")
   const [monthData, setMonthData] = useState([])
   const [weekData, setWeekData] = useState([])
   const [todayData, setTodayData] = useState([])
   const [subammount , setSubammount] = useState([])
+  const [subscriber , setSubscriber] = useState([])
 
   const tokenAPI = (token) => {
     return ({
@@ -62,67 +66,84 @@ const BlogGraph = () => {
 
   const total = () => {
     axios({
-      url: "http://localhost:5001/api/admin/getTotalSubAmount",
+      url: `${adminbaseurl}getTotalSubAmount`,
       method: "get",
       headers: {
         "Authorization" : `Bearer ${token}`
       }
     }).then((response) => {
-      console.log(response)
+      //  console.log(response)
       setSubammount(response.data.getTotal)
     }).catch((error) => {
+      console.log(error)
+    })
+  }
+
+  const totalUser = () => {
+    axios({
+      url: "http://localhost:5001/api/admin/totalSubByuser",
+      method: "get",
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    }).then((response)=> {
+      console.log(response)
+      setSubscriber(response.data.getTotalSub)
+    }).catch((error)=> {
       console.log(error)
     })
   }
  
   useEffect(() => {
     total();
+    totalUser();
     const todayData = [];
       const weekData = [];
       const monthData = [];
     const fetchData = async (c) => {
-      const url =  `${adminDashboard}${c}`
+      const url =  `${adminbaseurl}${adminDashboard}${c}`
       //  const token = localStorage.getItem("logintoken");
       await fetch(url, tokenAPI(token)).then((data) => {
         // console.log("Api data", data)
         const res = data.json();
         return res
       }).then((res) => {
-        // console.log("ressss", res.sumtData)
-        // for (const val of res) {
+        //  console.log("ressss", res.sumtData)
+         console.log(res)
+
         if(c === "TODAY"){
           todayData.push(res.sumtData)
           setTodayData(todayData)
+          // setVisible(todayData)
 
         }else if(c === "WEEK"){
           weekData.push(res.sumtData)
         setWeekData(weekData)
+        // setVisible(weekData)
 
+        
         }else if(c === "MONTH"){
-          // console.log(res.sumtData)
           monthData.push(res.sumtData)
         setMonthData(monthData)
+        // setVisible(monthData)
+
         }
-        //     // labelSet.push(val.name)
-        // }
-        // console.log(setData.data)
+    
       }).catch(err => {
-        // console.log("error", err)
       })
     }
     fetchData("TODAY");
     fetchData("WEEK");
     fetchData("MONTH");
   }, [])
-  // console.log(monthData[0])
   const datas =  {
     labels: ['Music Viewed'],
     datasets: [
       {
-        label: 'Today',
+        label: 'TODAY',
+        // button: {todayData},
         data: todayData,
         borderColor: '#98b4db',
-        // backgroundColor: 'rgba(25, 90, 13, 0.5)',
         backgroundColor :'#2F76DB',
       },
       {
@@ -136,19 +157,74 @@ const BlogGraph = () => {
         data: monthData,
         borderColor: '#373f5a',
         // backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        backgroundColor: '#1F2D5A',
-        
-      },
-    ],
+        backgroundColor: '#1F2D5A',        
+      },      
+    ]
   }
+
   return (
     <Container>
-    <div> 
-     <PageHeader title='Dashboard' />
-    <h6><div>Sales This Month</div>${subammount}</h6>
-      <h3 style={{textAlign:'center'}} >Play This Month</h3>
-      <Bar data={datas} options={options} />
+    <> 
+    <PageHeader title='Dashboard' />
+ <div className="row"
+  style={{ width: '1100px' }}>
+  <div className="col-lg-4 ">
+    <div className="small-box bg-info text-dark">
+      <div className="inner">
+        <h3>{monthData} </h3>
+        <p>Play This Month</p>
+      </div>
+      <div className="icon">
+        <i className="ion ion-bag" />
+      </div>  
     </div>
+  </div>  
+  <div className="col-lg-4 ">
+    <div className="small-box bg-warning">
+      <div className="inner">
+        <h3>{subscriber}</h3>
+        <p>User Subscription</p>
+      </div>
+      <div className="icon">
+        <i className="ion ion-person-add" />
+      </div>
+    </div>
+  </div>
+  <div className="col-lg-4 ">
+    <div className="small-box bg-danger text-dark ">
+      <div className="inner">
+        <h3>${subammount}</h3>
+        <p>Sale This Month</p>
+      </div>
+      <div className="icon">
+        <i className="ion ion-pie-graph" />
+      </div>      
+    </div>
+  </div>
+</div>
+<Bar data={datas} options={options} />
+{/* <div className="card bg-gradient-dark ">
+  <div className="card-header"
+  style={{marginTop: -200}}>
+    <h3 className="card-title ">
+      <i className="far fa-calendar-alt mr-2" />
+      Calendar
+    </h3>   
+    <div className="card-tools">
+      <button type="button" className="btn btn-dark btn-sm ml-2 mr-2 " data-card-widget="collapse">
+        <i className="fas fa-minus " />
+      </button>
+      <button type="button" className="btn btn-dark btn-sm" data-card-widget="remove">
+        <i className="fas fa-times" />
+      </button>
+    </div>
+  </div>
+  <div className="card-body pt-0">
+    <div id="calendar" style={{width: '100%'}} />
+  </div>
+</div> */}
+     
+    </>
     </Container>
     )
 }

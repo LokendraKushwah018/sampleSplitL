@@ -7,6 +7,7 @@
     margin-left: 50px;
     margin-top: 50px;
     background: linear-gradient(to top right,  rgb(80, 79, 79) 0%, rgb(136, 135, 135) 100%);
+    border-radius: 15px;
   
 }
 
@@ -39,7 +40,7 @@
     width: 600px;
 	height: 280px; 
     margin-left: 60px;
-
+    border-radius: 15px;
 
   
 }

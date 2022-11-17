@@ -3,8 +3,9 @@ import Navbar from '../Userlayout/Navbar'
 import "../css/useraccount.css"
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { API, getUserDetail } from '../../Api/Config'
+import { getUserDetail, userbaseurl } from '../../Api/Config'
 import { useSelector } from 'react-redux'
+import axios from 'axios'
 
 const Useraccount = () => {
     // const token = localStorage.getItem("userlogintoken")
@@ -14,9 +15,10 @@ const Useraccount = () => {
     const [plandetails, setPlandetails] = useState([]);
     
     const plan = () => {
-        API(  
+        axios(  
             {
-                url: `${getUserDetail}`,
+                url: `${userbaseurl}getUserDetail`,
+                method: 'get',
                 headers: {
                     "Authorization": `Bearer ${token}`
                 },

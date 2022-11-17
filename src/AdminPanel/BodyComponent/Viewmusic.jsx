@@ -3,25 +3,17 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-// import { deletemusic, viewmusic, editmusic } from "../../../api/config";
-// import { Button } from "@mui/material";
 import './AdminDetails.css'
 import { PageHeader } from '../Common/Components'
 import { MenuItem } from "@mui/material";
 import { Select } from "@material-ui/core";
 import { InputLabel } from "@mui/material";
-// import { Modal } from "@mui/material";
-// import { Typography } from "@mui/material";
-// import Container from '../Adminlayout/Container'
 import Container from '../../Components/Adminlayout/Container'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-// import PaidIcon from '@mui/icons-material/Paid';
-// import { FormControl } from "@mui/material/FormControl";
 import { FormControl } from "@mui/material";
 import './AdminDetails.css'
-import { addprice, AdminAPI, changestatus, deletemusic, editmusic, updatemusic, viewmusic } from '../../Api/Config';
-// import "./music.js"
+import { addprice, AdminAPI, adminbaseurl, changestatus, deletemusic, editmusic, updatemusic, viewmusic } from '../../Api/Config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from "react-redux";
@@ -35,7 +27,6 @@ const ViewMusic = () => {
   const [open, setOpen] = React.useState(false);
   const [updateId, SetupdateID] = useState("")
   const [pages, setPages] = useState([]);
-  // const [dataupdata, setDataupdate] = useState(true)
 
   const handleOpen = (id) => {
     console.log(id)
@@ -53,7 +44,7 @@ const ViewMusic = () => {
   };
 
   const WarningStatustoast = () => {
-    toast.error("Please Enter A new tarckTitle !");
+    toast.error("You Need to Change TrackTitle With Image or Audio!");
   };
 
   const handleClose = () => setOpen(false);
@@ -72,7 +63,6 @@ const ViewMusic = () => {
   }
 
   let [viewMusic, setViewMusicdetails] = useState([]);
-  // let [songsedit, setsongsedit] = useState([]);
   let [imageName, setImage] = useState(null);
   let [music, setMusic] = useState();
   let [trackTitle, settrackTitle] = useState('');
@@ -84,15 +74,15 @@ const ViewMusic = () => {
   let [updatingID, setId] = useState("");
   let [data, updatedata] = useState({ price: "" });
   let [selecttwoinput, setSelecttwoinput] = useState('')
-  // let token = localStorage.getItem("logintoken")
-  const token = useSelector(state=>state.admin.adminlogintoken)
-    // Edit API
+  const token = useSelector(state => state.admin.adminlogintoken)
+  // Edit API
   const setedit = (id) => {
     // console.log(id)
     // api call 
-    AdminAPI(
+    axios(
       {
-        url: `${editmusic}${id}`,
+        url: `${adminbaseurl}editAudio/${id}`,
+        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         },
@@ -144,15 +134,16 @@ const ViewMusic = () => {
   //   })
   // }
 
-  const caturl = viewmusic;
+  // const caturl = viewmusic;
 
   // View Music API
-  const app = (c ) => {
+  const app = (c) => {
     // setDataupdate(false)
     // setViewMusicdetails(true)
-    AdminAPI(
+    axios(
       {
-        url: `${caturl}?filterkey=${c}`,
+        url: `${adminbaseurl}getAllAudio?filterkey=${c}`,
+        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         },
@@ -218,9 +209,9 @@ const ViewMusic = () => {
     formData.append('primaryGenre', primaryGenre);
     formData.append('type', type);
 
-    AdminAPI(
+    axios(
       {
-        url: `${updatemusic}${updatingID}`,
+        url: `${adminbaseurl}updateAudioById/${updatingID}`,
         method: "post",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -234,26 +225,22 @@ const ViewMusic = () => {
       if (response.status === 201) {
         Edittoast();
       }
-      if(response.status === 200) {
+      if (response.status === 200) {
         WarningStatustoast();
       }
-      // const choosetwoinputtype  = () => {
-      //   console.log(data.message)
-      //   setSelecttwoinput(data.message)
-      // }
-      // console.log(choosetwoinputtype);
       app();
     }).catch((err) => {
       console.log(err);
     })
 
-}
+  }
   // Make Public Private API
   const songstype = (updatingID, c) => {
     console.log(updatingID);
-    AdminAPI(
+    axios(
       {
-        url: `${changestatus}${updatingID}?type=${c}`,
+        url: `${adminbaseurl}changeStatus/${updatingID}?type=${c}`,
+        method: 'get',
         headers: {
           "Authorization": `Bearer ${token}`
         }
@@ -274,19 +261,19 @@ const ViewMusic = () => {
     updatedata({ ...data, [e.target.name]: e.target.value });
   };
 
-// const musicinputselect = () => {
-//   WarningStatustoast()
-// }
+  // const musicinputselect = () => {
+  //   WarningStatustoast()
+  // }
 
- 
+
 
   // Add Price On Song API
   const addmusicprice = (e, id) => {
     e.preventDefault()
     // console.log(id)
-    AdminAPI(
+    axios(
       {
-        url: `${addprice}${updateId}`,
+        url: `${adminbaseurl}AddPayment/${updateId}`,
         method: "post",
         data: {
           amount: data.price
@@ -385,7 +372,7 @@ const ViewMusic = () => {
                 <DeleteIcon
                   hover={hover}
                   sx={{ color: 'black', mt: 2, ml: 3 }} variant="contained" onClick={async () => {
-                    let res = await AdminAPI.delete(`${deletemusic}${songs.id}`, {
+                    let res = await axios.delete(`${adminbaseurl}deleteAudio/${songs.id}`, {
                       headers: {
                         "Authorization": `Bearer ${token}`
                       }
@@ -419,12 +406,12 @@ const ViewMusic = () => {
                     <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >private</MenuItem>
                   </Select>
                 </FormControl>
-                <ToastContainer
+                {/* <ToastContainer
                   autoClose={1000}
                   position="top-center"
                   className="toast-container"
                   toastClassName="dark-toast"
-                  theme="colored" />
+                  theme="colored" /> */}
 
                 {/* Change Public Privet End  */}
 
@@ -468,10 +455,10 @@ const ViewMusic = () => {
                           </div>
                           <div className="mb-3">
                             <label className="col-form-label">Music</label>
-                            <input type="file" className="form-control" id="recipient-name" 
-                            onChange={(e) => setMusic(e.target.files[0])} />                           
+                            <input type="file" className="form-control" id="recipient-name"
+                              onChange={(e) => setMusic(e.target.files[0])} />
                             <audio controls >
-                              <source src={music} type="audio/ogg"  />
+                              <source src={music} type="audio/ogg" />
                             </audio>
                           </div>
                           <div className="modal-footer">

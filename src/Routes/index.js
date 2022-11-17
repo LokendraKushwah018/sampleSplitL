@@ -25,6 +25,7 @@ import PlanSuccess from '../UserPanel/Usercomponent/PlanSuccess'
 import PlanCancell from '../UserPanel/Usercomponent/PlanCancell'
 import NotFound from '../UserPanel/Usercomponent/NotFound'
 import Useraccount from '../UserPanel/Usercomponent/Useraccount'
+import ViewBlogs from '../AdminPanel/BodyComponent/ViewBlogs'
 
 
 const Index = () => {
@@ -39,6 +40,7 @@ const Index = () => {
         <Route path='/Blog' element={<Blog />} />
         <Route path='/AdminDetails' element={<AdminDetails />} />
         <Route path='/Analytics' element={<Analytics />} />
+        <Route path='/ViewBlogs' element={<ViewBlogs />} />
       </Route>
       {/* User Routing */}
       <Route path='*' element={<NotFound />} />
@@ -51,13 +53,13 @@ const Index = () => {
       <Route path='/Usersignup' element={<Usersignup />} />
       <Route path='/UserLogIn' element={<UserLogIn />} />
       <Route element={<Privateroutes />} >
-      <Route path='/About' element={<About />} />
-      <Route path='/Home' element={<Home />} />
-      <Route path='/Freestem' element={<Freestem />} />
-      <Route path='/Contact' element={<Contact />} />
-      <Route path='/UserBlog' element={<UserBlog />} />
-      {/* <Route path='/Splitsong' element={<Splitsong />} /> */}
-      <Route path='/Useraccount' element={<Useraccount/>} />
+        <Route path='/About' element={<About />} />
+        <Route path='/Home' element={<Home />} />
+        <Route path='/Freestem' element={<Freestem />} />
+        <Route path='/Contact' element={<Contact />} />
+        <Route path='/UserBlog' element={<UserBlog />} />
+        {/* <Route path='/Splitsong' element={<Splitsong />} /> */}
+        <Route path='/Useraccount' element={<Useraccount />} />
 
       </Route>
     </Routes>

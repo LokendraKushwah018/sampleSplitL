@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { PageHeader } from '../Common/Components'
-import { AdminAPI, adminblog } from '../../Api/Config';
+import { adminbaseurl, adminblog } from '../../Api/Config';
 import { useRef } from 'react';
 import Container from '../../Components/Adminlayout/Container'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -22,8 +22,7 @@ const Blog = () => {
     let [title, setTitle] = useState('');
     let [description, setDescription] = useState('');
 
-    const ImageInput = useRef();
-  
+    const ImageInput = useRef();  
 
     const BlogApi = () => {
         let formData = new FormData();
@@ -31,9 +30,9 @@ const Blog = () => {
         formData.append('title', title);
         formData.append('description', description);
 
-        AdminAPI(
+        axios(
             {
-                url: `${adminblog}`,
+                url: `${adminbaseurl}createBlog`,
                 method: "post",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -62,11 +61,11 @@ const Blog = () => {
                 className="toast-container"
                 toastClassName="dark-toast"
                 theme="colored" />
-            <div className="App" style={{ marginTop: '20px' }}>
+            <div className="App" style={{ marginTop: '20px'}}>
                 <PageHeader title='Blog' />
                 <form >
                     <TextField
-                        style={{ width: "200px", margin: "5px" }}
+                        style={{ width: "600px", margin: "5px" , marginLeft:'50px'}}
                         type="text"
                         label="Title"
                         variant="outlined"
@@ -76,7 +75,7 @@ const Blog = () => {
                     /><br />
 
                     <TextField
-                        style={{ width: "400px", margin: "5px" }}
+                        style={{ width: "600px", margin: "5px" ,marginLeft:'50px' }}
                         type="text"
                         label="Content"
                         variant="outlined"
@@ -90,6 +89,7 @@ const Blog = () => {
                         variant="contained"
                         component="label"
                         size="small"
+                        className='ml-5'
                     >
                         Upload Image / Video&nbsp;&nbsp;&nbsp;
                         <input

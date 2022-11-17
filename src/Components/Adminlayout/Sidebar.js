@@ -58,6 +58,13 @@ const Sidebar = () => {
                 </Link>
                 <ul className="nav nav-treeview" />
               </li>
+              <li className="nav-item">
+                <Link to="/ViewBlogs" className="nav-link">
+                  <i className="nav-icon fas fa-copy" />
+                  <p> View Blogs</p>
+                </Link>
+              </li>
+          
               {/* <li className="nav-item" onClick={logout}>
                 <Link to="/adminlogin" className="nav-link">
                   <i className="nav-icon fas fa-table" />

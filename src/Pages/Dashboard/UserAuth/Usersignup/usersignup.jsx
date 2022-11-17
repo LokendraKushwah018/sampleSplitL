@@ -10,13 +10,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate , Link} from "react-router-dom";
-import { inputLabelClasses } from "@mui/material/InputLabel";
+// import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { usersignup } from '../../Api/Api';
-import { API, usersignup } from "../../../../Api/Config";
+import { userbaseurl, usersignup } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { color } from "@mui/system";
+// import { color } from "@mui/system";
 
 
 const useStyles = makeStyles(theme => ({
@@ -66,7 +66,7 @@ export default function Usersignup() {
   const SingUpApi = () => {
     axios(
       {
-        url: `${usersignup}`,
+        url: `${userbaseurl}singup`,
         method: 'post',
         header: {
           'Content-Type': 'application/json'
@@ -109,8 +109,8 @@ export default function Usersignup() {
     }
     if (!values.password) {
       errors.password = "Pasword is Required ! ";
-    } else if (values.password < 6) {
-      errors.password = "password must be more than 6 characters"
+    } else if (values.password.length < 4) {
+      errors.password = "password must be more than 4 characters"
     }
 
     return errors;
