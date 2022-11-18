@@ -450,7 +450,9 @@ const ViewMusic = () => {
                           </div>
                           <div className="mb-3">
                             <label className="col-form-label">Image</label>
-                            <input type="file" className="form-control" id="recipient-name" onChange={(e) => setImage(e.target.files[0])} />
+                            <input type="file" className="form-control" id="recipient-name" 
+                            onChange={(e) => setImage(e.target.files[0])}
+                             />
                             <img src={imageName} alt="/" style={{ width: '100px', height: '100px' }} />
                           </div>
                           <div className="mb-3">
@@ -463,24 +465,14 @@ const ViewMusic = () => {
                           </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close"
-                            //  onClick={() => {
-                            //   submit(songs.id)
-                            // }}
+                            <button type="submit" className="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" id='close'
                             >Update</button>
-
-
                           </div>
                         </div>
                       </form>
-
-
                     </div>
                   </div>
                 </div>
-
-
-
                 {/* Edit Songs PopUp Model Start  */}
 
               </div>

@@ -2,31 +2,55 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import {  userbaseurl, userblog } from '../../Api/Config';
+import { userbaseurl } from '../../Api/Config';
 import Navbar from '../Userlayout/Navbar';
 import '../css/userblog.scss';
+import { PaginationItem } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import ReactPaginate from 'react-paginate';
 
 const UserBlog = () => {
     const [Blog, SetBlog] = useState([]);
+    const [pageCount,setpageCount] = useState(0);
 
-    async function BlogApi() {
-        const response = await axios.get(`${userbaseurl}getBloges`);
-        SetBlog(response.data.findBlog);
-        console.log(response.data.findBlog);
-        if (!response || response) {
-            console.log("11111111");
-        }
-        else if (!response.data || response.data) {
-            console.log("222222");
-        }
-        else if (response) {
-            console.log("333333333")
-        }
-    }
     useEffect(() => {
+        const BlogApi = () => {
+            axios(
+                {
+                    url: `${userbaseurl}getBloges?page=${1}`,
+                    method: 'get'
+                }
+            ).then((res) => {
+                console.log(res);
+                const Total = res.data.findBlog.count;
+                setpageCount(Math.ceil(Total/5));
+                console.log(Total)
+                SetBlog(res.data.findBlog.rows);
+            }).catch((err) => {
+                console.log(err);
+            })
+        }
         BlogApi();
-    }, [])
-
+    }, []);
+    const fecthComments = async (CurruntPage) => {
+        const res = await fetch(
+            `${userbaseurl}getBloges?page=${CurruntPage}`
+        );
+        const data = await res.json();
+        console.log(data);
+        const d = data.findBlog.rows;
+        return d;
+    }
+    const handelPageClick = async (d) => {
+        console.log(d.selected)
+        window.scrollTo(0, 0);
+        var CurruntPage = d.selected +1;
+       
+        const Comments = await fecthComments(CurruntPage);
+        SetBlog(Comments)
+        // console.log("clicked")
+    };
     return (
         <>
             <Navbar />
@@ -69,17 +93,36 @@ const UserBlog = () => {
                                             <p>{item.description}</p>
                                         </div>
                                     </div>
-                                }
+                                }                               
                             </div>
                         }
                     </div>
                 )
             })}
-
+        
+            <ReactPaginate
+            style={{background:'red'}}
+                previousLabel={"Previous"}
+                nextLabel={'Next'}
+                breakLabel={"..."}
+                pageCount={pageCount}
+                marginPagesDisplayed={3}
+                pageRangeDisplayed={3}
+                onPageChange={handelPageClick}
+                containerClassName={'pagination justify-content-center'}
+                pageClassName={'page-item'}
+                pageLinkClassName={'page-link'}
+                previousClassName={'page-item'}
+                previousLinkClassName={'page-link'}
+                nextClassName={'page-item'}
+                nextLinkClassName={'page-link'}
+                breakClassName={"page-item"}
+                breakLinkClassName={'page-link'}
+                activeClassName={'active'}
+            />
         </>
     );
 }
 export default UserBlog;
-
 
 

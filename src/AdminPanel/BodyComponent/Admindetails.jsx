@@ -73,7 +73,7 @@ export default function AdminDetails() {
     axios(
       {
         url: `${adminbaseurl}changePassword`,
-        method: "post",
+        method: "put",
         data: {
           password: changepass.password,
           confirmPassword: changepass.confirmPassword

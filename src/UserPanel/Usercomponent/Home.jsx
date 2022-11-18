@@ -144,10 +144,13 @@ const Home = () => {
         toastClassName="dark-toast"
         theme="colored" />
        {loading &&
-         <Stack sx={{ width: '100%', color: 'grey.500', mb: 1 }} spacing={2}> 
-          <LinearProgress color="info" /><span style={{ textAlign: 'center', color: 'white' }}> 
-           [ Please wait while song is spliting.... ]</span> 
-         </Stack>
+       <div>
+        <div className='loading'></div>
+       </div>
+        //  <Stack sx={{ width: '100%', color: 'grey.500', mb: 1 }} spacing={2}> 
+        //   <LinearProgress color="info" /><span style={{ textAlign: 'center', color: 'white' }}> 
+        //    [ Please wait while song is spliting.... ]</span> 
+        //  </Stack>
         }
       <div style={{ float: 'left' }}>
         <form className="frame"

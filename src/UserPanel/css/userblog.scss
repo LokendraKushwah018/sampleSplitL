@@ -53,7 +53,8 @@
   border-radius: var(--border-radius-primary);
   object-fit: cover;
   margin-bottom: 18px;
-  
+
+ 
   @include mediaBig {
     width: 45%;
     max-height: none;

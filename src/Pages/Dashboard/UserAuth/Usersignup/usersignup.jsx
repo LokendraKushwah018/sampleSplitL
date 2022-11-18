@@ -59,7 +59,7 @@ export default function Usersignup() {
   };
   const submit = (e) => {
     e.preventDefault();
-    SingUpApi();
+    
     setformErrors(validate(data));
     setIsSubmit(true);
   };
@@ -93,23 +93,25 @@ export default function Usersignup() {
       })
   }
   useEffect(() => {
+
     if (Object.keys(formErrors).length === 0 && isSubmit) {
+      SingUpApi();
     }
   })
-  const validate = (values) => {
+  const validate = (data) => {
     const errors = {}
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
+    if (!data.username) {
       errors.username = "Username is Required ! ";
     }
-    if (!values.email) {
+    if (!data.email) {
       errors.email = "Email is Required ! ";
-    } else if (!regex.test(values.email)) {
+    } else if (!regex.test(data.email)) {
       errors.email = "This is not a valid email formate"
     }
-    if (!values.password) {
+    if (!data.password) {
       errors.password = "Pasword is Required ! ";
-    } else if (values.password.length < 4) {
+    } else if (data.password.length < 4) {
       errors.password = "password must be more than 4 characters"
     }
 
@@ -147,7 +149,7 @@ export default function Usersignup() {
                 onChange={display}
              
               />
-              <p style={{ color: 'red' }} >{formErrors.username}</p>
+              <small style={{ color: 'red' }} >{formErrors.username}</small>
 
             </Grid>
             <Grid item xs={12}>
@@ -162,7 +164,7 @@ export default function Usersignup() {
                 onChange={display}
 
               />
-              <p style={{ color: 'red' }} >{formErrors.email}</p>
+              <small style={{ color: 'red' }} >{formErrors.email}</small>
 
             </Grid>
             <Grid item xs={12}>
@@ -178,15 +180,9 @@ export default function Usersignup() {
                 onChange={display}
 
               />
-              <p style={{ color: 'red' }} >{formErrors.password}</p>
+              <small style={{ color: 'red' }} >{formErrors.password}</small>
 
             </Grid>
-            {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
           </Grid>
           <Button
             type="submit"

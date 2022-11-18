@@ -62,7 +62,7 @@ const Analytics = () => {
             {/* title section */}
           <PageHeader title='Analytics' />
         </Box>
-        <div style={{ background: 'white', width: "1000px", height: '640px', boxShadow: '5px 10px 8px 10px #888888' }}>
+        <div style={{ background: 'white', width: "1000px", height: '640px', boxShadow: '5px 10px 8px 10px #888888', marginLeft:40 }}>
           <div style={{ background: 'gray' }}>
             <hr /><p style={{ color: 'white' }}>&nbsp;&nbsp;TOP TRACKS</p><hr />
           </div>
@@ -106,7 +106,7 @@ const Analytics = () => {
               )
             })}
           </div>
-        </div>
+        </div><br /><br />
       </Container>
     </>
   )
