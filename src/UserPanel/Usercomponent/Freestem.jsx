@@ -147,10 +147,11 @@ const Freestem = () => {
         console.log(err);
       })
   }
-  const modelsong = (music, trackTitle, imageName) => {
+  const modelsong = (music, trackTitle, imageName , tracktype) => {
     setPlayingMusic(music);
     setPlay(trackTitle);
     setplayingmusicImgae(imageName);
+    setDemo(tracktype);
     setShowplayer(true);
   }
   const handleClickNext = () => {
@@ -283,7 +284,9 @@ const Freestem = () => {
                       <div className="modal-body">
                         <div className="container mt-5 mb-5">
                           <div className="row no-gutters">
-                            <div className="col-md-4 col-lg-4 img__model" data-dismiss="modal" type="button" onClick={() => modelsong(value.music, value.trackTitle, value.imageName)}><img src={value.imageName} className="img__name" alt='...' /></div>
+                            <div className="col-md-4 col-lg-4 img__model" data-dismiss="modal" type="button" 
+                            onClick={() => modelsong(value.music, value.trackTitle, value.imageName , value.tracktype)}>
+                              <img src={value.imageName} className="img__name" alt='...' /></div>
                             <div className="col-md-8 col-lg-8">
                               <div className="d-flex flex-column">
                                 <div className="d-flex flex-row justify-content-between align-items-center p-5 bg-secondary text-white">

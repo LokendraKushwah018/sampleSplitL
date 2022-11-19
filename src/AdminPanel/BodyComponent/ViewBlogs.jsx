@@ -22,15 +22,17 @@ const ViewBlogs = () => {
 
     const [getblog, setGetblog] = useState([])
     const [title, setTitle] = useState([])
+    const [types , setTypes] = useState([])
     const [description, setDescription] = useState([])
     const [imageName, setImageName] = useState(null)
     const [ID, setid] = useState('')
+    
     // const [music , setMusic] = useState([])
     const [pageData, setPageData] = useState(0)
 
     const token = useSelector(state => state.admin.adminlogintoken)
 
-    
+
     const adminblog = (id) => {
         axios({
             url: `http://localhost:5001/api/admin/getAllBlog?page=${1}`,
@@ -52,7 +54,7 @@ const ViewBlogs = () => {
 
     const fecthComments = async (CurrentPage) => {
         const res = await fetch(
-            `http://localhost:5001/api/admin/getAllBlog?page=${CurrentPage}`,{
+            `http://localhost:5001/api/admin/getAllBlog?page=${CurrentPage}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -61,7 +63,7 @@ const ViewBlogs = () => {
         const data = await res.json();
         console.log(data)
         const d = data.findBlog.rows;
-        return d;   
+        return d;
     }
     const Click = async (d) => {
         window.scrollTo(0, 0);
@@ -85,6 +87,7 @@ const ViewBlogs = () => {
             setDescription(setGetblog.description)
             setImageName(setGetblog.imageName)
             setid(setGetblog.id)
+            setTypes(setGetblog.type)
             console.log(id)
 
         }).catch((err) => {
@@ -112,6 +115,7 @@ const ViewBlogs = () => {
     }
 
     const blogsubmit = (event) => {
+        console.log(imageName , title , description)
         // console.log(id)
         event.preventDefault();
         let formData = new FormData();
@@ -156,15 +160,15 @@ const ViewBlogs = () => {
                     return (
                         <div key={index}
                             style={{ width: '800px', backgroundColor: 'dark' }}>
-                                <div >
-                                    <EditIcon data-bs-toggle="modal"
-                                        style={{color: 'dark',  marginLeft: 650 , marginBottom: '-70' }}
-                                        data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
-                                        onClick={() => editblogs(data.id)}> </EditIcon>
-                                    <DeleteIcon
-                                        style={{ color: 'dark',  marginBottom: '-70'}}
-                                        onClick={() => { blogdelete(data.id) }}>
-                                    </ DeleteIcon>  </div>                  
+                            <div >
+                                <EditIcon data-bs-toggle="modal"
+                                    style={{ color: 'dark', marginLeft: 650, marginBottom: '-70' }}
+                                    data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
+                                    onClick={() => editblogs(data.id)}> </EditIcon>
+                                <DeleteIcon
+                                    style={{ color: 'dark', marginBottom: '-70' }}
+                                    onClick={() => { blogdelete(data.id) }}>
+                                </ DeleteIcon>  </div>
                             {data.type === 'video' ?
                                 <div className="card" key={index}
                                     style={{ backgroundColor: 'black' }}>
@@ -195,14 +199,12 @@ const ViewBlogs = () => {
                                         ?
 
                                         <div className='card__one bg-black'>
-
                                             <div className="card__content__one ">
                                                 <time className="card__date__one text-white">{data.Date}</time>
-
                                                 <h4 className=" text-white " ><b>{data.title}</b></h4>
                                                 <div className="overflow-auto">
                                                     <p>{data.description}</p></div>
-                                            </div> 
+                                            </div>
                                             {/* <EditIcon data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
                                                 onClick={() => editblogs(data.id)}> </EditIcon>
@@ -252,13 +254,37 @@ const ViewBlogs = () => {
                                                     <textarea className="form-control" id="message-text" value={description}
                                                         onChange={(e) => setDescription(e.target.value)} name="description"></textarea>
                                                 </div>
-                                                {/* {data.type === ''} */}
+                                                {types === "video" ?
                                                 <div className="mb-3">
+                                                 <label className="col-form-label" >Video</label>
+                                                 <input type="file" className="form-control" id="recipient-name"
+                                                     onChange={(e) => setImageName(e.target.files[0])} />
+                                                    <video width="320" height="240"
+                                                        controls controlsList='nodownload'>
+                                                        <source src={imageName} type="video/mp4">
+                                                        </source>
+                                                    </video>
+                                                    </div> 
+                                                   :
+                                                    <div>
+                                                        {types === "picture" ?
+                                                            <div className="mb-3">
+                                                                <label className="col-form-label" >Image</label>
+                                                                <input type="file" className="form-control" id="recipient-name"
+                                                                    onChange={(e) => setImageName(e.target.files[0])} />
+                                                                <img src={imageName} alt="/" style={{ width: '100px', height: '90px' }} />
+                                                            </div> 
+                                                            :
+                                                            <br />
+                                                        }
+                                                    </div>
+                                                }
+                                                {/* <div className="mb-3">
                                                     <label className="col-form-label" >Image/Video</label>
                                                     <input type="file" className="form-control" id="recipient-name"
                                                         onChange={(e) => setImageName(e.target.files[0])} />
                                                     <img src={imageName} alt="/" style={{ width: '100px', height: '90px' }} />
-                                                </div>
+                                                </div> */}
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="button" className="btn btn-primary" data-bs-dismiss="modal"
@@ -294,7 +320,6 @@ const ViewBlogs = () => {
                     activeClassName={'active'}
                 />
                 <hr />
-     
 
             </Container>
         </>
