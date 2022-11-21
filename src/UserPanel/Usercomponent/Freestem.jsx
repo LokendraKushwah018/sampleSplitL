@@ -132,7 +132,6 @@ const Freestem = () => {
     setPlay(trackTitle);
     setplayingmusicImgae(imageName);
     setDemo(tracktype)
-
     setMusicplayerimage(true);
     setShowplayer(true);
     console.log("musiccName22222", playingMusic)
@@ -154,9 +153,11 @@ const Freestem = () => {
     setDemo(tracktype);
     setShowplayer(true);
   }
-  const handleClickNext = () => {
-
-  }
+  // const handleClickNext = (links) => {
+  //   let nowplaying = links[0]
+  //       links.shift()
+  //       return nowplaying
+  // }
   return (
     <>
       <Navbar />
@@ -175,11 +176,9 @@ const Freestem = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder='Search Any Songs and Listen' />
               <button onClick={searchApi}>Search</button>
-            </div> </div> </div>
-
-      
+            </div> </div> </div>      
         {songs.filter((user) =>
-          user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0, 6).map((item, i) => {
+          user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0, 8).map((item, i) => {
             return (
               <div key={i}>
                 {visible && (
@@ -187,20 +186,18 @@ const Freestem = () => {
                     onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.imageName, item.trackType)}
                     style={{
                       width: '240px',
-                      height: '41px',
+                      height: '40px',
                       color: 'black',
                       margin: '10px',
                       marginLeft: "75px",
-                      float: 'left'
-
+                      float: 'left',
+                      backgroundColor:'white'
                     }}>
                     <div style={{ float: 'left' }}>
                       <img src={item.imageName}
                         onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.trackType)}
                         alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
-
                     </div>
-
                     <div style={{ float: 'left', width: '170px' }}>
                       <h5 style={{ textAlign: 'center', lineHeight: '41px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.trackTitle}</h5>
                     </div>
@@ -241,7 +238,6 @@ const Freestem = () => {
           </div>
         </div>
         <div style={{ float: 'left', marginLeft: '80px', marginBottom: "80px" }}>
-
           {music.map((value, index) => {
             return (
               <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
@@ -290,8 +286,7 @@ const Freestem = () => {
                             <div className="col-md-8 col-lg-8">
                               <div className="d-flex flex-column">
                                 <div className="d-flex flex-row justify-content-between align-items-center p-5 bg-secondary text-white">
-                                  <h3 className="display-5">{value.trackTitle}</h3>
-                                
+                                  <h3 className="display-5">{value.trackTitle}</h3>                                
                                 </div>
                                 <div className="p-3 bg-black text-white">
                                   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{value.tracktype}</h4>
@@ -304,15 +299,13 @@ const Freestem = () => {
                                   <div className="p-3 bg-danger text-center skill-block">
                                     <h4>{value.keyOptional}</h4>
                                     <h6>Key</h6>
-                                  </div>
-                            
+                                  </div>                            
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    
+                      </div>                    
                     </div>
                   </div>
                 </div>
@@ -400,15 +393,13 @@ const Freestem = () => {
                 src={playingMusic}
                 showJumpControls={false}
                 showSkipControls={false}
-                onClickNext={handleClickNext}
+                // onClickNext={handleClickNext(playingMusic)}
+                // onEnded={playnext(allsonglinks)}
               />
             </div>
           </div>
         }
-
-
       </div>
-
     </>
   )
 }

@@ -288,7 +288,6 @@ const ViewMusic = () => {
       // updatedata("")
     }).catch((err) => {
       console.log(err);
-
     })
   }
   return (
@@ -300,11 +299,8 @@ const ViewMusic = () => {
           className="toast-container"
           toastClassName="dark-toast"
           theme="colored" />
-
         <Box mt={2}>
           <PageHeader title='View Music' />
-          {/* <p>{selecttwoinput}</p> */}
-
           <div style={{ maxWidth: 300 }}  >
             <FormControl fullWidth >
               <InputLabel id="demo-simple-select-standard-label">Your Tracks</InputLabel>
@@ -317,9 +313,9 @@ const ViewMusic = () => {
               // onChange={handleChange}
               >
                 <MenuItem value={10} onClick={() => app('')} >Default</MenuItem>
-                <MenuItem value={20} onClick={() => app('MostPlayed')} >MostPlayed</MenuItem>
-                <MenuItem value={30} onClick={() => app('MostDiscuss')} >MostDiscussed</MenuItem>
-                <MenuItem value={40} onClick={() => app('Latest')} >Letest</MenuItem>
+                <MenuItem value={20} onClick={() => app('MostPlayed')} >Most Played</MenuItem>
+                <MenuItem value={30} onClick={() => app('MostDiscuss')} >Most Discussed</MenuItem>
+                <MenuItem value={40} onClick={() => app('Latest')} >Latest</MenuItem>
                 <MenuItem value={50} onClick={() => app('Oldest')} >Oldest</MenuItem>
               </Select>
             </FormControl>

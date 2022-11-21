@@ -6,7 +6,7 @@ import { useState } from "react";
 import axios from 'axios';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 // import { PageHeader } from "../../Common/Components";
-import {  adminbaseurl, uploadmusic } from '../../Api/Config'
+import {  adminbaseurl } from '../../Api/Config'
 import { useRef } from "react";
 import Container from '../../Components/Adminlayout/Container'
 import { toast, ToastContainer } from 'react-toastify';
@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { PageHeader } from '../Common/Components'
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Numbers } from "@mui/icons-material";
+// import { Numbers } from "@mui/icons-material";
 
 const BlogPost = () => {
   const Uploadtoast = () => {
@@ -94,8 +94,27 @@ const BlogPost = () => {
     e.preventDefault()
     settrackType(e.target.value.charAt(0).toUpperCase() + e.target.value.slice(1).toLowerCase())
   };
+
+  const viewdata = () => {
+    axios({
+      url: `${adminbaseurl}countAllSong`,
+      method: 'get',
+      headers: {
+        "Authorization" : `Bearer ${token}`
+      }
+    }).then((response) => {
+      console.log(response)
+      setSongcount(response.data.allSong[0].totalSong)
+      setTrack(response.data.trackType[0])
+      setUploadType(response.data.type[0])
+    }).catch((error) => {
+      console.log(error)
+    })
+   } 
+
   useEffect(() => {
     viewdata();
+    api();
     if (Object.keys(formErrors).length === 0 && isSubmit) {
     }
 
@@ -103,7 +122,7 @@ const BlogPost = () => {
   const validate = (e) => {
     // e.preventDefault();
     const errors = {}
-    const regex = /[^a-zA-Z0-9]/g;
+    const regex = /[^a-zA-Z0-9_ ]/g;
 
     if (regex.test(trackTitle)) {
       console.log(false);
@@ -117,23 +136,6 @@ const BlogPost = () => {
     return errors;
   }
 
- const viewdata = () => {
-  axios({
-    url: 'http://localhost:5001/api/admin/countAllSong',
-    method: 'get',
-    headers: {
-      "Authorization" : `Bearer ${token}`
-    }
-  }).then((response) => {
-    console.log(response)
-    setSongcount(response.data.allSong[0].totalSong)
-    setTrack(response.data.trackType[0])
-    setUploadType(response.data.type[0])
-  }).catch((error) => {
-    console.log(error)
-  })
- }
-
   return (
     <>
       <Container>
@@ -141,7 +143,8 @@ const BlogPost = () => {
         <div className="row ml-4"
   style={{ width: 1000 }}>
   <div className="col-lg-6 ">
-    <div className="small-box bg-info text-dark">
+  {/* #343a40 -- Dark Gray*/}
+    <div className="small-box text-dark" style={{backgroundColor:'#2F76DB'}}>
       <div className="inner">
         <h3>{songcount} </h3>
         <p>Total Songs</p>
@@ -150,33 +153,45 @@ const BlogPost = () => {
         <i className="ion ion-bag" />
       </div>  
     </div>
-  </div>  
- 
+  </div>   
   <div className="col-lg-6 ">
-    <div className="small-box bg-danger text-dark ">
-      <div className="inner">
-      <h4> Private   <b>{uploadtype.private}</b></h4>
-      <h4> Public    <b>{uploadtype.public}</b></h4>
-        <p>Songs Type Count</p>
-      </div>
+    <div className="small-box text-dark " style={{backgroundColor:'#2F76DB'}}>
+      <div className="inner"
+       style={{display:'flex' , justifyContent:'center'}}>
+      <h4> Private &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{uploadtype.private}</b></h4>
+      <h4> Public &nbsp;&nbsp;&nbsp;&nbsp;<br />   <b className="m-3">{uploadtype.public}</b></h4> </div>
+        <p style={{textAlign:'center'}}>Songs Type Count</p>
+     
       <div className="icon">
         <i className="ion ion-pie-graph" />
       </div>      
     </div>
   </div> 
-  <div className="col-lg-12 ">
-    <div className="small-box bg-warning">
-      <div className="inner "
-      style={{display:'flex' , justifyContent:'center'}}>
-        <h4>Beat &nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{track.Beats}</b></h4>
-        <h4>Drum &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />  <b className="m-3">{track.Drums}</b></h4>
-        <h4>Sample &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br /><b className="m-3">{track.Samples}</b></h4>
-        <h4>Vocal &nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{track.Vocals}</b></h4></div>       
+  <div className="col-lg-6 ">
+    <div className="small-box bg-secondary text-dark ">
+      <div className="inner"
+       style={{display:'flex' , justifyContent:'center'}}>
+      <h4> Samples &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{track.Samples}</b></h4>
+      <h4> Vocals &nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{track.Vocals}</b></h4> </div>
         <p style={{textAlign:'center'}}>Song Track</p>
-      
+     
       <div className="icon">
-        <i className="ion ion-person-add" />
-      </div>
+        <i className="fas fa-music" />
+      </div>      
+    </div>
+  </div> 
+  <div className="col-lg-6 ">
+    <div className="small-box bg-secondary text-dark ">
+      <div className="inner"
+       style={{display:'flex' , justifyContent:'center'}}>
+      <h4> Drums &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<br /> <b className="m-3">{track.Drums}</b></h4>
+      <h4> Beats &nbsp;&nbsp;&nbsp;&nbsp;<br />   <b className="m-3">{track.Beats}</b></h4> </div>
+        <p style={{textAlign:'center'}}>Song Track</p>
+     
+      <div className="icon">
+      {/* <i className="ion ion-person-add" /> */}
+      <i className="fas fa-music"/>
+      </div>      
     </div>
   </div> 
 </div>
@@ -191,7 +206,6 @@ const BlogPost = () => {
               responsive="True"
             >
               <div style={{ display: 'flex-box' }}>
-
                 <TextField
                   id="outlined-required"
                   label="Track Title"
@@ -209,7 +223,6 @@ const BlogPost = () => {
                   }}
                 />
                 <p style={{ color: 'red', fontSize: '15px', marginTop: '-15px' }} >{formErrors.trackTitle}</p>
-
                 <TextField
                   id="outlined-required"
                   label="Track Type"
@@ -224,7 +237,6 @@ const BlogPost = () => {
                       }
                     }
                   }}
-
                 />
                 <TextField
                   id="outlined-required"
@@ -325,14 +337,10 @@ const BlogPost = () => {
                   variant="contained"
                   sx={{ ml: 45, mt: 1 , mb:1}}
                 >Upload</Button>
-
               </div>
             </Box>
           </form>
         </div>
-
-    
-
       </Container>
     </>
   );

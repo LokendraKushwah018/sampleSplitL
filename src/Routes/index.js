@@ -44,23 +44,23 @@ const Index = () => {
       </Route>
       {/* User Routing */}
       <Route path='*' element={<NotFound />} />
+ 
+      <Route path='/' element={<Welcome />} />
+      <Route path='/Usersignup' element={<Usersignup />} />
+      <Route path='/UserLogIn' element={<UserLogIn />} />
+      <Route element={<Privateroutes />} >
       <Route path='/donationsuccess' element={<DonationSuccess />} />
       <Route path='/plansuccess' element={<PlanSuccess />} />
       <Route path='/donationcancell' element={<DonationCancell />} />
       <Route path='/plancancell' element={<PlanCancell />} />
       <Route path='/buyplan' element={<BuyPlan />} />
-      <Route path='/' element={<Welcome />} />
-      <Route path='/Usersignup' element={<Usersignup />} />
-      <Route path='/UserLogIn' element={<UserLogIn />} />
-      <Route element={<Privateroutes />} >
-        <Route path='/About' element={<About />} />
-        <Route path='/Home' element={<Home />} />
-        <Route path='/Freestem' element={<Freestem />} />
-        <Route path='/Contact' element={<Contact />} />
-        <Route path='/UserBlog' element={<UserBlog />} />
+      <Route path='/About' element={<About />} />
+      <Route path='/Home' element={<Home />} />
+      <Route path='/Freestem' element={<Freestem />} />
+      <Route path='/Contact' element={<Contact />} />
+      <Route path='/UserBlog' element={<UserBlog />} />
         {/* <Route path='/Splitsong' element={<Splitsong />} /> */}
-        <Route path='/Useraccount' element={<Useraccount />} />
-
+      <Route path='/Useraccount' element={<Useraccount />} />
       </Route>
     </Routes>
   </div>

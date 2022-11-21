@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { PageHeader } from '../Common/Components';
 import { Box } from '@mui/material';
-import { AdminAPI, adminbaseurl, admindetailsedit, adminprofile, changepassword } from '../../Api/Config';
+import { adminbaseurl } from '../../Api/Config';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography } from '@material-ui/core';
 import { Modal } from '@mui/material';
@@ -38,6 +38,9 @@ export default function AdminDetails() {
   };
   const adminchangedetailstoast = () => {
     toast.success("Change Details Successfully !")
+  };
+  const checkpasstoast = () => {
+    toast.error("Please check Password !")
   };
   useEffect(() => {
     AdminProfile();
@@ -73,7 +76,7 @@ export default function AdminDetails() {
     axios(
       {
         url: `${adminbaseurl}changePassword`,
-        method: "put",
+        method: "post",
         data: {
           password: changepass.password,
           confirmPassword: changepass.confirmPassword
@@ -94,7 +97,7 @@ export default function AdminDetails() {
       }
     }).catch((err) => {
       console.log(err);
-      window.alert("Wrogn Password")
+      checkpasstoast()
 
     })
   };
@@ -143,6 +146,12 @@ export default function AdminDetails() {
   return (
     <>
       <Container>
+      <ToastContainer
+                autoClose={2000}
+                position="top-center"
+                className="toast-container"
+                toastClassName="dark-toast"
+                theme="colored" />
         <Box mt={2}>
           <PageHeader title='Admin Details' />
         </Box>
@@ -201,12 +210,6 @@ export default function AdminDetails() {
                 placeholder="Password" />
               </div>
               <button type="submit" className="btn btn-primary m-1">Submit</button>
-              <ToastContainer
-                autoClose={1000}
-                position="top-center"
-                className="toast-container"
-                toastClassName="dark-toast"
-                theme="colored" />
             </form>
           </Box>
         </Modal>
@@ -235,13 +238,7 @@ export default function AdminDetails() {
                     <input type="text" name='confirmPassword' value={changepass.confirmPassword} onChange={show}
                       className="form-control" id="recipient-name" />
                   </div>
-                  <button className='btn btn-primary' data-bs-dismiss="modal" type="submit">submit</button>
-                  <ToastContainer
-                    autoClose={1000}
-                    position="top-center"
-                    className="toast-container"
-                    toastClassName="dark-toast"
-                    theme="colored" />
+                  <button className='btn btn-danger ml-5' data-bs-dismiss="modal" type="submit">submit</button>
                 </div>
               </form>
             </div>

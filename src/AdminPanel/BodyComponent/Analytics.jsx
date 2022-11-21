@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@material-ui/core';
 import { PageHeader } from '../Common/Components'
 import axios from 'axios';
-import { adminbaseurl, topfans, toptracks } from '../../Api/Config';
+import { adminbaseurl } from '../../Api/Config';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Avatar } from '@material-ui/core';
@@ -71,7 +71,7 @@ const Analytics = () => {
               return (
                 <div style={{ float: "left" }} key={index}>
                   <img style={{ width: '200px', height: '100px', marginLeft: '40px' }} src={track.imageName} alt="/" />
-                  <p style={{ textAlign: "center" }}>&nbsp;&nbsp;&nbsp;&nbsp;{track.musicPlayed}</p>
+                  <p style={{ textAlign: "center" }}>{track.trackTitle}&nbsp;&nbsp;&nbsp;&nbsp;<b>{track.musicPlayed}</b></p>
                 </div>
               )
             })}

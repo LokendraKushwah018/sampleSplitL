@@ -1,8 +1,8 @@
 import axios from 'axios'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Outlet, Navigate, useNavigate } from 'react-router-dom'
-import { tokenUser, userbaseurl } from '../../Api/Config'
+import { Outlet, useNavigate } from 'react-router-dom'
+import { userbaseurl } from '../../Api/Config'
 // import { getUserDetail } from '../../Api/Config'
 // import { logout } from './Auth/AuthSlice'
 const Privateroutes = () => {

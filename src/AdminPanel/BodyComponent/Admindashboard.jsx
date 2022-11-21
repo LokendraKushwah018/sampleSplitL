@@ -81,7 +81,7 @@ const BlogGraph = () => {
 
   const totalUser = () => {
     axios({
-      url: "http://localhost:5001/api/admin/totalSubByuser",
+      url: `${adminbaseurl}totalSubByuser`,
       method: "get",
       headers: {
         "Authorization": `Bearer ${token}`
@@ -169,7 +169,7 @@ const BlogGraph = () => {
  <div className="row"
   style={{ width: '1100px' }}>
   <div className="col-lg-4 ">
-    <div className="small-box bg-info text-dark">
+    <div className="small-box bg-secondary text-dark">
       <div className="inner">
         <h3>{monthData} </h3>
         <p>Play This Month</p>
@@ -180,7 +180,7 @@ const BlogGraph = () => {
     </div>
   </div>  
   <div className="col-lg-4 ">
-    <div className="small-box bg-warning">
+    <div className="small-box text-dark " style={{backgroundColor:'#2F76DB'}}>
       <div className="inner">
         <h3>{subscriber}</h3>
         <p>User Subscription</p>
@@ -191,7 +191,7 @@ const BlogGraph = () => {
     </div>
   </div>
   <div className="col-lg-4 ">
-    <div className="small-box bg-danger text-dark ">
+    <div className="small-box bg-secondary text-dark " >
       <div className="inner">
         <h3>${subammount}</h3>
         <p>Sale This Month</p>

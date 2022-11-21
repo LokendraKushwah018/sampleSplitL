@@ -91,10 +91,7 @@ export default function UserLogIn() {
           setTimeout(() => {
             Navigate('/Home')
           }, 1000)
-        }
-        // if(token === 200) {
-
-        // }     
+        }    
       })
       .catch((err) => {
         console.log(err);
@@ -116,7 +113,7 @@ export default function UserLogIn() {
       errors.email = "This is not a valid email formate"
     }
     if (!data.password) {
-      errors.password = "Pasword is Required ! ";
+      errors.password = "Password is Required ! ";
     } else if (data.password.length < 4) {
       errors.password = "password must be more than 4 characters"
     }
@@ -158,15 +155,13 @@ export default function UserLogIn() {
                 // fontColor="red !important"
                 />
                 <small style={{ color: 'red' }} >{formErrors.email}</small>
-
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   // variant="outlined"
                   InputLabelProps=
                   {{
-                    className: classes.floatingLabelFocusStyle,
-                  
+                    className: classes.floatingLabelFocusStyle,            
 
                     // color : "white"
                   }}

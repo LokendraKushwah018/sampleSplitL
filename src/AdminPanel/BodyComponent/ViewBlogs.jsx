@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useSelector } from 'react-redux'
 import { toast, ToastContainer } from 'react-toastify';
 import ReactPaginate from 'react-paginate';
+import { adminbaseurl } from '../../Api/Config'
 
 // import './ViewBlogs.scss'
 const Deletetoast = () => {
@@ -35,7 +36,7 @@ const ViewBlogs = () => {
 
     const adminblog = (id) => {
         axios({
-            url: `http://localhost:5001/api/admin/getAllBlog?page=${1}`,
+            url: `${adminbaseurl}getAllBlog?page=${1}`,
             method: 'get',
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -54,7 +55,7 @@ const ViewBlogs = () => {
 
     const fecthComments = async (CurrentPage) => {
         const res = await fetch(
-            `http://localhost:5001/api/admin/getAllBlog?page=${CurrentPage}`, {
+            `${adminbaseurl}getAllBlog?page=${CurrentPage}`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
@@ -74,7 +75,7 @@ const ViewBlogs = () => {
 
     const editblogs = (id) => {
         axios({
-            url: `http://localhost:5001/api/admin/getBlogById/${id}`,
+            url: `${adminbaseurl}getBlogById/${id}`,
             method: "get",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -97,7 +98,7 @@ const ViewBlogs = () => {
 
     const blogdelete = (id) => {
         axios({
-            url: `http://localhost:5001/api/admin/deleteBlog/${id}`,
+            url: `${adminbaseurl}deleteBlog/${id}`,
             method: 'delete',
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -123,7 +124,7 @@ const ViewBlogs = () => {
         formData.append("description", description)
         formData.append("imageName", imageName)
         axios({
-            url: `http://localhost:5001/api/admin/updateBlogById/${ID}`,
+            url: `${adminbaseurl}updateBlogById/${ID}`,
             method: 'put',
             data: formData,
             headers: {
@@ -133,6 +134,7 @@ const ViewBlogs = () => {
             console.log(response)
             adminblog();
             Edittoast()
+            
         }).catch((error) => {
             console.log(error)
         })
@@ -140,10 +142,7 @@ const ViewBlogs = () => {
 
     useEffect(() => {
         adminblog('');
-        // editblogs('id')
-        // blogdelete("id")
-        // editblogs()
-
+    
     }, [])
 
     return (
@@ -172,7 +171,6 @@ const ViewBlogs = () => {
                             {data.type === 'video' ?
                                 <div className="card" key={index}
                                     style={{ backgroundColor: 'black' }}>
-
                                     <video className="card__video"
                                         controls controlsList='nodownload'>
                                         <source src={data.imageName} type="video/mp4">
@@ -182,22 +180,12 @@ const ViewBlogs = () => {
                                         <time className="card__date text-white ">{data.Date}</time>
                                         <h4 className=" text-white" ><b>{data.title}</b></h4>
                                         <p>{data.description}</p>
-                                        {/* <p>{data.id}</p> */}
                                     </div>
-                                    {/* <EditIcon data-bs-toggle="modal"
-                                        style={{ marginTop: '-360px', color: 'white', display: 'inline', marginLeft: "-30px"  }}
-                                        data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
-                                        onClick={() => editblogs(data.id)}> </EditIcon>
-                                    <DeleteIcon
-                                        style={{ marginTop: '-360px', color: 'white', display: 'inline', marginLeft: "-55px" }}
-                                        onClick={() => { blogdelete(data.id) }}>
-                                    </ DeleteIcon> */}
                                 </div>
                                 :
                                 <div>
                                     {data.type === "text"
                                         ?
-
                                         <div className='card__one bg-black'>
                                             <div className="card__content__one ">
                                                 <time className="card__date__one text-white">{data.Date}</time>
@@ -205,11 +193,6 @@ const ViewBlogs = () => {
                                                 <div className="overflow-auto">
                                                     <p>{data.description}</p></div>
                                             </div>
-                                            {/* <EditIcon data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
-                                                onClick={() => editblogs(data.id)}> </EditIcon>
-                                            <DeleteIcon onClick={() => { blogdelete(data.id) }}>
-                                            </ DeleteIcon> */}
                                         </div>
                                         :
                                         <div className="card bg-black" key={index}>
@@ -221,11 +204,6 @@ const ViewBlogs = () => {
                                                 <h4 className=" text-white" ><b>{data.title}</b></h4>
                                                 <p>{data.description}</p>
                                             </div>
-                                            {/* <EditIcon data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"
-                                                onClick={() => editblogs(data.id)}> </EditIcon>
-                                            <DeleteIcon onClick={() => { blogdelete(data.id) }}>
-                                            </ DeleteIcon> */}
                                         </div>
                                     }
                                 </div>
@@ -279,12 +257,6 @@ const ViewBlogs = () => {
                                                         }
                                                     </div>
                                                 }
-                                                {/* <div className="mb-3">
-                                                    <label className="col-form-label" >Image/Video</label>
-                                                    <input type="file" className="form-control" id="recipient-name"
-                                                        onChange={(e) => setImageName(e.target.files[0])} />
-                                                    <img src={imageName} alt="/" style={{ width: '100px', height: '90px' }} />
-                                                </div> */}
                                                 <div className="modal-footer">
                                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="button" className="btn btn-primary" data-bs-dismiss="modal"

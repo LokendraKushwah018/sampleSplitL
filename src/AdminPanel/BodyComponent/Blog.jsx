@@ -189,11 +189,11 @@ const Blog = () => {
                 className="toast-container"
                 toastClassName="dark-toast"
                 theme="colored" />
-            <div className="App" style={{ marginTop: '10px' }}>
+            <div className="App" style={{ marginTop: '10px' , marginLeft:50 }}>
                 <PageHeader title='Blog' />
                 <form >
                     <TextField
-                        style={{ width: "600px", margin: "5px", marginLeft: '50px' }}
+                        style={{ width: "900px", margin: "5px", marginLeft: '50px' }}
                         type="text"
                         label="Title"
                         variant="outlined"
@@ -201,7 +201,7 @@ const Blog = () => {
                         onChange={(e) => setTitle(e.target.value)}
                     /><br />
                     <TextField
-                        style={{ width: "600px", margin: "5px", marginLeft: '50px' }}
+                        style={{ width: "900px", margin: "5px", marginLeft: '50px' }}
                         type="text"
                         label="Content"
                         variant="outlined"
@@ -215,7 +215,8 @@ const Blog = () => {
                         variant="contained"
                         component="label"
                         size="larger"
-                        className='ml-5 w-500'
+                        sx={{ ml: 30 }}
+                        // className=' w-500'
                     >
                         Upload Image / Video&nbsp;&nbsp;&nbsp;
                         <input
@@ -225,7 +226,7 @@ const Blog = () => {
                             // value={files}
                             onChange={(e) => setImage(e.target.files[0])}
                         /></Button ><br /><br />
-                    <Button sx={{ ml: 30 }}
+                    <Button sx={{ ml: 55 }}
                         size="large" variant="contained" color="primary" onClick={BlogApi}>
                         Post
                     </Button><br />
