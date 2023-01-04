@@ -1,7 +1,6 @@
-
 .App {
   float: left;
- 
+
 }
 
 .Apps {
@@ -12,33 +11,218 @@
   background-color: #000;
 
 }
+.containerdiv {
+  margin-left: 285px;
+}
+
+.searchdiv{
+   width: 700px;
+}
+
 .search {
   width: 100%;
   position: relative;
   display: block;
 }
-.search_bar{
-  width: 50%;
+
+.search_bar {
+  width: 100%;
   border: 3px solid #1F2D5A;
   height: 40px;
   border-radius: 5px 0 0 5px;
-  left:50%;
-}
-.search_bar:focus {
-  color:white;
-  background-color: black;
-}
-/*Resize the wrap to see the search bar change!*/
-.wrap {
-margin-left: 450px;
-}
-.img-div{
-  position:relative; display: inline-block;
+  left: 50%;
 }
 
-.img-div:hover:after{
-  content:'';
-  position:absolute;
+.search_bar:focus {
+  color: white;
+  background-color: black;
+}
+
+.searchinput {
+  width: 300px;
+  height: 40px;
+  color: black;
+  margin: 10px;
+  margin-left: 75px;
+  float: left;
+  background-color: white;
+}
+/* .vocaldiv{
+  margin-left: 10px;
+  float: left;
+ 
+} */
+.vocalsdiv{
+  margin-left: 30px;
+  float: left;
+}
+
+
+.musicresponse {
+  margin: 10px;
+  float: left;
+  width: 400px;
+  height: 60px;
+}
+
+.musicresh1{
+  line-height: 30px; 
+  white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.musictable {
+  float: left;
+   margin-left: 70px;
+    margin-bottom: 80px;
+}
+
+.musicplayerdiv {
+  float: left;
+   width: 30%;
+   background: black;
+}
+
+.playingmusicimage {
+  height: 75px;
+   width: 100px;
+}
+
+.playermusicdiv {
+  float: left; 
+  width: 300px; 
+  align-content: center; 
+  justify-content: center; 
+  text-align: center;
+}
+
+.playermusich5 {
+  line-height: 40px;
+}
+
+.audioplayerdiv {
+  width: 70%; 
+  height: 75px;
+  float: left;
+}
+
+.audioplayer {
+  height: 75px; 
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+@media (max-width: 600px) {
+
+  .containerdiv {
+    margin-left: 1px;
+    
+  }
+
+  .searchdiv{
+    width: 350px;
+ }
+ /* .searchbutton{
+  width: 100px;
+  height: 30px;
+ } */
+
+  .searchinput {
+    width: 280px;
+    height: 40px;
+    color: black;
+    margin: 10px;
+    margin-left: 55px;
+    float: left;
+    background-color: white;
+  }
+
+  .vocalsdiv{
+    margin-left: 7px;
+    float: left;
+  }
+
+  .mediadiv {
+    display: grid;
+  }
+
+  .musictable {
+    float: left;
+     margin-left: 0px;
+      margin-bottom: 80px;
+  }
+  .musicresponse {
+    /* margin: 10px; */
+    /* float: left; */
+    width: 372px;
+    height: 60px;
+  }
+
+  .musicresh1 {
+    line-height: 30px; 
+    white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+  }
+  .musicplayerdiv {
+    float: left;
+     width: 30%;
+     background: black;
+  }
+  
+  .playingmusicimage {
+    height: 50px;
+     width: 60px;
+  }
+  
+  .playermusicdiv {
+    float: left; 
+    width: 200px; 
+    align-content: center; 
+    justify-content: center; 
+    text-align: center;
+    margin-top: -43px;
+  }
+  
+  .playermusich5 {
+    line-height: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* width: 80px; */
+    margin-left: 70px;
+  }
+  
+  .audioplayerdiv {
+    width: 70%; 
+    height: 50px;
+    float: left;
+  }
+  
+  .audioplayer {
+    height: 50px; 
+    text-align: center;
+    background: black;
+    color: white;
+  }
+
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap {
+  margin-left: 450px;
+}
+
+.img-div {
+  position: relative;
+  display: inline-block;
+}
+
+.img-div:hover:after {
+  content: '';
+  position: absolute;
   left: 0px;
   top: 0px;
   bottom: 0px;
@@ -54,31 +238,38 @@ margin-left: 450px;
 .rhap_progress-filled {
   background: #2F76DB !important;
 }
+
 .rhap_play-pause-button {
   color: white !important;
   margin-top: 0%;
 }
+
 .rhap_volume-controls {
   color: white !important;
 }
-.rhap_time{
+
+.rhap_time {
   color: white !important;
 }
+
 .rhap_repeat-button {
   color: black !important;
 }
-.img__name
-{
+
+.img__name {
   width: 100%;
   height: 100%;
 }
+
 .img__model {
-  position:relative; display: inline-block;
+  position: relative;
+  display: inline-block;
 
 }
-.img__model:hover:after{
-  content:'';
-  position:absolute;
+
+.img__model:hover:after {
+  content: '';
+  position: absolute;
   left: 0px;
   top: 0px;
   bottom: 0px;
@@ -86,6 +277,7 @@ margin-left: 450px;
   background: url("https://icon-library.com/images/play-icon-white-png/play-icon-white-png-4.jpg") center no-repeat;
   background-size: 100px;
 }
+
 .bg-black {
   background: #000;
 }

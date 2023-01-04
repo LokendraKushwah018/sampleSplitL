@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Container from '../../Components/Adminlayout/Container'
 import { adminbaseurl, adminDashboard} from '../../Api/Config'
 import { PageHeader } from '../Common/Components'
+import '../css/adminDashBargraph.css'
 
 import {
   Chart as ChartJS,
@@ -45,6 +46,7 @@ const options = {
   },
 };
 
+
 const BlogGraph = () => {
   const token = useSelector(state=>state.admin.adminlogintoken)
   // const token = localStorage.getItem("logintoken")
@@ -87,7 +89,7 @@ const BlogGraph = () => {
         "Authorization": `Bearer ${token}`
       }
     }).then((response)=> {
-      console.log(response)
+      // console.log(response)
       setSubscriber(response.data.getTotalSub)
     }).catch((error)=> {
       console.log(error)
@@ -103,19 +105,19 @@ const BlogGraph = () => {
     const fetchData = async (c) => {
       const url =  `${adminbaseurl}${adminDashboard}${c}`
       //  const token = localStorage.getItem("logintoken");
-      await fetch(url, tokenAPI(token)).then((data) => {
+      await fetch(url, tokenAPI(token)).then((data) => {  
         // console.log("Api data", data)
         const res = data.json();
         return res
       }).then((res) => {
         //  console.log("ressss", res.sumtData)
-         console.log(res)
+        //  console.log(res)
 
         if(c === "TODAY"){
           todayData.push(res.sumtData)
           setTodayData(todayData)
           // setVisible(todayData)
-
+        console.log(res)
         }else if(c === "WEEK"){
           weekData.push(res.sumtData)
         setWeekData(weekData)
@@ -166,20 +168,20 @@ const BlogGraph = () => {
     <Container>
     <> 
     <PageHeader title='Dashboard' />
- <div className="row"
-  style={{ width: '1100px' }}>
-  <div className="col-lg-4 ">
-    <div className="small-box bg-secondary text-dark">
+ <div className="row1 " >
+  <div className="col-lg-7 ">  
+    <div className="small-box bg-secondary text-dark">    
       <div className="inner">
-        <h3>{monthData} </h3>
-        <p>Play This Month</p>
+        <h3 className='monthdata'>{monthData} </h3>
+        <p className='playmonth'>Play This Month</p>
       </div>
+      {/* <b>dsfdsfdd</b> */}
       <div className="icon">
-        <i className="ion ion-bag" />
-      </div>  
+       <i className="ion ion-bag" />
+      </div> 
     </div>
   </div>  
-  <div className="col-lg-4 ">
+  <div className="col-lg-6 ">
     <div className="small-box text-dark " style={{backgroundColor:'#2F76DB'}}>
       <div className="inner">
         <h3>{subscriber}</h3>
@@ -190,7 +192,7 @@ const BlogGraph = () => {
       </div>
     </div>
   </div>
-  <div className="col-lg-4 ">
+  <div className="col-lg-7 ">
     <div className="small-box bg-secondary text-dark " >
       <div className="inner">
         <h3>${subammount}</h3>
@@ -202,7 +204,9 @@ const BlogGraph = () => {
     </div>
   </div>
 </div>
+<p className='adminbargraph'>
 <Bar data={datas} options={options} />
+</p>
 {/* <div className="card bg-gradient-dark ">
   <div className="card-header"
   style={{marginTop: -200}}>
@@ -224,7 +228,7 @@ const BlogGraph = () => {
   </div>
 </div> */}
      
-    </>
+    </><br/>
     </Container>
     )
 }

@@ -1,9 +1,76 @@
 .gradient-custom {
    
-    background: #f6d365;
+    background:rgb(124, 122, 122);
     
-    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    background: -webkit-linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
     
    
-    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+    background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+    }
+
+.usercard {
+    margin-left: 15px;
+    display: flex;
+}
+
+.planhr {
+    margin-top: 0px;
+    margin-bottom: 25px;
+}
+
+.plandiv {
+    margin-left: 15px;
+    display: flex;
+}
+
+.subsbutton {
+    width: 150px;
+    background-color: rgb(50, 48, 48);
+    height: 40px;
+    border-radius: 10px;
+    /* margin-bottom: 300px; */
+    margin-left: 300px;
+    margin-top: -10px;
+}
+
+.subslink {
+    color:white;
+    text-decoration: none;
+}
+
+
+
+    @media (max-width:600px) {
+
+      .information {
+        margin-left: -25px;
+      }
+
+      .row {
+      width: 400px;
+      }
+
+      .usercard {
+        margin-left: -35px;
+        display: flex;
+    }
+    .plandiv {
+        margin-left: -35px;
+        display: flex;
+    }
+    .subsbutton {
+        width: 150px;
+        background-color: rgb(48, 49, 50);
+        height: 40px;
+        border-radius: 10px;
+        /* margin-bottom: 300px; */
+        margin-left: 100px;
+        margin-top: 10px;
+         
+    }
+    .subslink {
+        color:white;
+        text-decoration: none;
+    }
+
     }

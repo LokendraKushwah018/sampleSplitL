@@ -185,7 +185,11 @@ export default function UserLogIn() {
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid> */}
-            </Grid>
+            </Grid><br/>
+         <Link to='/Userforgetpassword' style={{textDecoration: 'none', color: 'silver'}}><b 
+         >Forgot Password?</b>
+          {/* <button type="button" class="btn btn-success mt-3" >Forget Password</button> */}
+            </Link>
             <Button
               type="submit"
               fullWidth

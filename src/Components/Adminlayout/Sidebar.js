@@ -24,7 +24,7 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/BlogPost" className="nav-link">
+                <Link to="/UploadMusic" className="nav-link">
                   <i className="nav-icon fa fa-upload" />
                   <p>
                     Upload Music

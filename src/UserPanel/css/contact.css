@@ -1,0 +1,86 @@
+.formemail {
+   display: flex;
+   width: 1050px;
+}
+
+.contacttextname{
+  margin-left: 115px;
+ }
+
+.contacttext {
+   margin-left: 105px;
+}
+
+.contactbtn {
+   margin-left: 500px;
+}
+
+.contactsubject {
+   margin-left: 100px;
+   width: 920px
+}
+
+.contactmsg {
+
+   margin-left: 100px;
+   width: 920px
+}
+
+.contactname {
+   margin-left: 110px;
+}
+
+.contactemail {
+   margin-left: 100px;
+}
+
+@media screen and (max-width: 600px) {
+
+   .formemail {
+      display: table-row;
+   }
+
+   .contacttextname{
+      margin-left: 35px;
+     }
+
+
+   .contacttext {
+      margin-left: 22px;
+   }
+
+   .contactsubject {
+      width: 290px;
+      margin-left: 50px;
+   }
+
+   .contactmsg {
+      width: 290px;
+      margin-left: 50px;
+   }
+
+   .contactname {
+      width: 290px;
+      margin-left: 65px;
+   }
+
+   .contactemail {
+      width: 290px;
+      margin-left: 65px;
+   }
+
+   .contactbtn {
+      margin-left: 150px;
+   }
+}
+
+
+/* .contactname{
+    width: 500px;
+    margin-left: 20px;
+    
+ }
+ .contactemail{
+    width: 500px;
+    margin-left: 20px;
+ } */

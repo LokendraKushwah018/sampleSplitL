@@ -1,6 +1,7 @@
 import React from 'react'
 import emailjs from 'emailjs-com'
 import Navbar from '../Userlayout/Navbar';
+import '../css/contact.css'
 
 const Contact = () => {
 
@@ -68,65 +69,63 @@ const Contact = () => {
       </div> */}
 
  <section className="mb-0 text-white" >
-  <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+  <h2 className="h1-responsive font-weight-bold text-center text-white my-3">Contact us</h2>
   <p className="text-center w-responsive mx-auto mb-5">
     Do you have any questions? Please do not hesitate to contact us directly. 
-    Our team will come back to you within
-    a matter of hours to help you.</p>
-  <div className="row ">
+    Our team will come back to you within a matter of hours to help you.</p>
+  {/* <div className=""> */}
     <div className="col-md-9 mb-md-0 mb-5 ">
-      <form name="contact-form" onSubmit={onSubmit}
-      style={{marginLeft:15}}>
-        <div className="row">
+      <form name="contact-form" onSubmit={onSubmit}>
+        <div className="formemail">
           <div className="col-md-6">
             <div className="md-form mb-0">
-            <label className="form-label" htmlFor="name">
+            <label className="contacttextname" htmlFor="name">
                 Name
-              </label>
-              <input className="form-control" type="text" name="name" required />            
+              </label><p className='contactname'>
+              <input className="form-control" type="text" name="name" required />  </p>          
             </div>
           </div>
           <div className="col-md-6">
             <div className="md-form mb-0">
-            <label className="form-label" htmlFor="email">
+            <label className="contacttextname" htmlFor="email">
                 Email
-              </label>
-              <input className="form-control" type="email" name="email" required />
+              </label><p className='contactemail'>
+              <input className="form-control" type="email" name="email" required /></p>
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
             <div className="md-form mb-0">
-            <label className="form-label" htmlFor="Subject">
+            <label className="contacttext" htmlFor="Subject">
                 Subject
-              </label>
-              <input className="form-control" type="text" name="subject" required />
+              </label><p className='contactsubject'>
+              <input className="form-control" type="text" name="subject" required ></input></p>
             </div>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
             <div className="md-form">
-            <label className="form-label" htmlFor="message">
+            <label className="contacttext" htmlFor="message">
                 Message
-              </label>
-              <textarea className="form-control md-textarea" name="message" required />
+              </label><p className='contactmsg'>
+              <textarea className="form-control md-textarea" name="message" required /></p>
             {/* <label htmlFor="message">Your message</label>
               <textarea type="text"  name="message" rows={2} className="form-control md-textarea"/> */}
             </div>
           </div>
         </div>    
-      <div className="text-center">
+      <div className="contactbtn">
       <button className="btn btn-lg mt-4 text-white" type="submit"
        style={{backgroundColor:"#1F2D5A"}}>{formStatus}</button>
       </div>
       </form>
       <div className="status" />
     </div>
-    <div className="col-md-3 text-center">
-      <ul className="list-unstyled mb-0">
-        <li><i className="fas fa-map-marker-alt fa-2x"  style={{color:"#1F2D5A"}}/>
+    {/* <div className="col-md-3 text-center " style={{marginRight: '0px'}}>
+      <ul className="list-unstyled mb-0 " >
+        <li ><i className="fas fa-map-marker-alt fa-2x "  style={{color:"#1F2D5A"}}/>
           <h5>San Francisco, CA 94126, USA</h5>
         </li>
         <li><i className="fas fa-phone mt-4 fa-2x" style={{color:"#1F2D5A"}}/>
@@ -136,10 +135,9 @@ const Contact = () => {
           <h5>contact@samplesplit.com</h5>
         </li>
       </ul>
-    </div>
-  </div>
+    </div> */}
+  {/* </div> */}
 </section> 
-
     </>
   )
 }

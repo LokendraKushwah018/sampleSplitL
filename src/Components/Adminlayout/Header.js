@@ -8,7 +8,12 @@ import { adminlogout } from '../../Pages/Dashboard/Auth/AdminSlice';
 // import { AdminAPI } from '../../Api/Config';
 
 
+
+
+
 const Header = () => {
+
+  // const styles = 
   // const token = localStorage.getItem("logintoken")
   let Navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,7 +48,7 @@ const Header = () => {
   }
 
   return (
-    <div>
+    <div >
       <nav className="main-header navbar navbar-expand navbar-dark ">
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -83,7 +88,7 @@ const Header = () => {
             </Link>
           </li>
           <span>
-           <button className="btn btn-outline-success position-right"
+           <button className="btn btn-outline-secondary position-right"
               type="submit"
               onClick={Logout}>
               <LogoutIcon />Logout

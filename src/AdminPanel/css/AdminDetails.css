@@ -9,17 +9,20 @@ audio::-webkit-media-controls-panel{
 .header {
   min-height: 60vh;
   background: #009FFF;
-  background: linear-gradient(to right, #ec2F4B, #009FFF);
+  /* background: linear-gradient(to right, #ec2F4B, #009FFF); */
+  background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
   color: white;
   clip-path: ellipse(100vw 60vh at 50% 50%);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "proxima-nova";
+  margin-left: 180px;
+  width: 700px;
 }
 .btn_button
 {
-  background: linear-gradient(to right, #ec2F4B, #009FFF);
+  background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
 
 }
 .details {
@@ -53,4 +56,42 @@ audio::-webkit-media-controls-panel{
 .bg-purple {
      background :linear-gradient(to right, #DECBA4, #3E5151) ;
      
+}
+
+.updatedetailbtn {
+  background-color: #343a40;
+  width: 100px;
+  border-radius: 10px;
+  height: 35px;
+  margin-left: 150px;
+}
+
+@media screen and (max-width: 600px) {
+  .header {
+    margin-left: 1px;
+    width: 370px;
+}
+
+.editprofiletitle {
+  margin-left: 70px;
+}
+
+.admindetailinput {
+  margin-left: 100px;
+}
+
+.updateprofilename{
+  margin-left: 80px;
+  
+}
+.updatedetailbtn {
+ 
+  width: 100px;  
+  height: 35px;
+  margin-left: 100px;
+}
+.adminupdatepass {
+  margin-left: 35px;
+}
+
 }

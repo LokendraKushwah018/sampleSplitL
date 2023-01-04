@@ -119,8 +119,8 @@ const BuyPlan = () => {
                 toastClassName="dark-toast"
                 theme="colored" />
             <div className="container">
-                <h2><b>Unlimited Downloads , Excusive Original Content and More</b></h2>
-                <div className="row">
+                <h1><b>Unlimited Downloads , Excusive Original Content and More</b></h1>
+                <div className="row1">
                     <div className="col-md-5 col-sm-6">
                         <div className="pricingTable">
                             <div className="pricing_heading">
@@ -132,7 +132,7 @@ const BuyPlan = () => {
                             </div>
                             <div className="content">
                                 <ul>
-                                    <h3>SampleSplit.Com</h3>
+                                <h3><b>SampleSplit.Com</b></h3>
                                     <li><b>Unlimited Split the Song</b></li>
                                     <li><b>Unlimited Listening</b></li>
                                     <li><b>Unlimited Downloading</b></li>

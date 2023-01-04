@@ -1,0 +1,28 @@
+.adminbargraph{
+  width: 700px;
+  margin-left: 150px;
+}
+
+.row1{
+  display: flex;
+}
+
+
+@media  (max-width: 600px) {
+.adminbargraph{
+  width: 350px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.row1{
+  display: grid;
+
+}
+ 
+
+
+}
+
+
+

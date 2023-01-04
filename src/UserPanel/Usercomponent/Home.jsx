@@ -212,20 +212,20 @@ const Home = () => {
                 onClick={(e) => setType(e.target.value)}  >Accompaniment</button></li>
             </ul>
           </div>
-          <Button
-            sx={{ ml: 12 }}
+          <p className='labelp'>
+          <Button            
             className='label'
             variant="contained"
             component="label"
           >
             Upload Song
-            <input
+            <input              
               onChange={(e) => setFile_name(e.target.files[0])}
               type="file"
               ref={musicinput}
               required
             />
-          </Button>
+          </Button></p>
           <button type="submit" className='btn btn-primary'
           >Submit</button>
         </form>
@@ -252,8 +252,8 @@ const Home = () => {
                 onClick={(e) => setType(e.target.value)}>Other</button></li>
             </ul>
           </div>
-          <Button
-            sx={{ ml: 12 }}
+          <p className='labelp'>
+          <Button            
             className='label'
             variant="contained"
             component="label" >
@@ -263,7 +263,7 @@ const Home = () => {
               type="file"
               ref={musicinput}
               required />
-          </Button>
+          </Button></p>
           <button className='btn btn-primary'
           >Submit</button>
         </form>

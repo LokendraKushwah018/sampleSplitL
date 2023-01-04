@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
-import './AdminDetails.css'
+// import './AdminDetails.css'
+import '../css/AdminDetails.css'
 import axios from 'axios';
 import { useEffect } from 'react';
 import { PageHeader } from '../Common/Components';
@@ -108,7 +109,7 @@ export default function AdminDetails() {
 
   const display = (e) => {
     updateprofile({ ...profile, [e.target.name]: e.target.value });
-    console.log(updateprofile)
+    // console.log(updateprofile)
   }
 
   // Admin Edit Profile API
@@ -164,12 +165,16 @@ export default function AdminDetails() {
               <h1 className="heading">{data.name}</h1>
               <div className="stats">
                 <div className="col-6">
-                  <h5>Name&nbsp;<sup><EditIcon onClick={handleOpen} sx={{height:'20px'}} /></sup></h5>
-                  <p>{data.name}</p>
+                  <h5>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <sup>
+                    {/* <EditIcon onClick={handleOpen} sx={{height:'20px'}} /> */}
+                    </sup>
+                    </h5>
+                  <p style={{marginRight:30}}>{data.name}</p>
                 </div>
                 <div className="col-6">
                   <h5>Email&nbsp;
-                  <sup><EditIcon onClick={handleOpen} sx={{height:'20px'}}  /></sup></h5>
+                  <sup><EditIcon label='Edit Name & Email' onClick={handleOpen} sx={{height:'20px'}}/></sup></h5>
                   <p >{data.email}</p>
                 </div>
               </div>
@@ -193,23 +198,27 @@ export default function AdminDetails() {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+            <h5  className='editprofiletitle'>
               Edit Profile
-            </Typography>
+            </h5><hr/>
             <form onSubmit={updateProfile} >
-              <div className="form-group m-1">
-                <label>Name</label>
+              <div className="form-group">
+                <label className='updateprofilename'>Name</label>
+                <p className='admindetailinput'>
                 <input type="text" className="form-control" 
                 name='name' value={profile.name} onChange={display}
-                placeholder="Enter email" />
+                placeholder="Enter email" /></p>
               </div>
               <div className="form-group m-1">
-                <label>Email</label>
+                <label className='updateprofilename'>Email</label>
+                <p className='admindetailinput'>
                 <input type="email" className="form-control" 
                 name='email' value={profile.email} onChange={display}
-                placeholder="Password" />
+                placeholder="Password" /></p>
               </div>
-              <button type="submit" className="btn btn-primary m-1">Submit</button>
+              {data.email === profile.email && data.name === profile.name ?
+               <button type="submit" className="updatedetailbtn" disabled>Submit</button>:
+              <button type="submit" className="updatedetailbtn">Submit</button> }
             </form>
           </Box>
         </Modal>
@@ -228,15 +237,17 @@ export default function AdminDetails() {
                 <div className="modal-body">
                   <div className="mb-3">
                     <label className="col-form-label">New password</label>
+                    <p className='adminupdatepass'>
                     <input type="text" value={changepass.password} onChange={show}
                       name="password"
                       // / onChange={(e) => setName(e.target.value)} 
-                      className="form-control" id="recipient-name" />
+                      className="form-control" id="recipient-name" /></p>
                   </div>
                   <div className="mb-3">
                     <label className="col-form-label">Confirm password</label>
+                    <p className='adminupdatepass'>
                     <input type="text" name='confirmPassword' value={changepass.confirmPassword} onChange={show}
-                      className="form-control" id="recipient-name" />
+                      className="form-control" id="recipient-name" /></p>
                   </div>
                   <button className='btn btn-danger ml-5' data-bs-dismiss="modal" type="submit">submit</button>
                 </div>

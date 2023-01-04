@@ -131,6 +131,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 import { responsiveProperty } from '@mui/material/styles/cssUtils';
+import '../css/Blogs.css'
 
 const Blog = () => {
 
@@ -144,8 +145,10 @@ const Blog = () => {
     const token = useSelector(state => state.admin.adminlogintoken)
     const [files, setImage] = useState(null);
     const [title, setTitle] = useState('');
+    // const [uploadblog, setUploadblog] = useState([])
     const [description, setDescription] = useState('');
     const ref = useRef(null);
+
 
     const BlogApi = (e) => {
         e.preventDefault();
@@ -189,18 +192,39 @@ const Blog = () => {
                 className="toast-container"
                 toastClassName="dark-toast"
                 theme="colored" />
-            <div className="App" style={{ marginTop: '10px' , marginLeft:50 }}>
                 <PageHeader title='Blog' />
+            <div className="App"
+            // style={{ marginTop: '10px' , marginLeft:50 }}
+            >                
                 <form >
-                    <TextField
-                        style={{ width: "900px", margin: "5px", marginLeft: '50px' }}
+                    {/* <TextField
+                       className='texttitle'
+                         style={{ width: "900px", margin: "5px", marginLeft: '50px' }}
                         type="text"
                         label="Title"
                         variant="outlined"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                    /><br />
-                    <TextField
+                    /><br /> */}
+                    <div className="row">
+                        <div className="col-md-11">
+                            <div className="md-form mb-0 ">
+                            <label for="subject" className="text">Subject</label>
+                            <input type="text" name="subject" className="form-control"
+                                value={title} onChange={(e) => setTitle(e.target.value)} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-11">
+                            <div className="md-form ">
+                            <label for="message" className="text">Your Message</label>
+                            <textarea type="text" name="message" rows="8" className="form-control md-textarea mb-3"
+                            value={description} onChange={(e) => setDescription(e.target.value)}/>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <TextField
                         style={{ width: "900px", margin: "5px", marginLeft: '50px' }}
                         type="text"
                         label="Content"
@@ -210,13 +234,18 @@ const Blog = () => {
                         rows={10}
                         onChange={(e) => setDescription(e.target.value)}
                     />
-                    <br />
-                    <Button
+                    <br /> */}
+                
+                <button className="BTN" >Upload Image / Video &nbsp;&nbsp;&nbsp;&nbsp;
+                <input type='file' ref={ref} onChange={(e) => setImage(e.target.files[0])} />
+                </button>
+          
+                    {/* <Button
                         variant="contained"
                         component="label"
                         size="larger"
                         sx={{ ml: 30 }}
-                        // className=' w-500'
+                    // className=' w-500'
                     >
                         Upload Image / Video&nbsp;&nbsp;&nbsp;
                         <input
@@ -225,13 +254,22 @@ const Blog = () => {
                             ref={ref}
                             // value={files}
                             onChange={(e) => setImage(e.target.files[0])}
-                        /></Button ><br /><br />
-                    <Button sx={{ ml: 55 }}
+                        /></Button ><br /><br /> */}
+                    {/* <Button 
                         size="large" variant="contained" color="primary" onClick={BlogApi}>
                         Post
-                    </Button><br />
+                    </Button><br /> */}
+                    
+                     <button className="statusbtn" 
+                         onClick={BlogApi}
+                         >
+                        Post
+                    </button>
                 </form>
+               
             </div>
+           <br/>
+         
         </Container>
     )
 }

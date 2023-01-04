@@ -85,8 +85,8 @@ const Navbar = () => {
             <Link className="nav-link active text-light" to="/Useraccount" >My Account</Link>
           </div>
           <div className="navbar-nav ms-auto ">
-            <span>
-              <button className="btn btn-outline-success"
+            <span className='navbutton'>
+              <button className="btn text-white"
                 type="submit"
                 onClick={userlogout}>
                 <LogoutIcon />Logout

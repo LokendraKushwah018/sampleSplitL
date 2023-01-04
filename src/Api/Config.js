@@ -13,12 +13,13 @@
 //     // }
     
 // })
-export const userbaseurl = `http://localhost:5001/api/user/`
-export const adminbaseurl = `http://localhost:5001/api/admin/`
+export const userbaseurl = `http://43.205.187.52:5001/api/user/`
+export const adminbaseurl = `http://43.205.187.52:5001/api/admin/`
 
 // export const AdminAPI = axios.create ({
 //     baseURL: 'http://localhost:5001/api/admin/',
 //     method: "get",
+// http://43.205.187.52:5001/
 // })
 
 // axios.defaults.baseURL = "http://localhost:5001/api/user/"

@@ -10,12 +10,13 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-import {  useNavigate} from "react-router-dom";
+import {  Link, useNavigate} from "react-router-dom";
 import { adminbaseurl, loginAdmin } from "../../../Api/Config"
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { adminlogin } from "../Auth/AdminSlice";
+
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -92,6 +93,10 @@ export default function AdminlogIn() {
           console.log(err);
         })
     }
+
+    // const forgetpass = () => {
+    //   Navigate('/Forgetpassword')
+    // }
     
   return (
     <Container component="main" maxWidth="xs">
@@ -137,7 +142,11 @@ export default function AdminlogIn() {
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid> */}
-          </Grid>
+          </Grid><br/>
+         <Link to='/Forgetpassword' style={{textDecoration: 'none', color: 'silver'}}><b 
+         >Forgot Password?</b>
+          {/* <button type="button" class="btn btn-success mt-3" >Forget Password</button> */}
+            </Link>
           <Button
             type="submit"
             fullWidth
@@ -154,6 +163,7 @@ export default function AdminlogIn() {
             toastClassName="dark-toast"
             theme="colored" />
         </form>
+        
       </div>
 
     </Container>

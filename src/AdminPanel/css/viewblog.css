@@ -1,0 +1,93 @@
+.table {
+    width: 1090px;
+    
+}
+
+.videotitle {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: white;
+}
+
+.tabletr {
+  background-color: rgb(46, 46, 46);
+  color: silver;
+}
+
+.videoDesc {
+    width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: 'white'
+}
+
+.card___video {
+    height: 65px;
+    width: 100px;
+}
+
+.card___image{
+    height: 65px;
+    width: 100px; 
+}
+
+@media screen and (max-width: 600px) {
+    .table {
+        width: 380px;
+        margin-left: -10px;
+    }
+
+    .tablehead{
+        
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: white;
+        width: 40px;
+    }
+    .videotitle {
+        width: 30px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: white;
+    }
+    .tabletr {
+        font-size: 12.5px;
+       
+    }
+    
+    .videoDesc {
+        width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        background-color: 'white'
+    }
+
+    .card___image {
+        width: 50%;
+        max-height: 40px;
+         /* border-radius: var(--border-radius-primary); */
+        object-fit: cover;
+        margin-bottom: 1px;
+      }
+      .card___video {
+        width: 50%;
+        max-height: 40px;
+         /* border-radius: var(--border-radius-primary); */
+        object-fit: cover;
+         /* margin-bottom: 1px; */
+      }
+      .table {
+        background-color: white;
+        width: 100%;
+      }
+
+      .inputmodel{
+        margin-left: 25px;
+      }
+}

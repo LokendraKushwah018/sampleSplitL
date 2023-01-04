@@ -72,7 +72,7 @@ const UserBlog = () => {
                             </div>
                             :
                             <div>
-                                {item.imageName === "http://localhost:5001/images/BlogImage/Null"
+                                {item.type === "text"
                                     ?
                                     <div className='card__one'>
                                         <div className="card__content__one">

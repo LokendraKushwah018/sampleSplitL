@@ -10,8 +10,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate , Link} from "react-router-dom";
-// import { inputLabelClasses } from "@mui/material/InputLabel";
-// import { usersignup } from '../../Api/Api';
 import { userbaseurl } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
@@ -208,7 +206,6 @@ export default function Usersignup() {
           </Grid>
         </form>
       </div>
-
     </Container>
     </>
   );

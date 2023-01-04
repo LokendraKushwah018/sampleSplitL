@@ -1,8 +1,27 @@
 .navbar-nav a:hover {
     background-color: #1F2D5A;
+    border-radius: 5px;
  
   }
 
   .container-fluid {
     width: 100%;
   }
+
+  .navbutton {
+    background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+    border-radius: 10px;
+
+
+
+  }
+
+
+  @media screen and (max-width: 600px) {
+    .navbutton {
+      background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+      border-radius: 10px;
+      width: 100px;
+      margin-left: 40px;
+    }
+}

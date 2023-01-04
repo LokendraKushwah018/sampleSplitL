@@ -20,22 +20,21 @@ const Welcome = () => {
           marginLeft: 0, textAlign: 'center'
         }}
       >
-        <img src="./bg2.jpg" className="card-img" alt="..." />
+        <img src="./bg2.jpg" className="card-img" alt="..."  style={{height: '800px'}}/>
         <div className="card-img-overlay "
           style={{ margin: 100, marginLeft: 120 }}>
           <h1 className="display-1">SampleSplit</h1>
-          <h4
+          {/* <h4
           >
             SampleSplit is the streaming app where music is more than sound. Meet us on stage,
-            in the studio,and under the radar.
-            For discovery from every angle, curated specifically for you.</h4>
+            in the studio and under the radar.
+            For discovery from every angle, curated specifically for you.</h4> */}
           
         </div>
       </div>
       <h1 className="display-2 text-center text-black "
         style={{ marginTop: 0, fontFamily: "arial" }}
-      >Recommended on SampleSplit</h1>
-      
+      >Recommended on SampleSplit</h1>      
       <ImageList sx={{ width: "100%", height: 450 }} variant="woven" cols={3} gap={8}>
         {itemData.map((item , index) => (
           <ImageListItem key={index}>

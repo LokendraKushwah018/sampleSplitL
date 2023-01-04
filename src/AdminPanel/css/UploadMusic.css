@@ -1,0 +1,109 @@
+
+.row {
+    width: 1000px;
+    /* width:850; */
+     margin-left: 10px;
+}
+
+.input-group{
+    width:1000px;
+     height: 55px;   
+      margin-left: 30px;
+      margin-bottom: 20px;
+      
+}
+
+.imguploadbtn{
+    background-color: #373a3c;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: 350px;
+    width: 380px;
+    /* color: white; */
+    border-color: rgb(23, 23, 23);
+    
+}
+
+.musicuploadbtn{
+    background-color: #373a3c;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: 350px;
+    width: 380px;
+    border-color: rgb(23, 23, 23);
+}
+
+.uploadbtn{
+    background-color:#2e3753;
+    border-color: rgb(37, 36, 36);
+    border-radius: 10px;
+    height: 40px;
+    width: 150px;
+    margin-left: 450px;
+    margin-bottom: 10px;
+}
+ .uploadbtn:hover {
+    background: #1F2D5A;
+ }
+
+@media  (max-width: 600px) {
+
+ .row{
+    width: fit-content;
+ }
+
+ .box {
+    margin: 20px; 
+    margin-top: 2px; 
+    width: 100px; 
+    margin-left: 4opx;
+}
+.input-group{
+    width: 360px;
+    margin-bottom: 30px;   
+    margin-left: 10px;
+    border-color: black;
+}
+
+.imguploadbtn{
+    background-color: #343a40;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: -5px;
+    width: 380px;
+    color: white;
+    border-color: rgb(23, 23, 23);
+    
+    
+}
+
+.musicuploadbtn{
+    background-color: #343a40;
+    border-radius: 10px;
+    height: 50px;
+    margin-left: -5px;
+    width: 380px;
+    color: white;
+    border-color: rgb(23, 23, 23);
+}
+.uploadbtn{
+    background-color:#2e3753;
+    border-color: rgb(37, 36, 36);
+    border-radius: 10px;
+    height: 40px;
+    width: 100px;
+    margin-left: 130px;
+    margin-bottom: 10px;
+}
+.uploadbtn:hover {
+    background: #1F2D5A;
+ }
+
+}
+
+/* 
+.row {
+    width: '1050px';
+} */
+
+

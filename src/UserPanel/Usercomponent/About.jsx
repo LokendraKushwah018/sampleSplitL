@@ -17,9 +17,7 @@ const About = () => {
             textAlign: 'center',
             // backgroundColor: '#474e5d',
             // Color: 'white',
-            color:'white'
-           
-            
+            color:'white'           
           },
           button: {
             border: 'none',
@@ -53,7 +51,7 @@ const About = () => {
   <div style={styles.card}>
     <div className="column">
       <div className="card">
-        <img src="./team1.jpg" alt="Jane" style={{width: '100%'}} />
+        <img src="./team1.jpg" alt="Jane" style={{width: '100%', height:'50%'}} />
         <div className="container">
           <h2>Jane Doe</h2>
           <p className="title">CEO &amp; Founder</p>
@@ -65,7 +63,7 @@ const About = () => {
     </div>
     <div className="column">
       <div className="card">
-        <img src="./team2.jpg" alt="Mike" style={{width: '100%'}} />
+        <img src="./team2.jpg" alt="Mike" style={{width: '100%', height:'50%'}} />
         <div className="container">
           <h2>Mike Ross</h2>
           <p className="title">Art Director</p>
@@ -77,7 +75,7 @@ const About = () => {
     </div>
     <div className="column">
       <div className="card">
-        <img src="./team3.jpg" alt="John" style={{width: '100%'}} />
+        <img src="./team3.jpg" alt="John" style={{width: '100%', height:'50%'}} />
         <div className="container">
           <h2>John Doe</h2>
           <p className="title">Designer</p>

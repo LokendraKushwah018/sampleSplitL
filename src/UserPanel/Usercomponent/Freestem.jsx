@@ -37,6 +37,8 @@ const Freestem = () => {
   const token = useSelector(state => state.auth.userlogintoken)
   const navigate = useNavigate();
 
+
+
   const Warningtoast = () => {
     toast.info("Wait For a second");
   }
@@ -64,7 +66,7 @@ const Freestem = () => {
         url: `${userbaseurl}${url}?filterKey=${c}`,
       }
     ).then((response) => {
-      console.log(response);
+      // console.log(response);
       console.log(response.data.getSongData);
       setMusic(response.data.getSongData)
     }).catch((err) => {
@@ -122,6 +124,8 @@ const Freestem = () => {
         console.log(err);
       })
   }
+    console.log(musicplayerimage);
+    console.log(play);
 
   const Bottom = (id, music, trackTitle, imageName, tracktype) => {
     console.log(id);
@@ -134,8 +138,8 @@ const Freestem = () => {
     setDemo(tracktype)
     setMusicplayerimage(true);
     setShowplayer(true);
-    console.log("musiccName22222", playingMusic)
-    console.log("tracktitleName22222", play)
+    // console.log("musiccName22222", playingMusic)
+    // console.log("tracktitleName22222", play)
     axios(
       {
         url: `${userbaseurl}mostplayed/${id}`
@@ -146,6 +150,7 @@ const Freestem = () => {
         console.log(err);
       })
   }
+  // console.log(music[0].music)
   const modelsong = (music, trackTitle, imageName , tracktype) => {
     setPlayingMusic(music);
     setPlay(trackTitle);
@@ -168,37 +173,43 @@ const Freestem = () => {
         toastClassName="dark-toast"
         theme="colored" />
       <div style={{ color: 'white' }}>
-        <div className="container">
-          <div className="col-md-8 ">
+        <div className="containerdiv">
+          <div className='searchdiv' >
             <div className="search-2">
               <input type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder='Search Any Songs and Listen' />
-              <button onClick={searchApi}>Search</button>
-            </div> </div> </div>      
+              <button className='searchbutton' onClick={searchApi}>Search</button>
+            </div> 
+            </div> 
+            </div>      
         {songs.filter((user) =>
           user.trackTitle.toLowerCase().includes(query.toLowerCase())).slice(0, 8).map((item, i) => {
-            return (
-              <div key={i}>
+            return (              
+              <div key={i}>                
                 {visible && (
                   <div
+                  className='searchinput'
                     onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.imageName, item.trackType)}
-                    style={{
-                      width: '240px',
-                      height: '40px',
-                      color: 'black',
-                      margin: '10px',
-                      marginLeft: "75px",
-                      float: 'left',
-                      backgroundColor:'white'
-                    }}>
-                    <div style={{ float: 'left' }}>
-                      <img src={item.imageName}
+                    // style={{
+                    //   width: '240px',
+                    //   height: '40px',
+                    //   color: 'black',
+                    //   margin: '10px',
+                    //   marginLeft: "75px",
+                    //   float: 'left',
+                    //   backgroundColor:'white'
+                    // }}
+                    >                 
+                    <div style={{ float: 'left' }}>                      
+                      <img src={item.imageName} className='searchimage'
                         onClick={() => SearchPlayer(item.id, item.music, item.trackTitle, item.trackType)}
-                        alt="/" style={{ width: '70px', height: '40px', float: 'left' }} />
+                        alt="/" 
+                        style={{ width: '50px', height: '40px', float: 'left' }} 
+                        />
                     </div>
-                    <div style={{ float: 'left', width: '170px' }}>
+                    <div style={{ float: 'left', width: '150px' }}>
                       <h5 style={{ textAlign: 'center', lineHeight: '41px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{item.trackTitle}</h5>
                     </div>
                   </div>
@@ -206,45 +217,50 @@ const Freestem = () => {
               </div>
             )
           })}
-        <div style={{
-          float: 'left', margin: '0px 0px 0px 70px'
+        <div className='mediadiv' style={{
+          float: 'left', margin: '0px 0px 0px 50px'
         }}>
-          <div
-            style={{ float: 'left', margin: 10 }}
+          <div className='vocalsdiv'
+            // style={{ float: 'left', marginLeft: 10 }}
             onClick={() => handleClick('Drums')}>
-            <h2 style={{ textAlign: 'center' }} >Drums</h2>
+            <h2 style={{ textAlign: 'center' ,color: 'silver'}} >Drums</h2>
             <img src={drumsImg} alt="/" style={{ width: '280px', height: "200px" }} />
           </div>
           &nbsp;
-          <div
-            style={{ float: 'left', margin: 10 }}
+          <div className='vocalsdiv'
+            // style={{ float: 'left', marginLeft: 10 }}
             onClick={() => handleClick('Vocals')}>
-            <h2 style={{ textAlign: 'center' }} >Vocals</h2>
+            <h2 style={{ textAlign: 'center',color: 'silver' }} >Vocals</h2>
             <img src={vocalImg} alt="/" style={{ width: '280px', height: "200px" }} />
           </div>
           &nbsp;
-          <div
-            style={{ float: 'left', margin: 10 }}
+          <div className='vocalsdiv'
+            // style={{ float: 'left', marginLeft: 10 }}
             onClick={() => handleClick('Samples')}>
-            <h2 style={{ textAlign: 'center' }} >Sample</h2>
+            <h2 style={{ textAlign: 'center',color: 'silver' }} >Sample</h2>
             <img src={sampleImg} alt="/" style={{ width: '280px', height: "200px" }} />
           </div>
           &nbsp;
-          <div
-            style={{ float: 'left', margin: 10 }}
+          <div className='vocalsdiv'
+            // style={{ float: 'left', marginLeft: 10 }}
             onClick={() => handleClick('Beats')}>
-            <h2 style={{ textAlign: 'center' }} >Beats</h2>
+            <h2 style={{ textAlign: 'center' , color: 'silver'}} >Beats</h2>
             <img src={beatImg} alt="/" style={{ width: '280px', height: "200px" }} />
           </div>
         </div>
-        <div style={{ float: 'left', marginLeft: '80px', marginBottom: "80px" }}>
+        <div className='musictable' 
+        // style={{ float: 'left', marginLeft: '80px', marginBottom: "80px" }}
+        >
           {music.map((value, index) => {
             return (
-              <div style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
-                key={index}>
+              <div className='musicresponse' 
+              // style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
+                key={index}>  
+                {/* {value.id === Id && }                 */}
                 <div
                   className="img-div"
-                  style={{ float: 'left' }} onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName, value.tracktype)}>
+                  style={{ float: 'left' }}                   
+                  onClick={() => Bottom(value.id, value.music, value.trackTitle, value.imageName, value.tracktype)}>
                   <img src={value.imageName} alt="/" style={{ width: '60px', height: '60px', borderRadius: '10px' }} />
                 </div>
                 <div>
@@ -255,7 +271,9 @@ const Freestem = () => {
                       textAlign: 'center',
                       float: 'left',
                     }}>
-                    <h5 style={{ lineHeight: '30px', whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{value.trackTitle}</h5>
+                    <h5 className='musicresh1' 
+                    // style={{ lineHeight: '30px', whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}
+                    >{value.trackTitle}</h5>
                     <p>{value.tracktype}</p>
                   </div>
                 </div>
@@ -292,7 +310,7 @@ const Freestem = () => {
                                   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{value.tracktype}</h4>
                                 </div>
                                 <div className="d-flex flex-row text-white">
-                                  <div className="p-4 bg-warning text-center skill-block  text-white">
+                                  <div className="p-4 bg-warning text-center skill-block text-white">
                                     <h4>{value.bpm}</h4>
                                     <h6>Bpm</h6>
                                   </div>
@@ -371,22 +389,32 @@ const Freestem = () => {
         </div>
         {showplayer &&
           <div className="Apps">
-            <div style={{ float: 'left', width: '30%', background: 'black' }}   >
+            <div className='musicplayerdiv' 
+            // style={{ float: 'left', width: '30%', background: 'black' }} 
+              >
               <div style={{ float: 'left' }}>
                 <img
                   src={playingmusicImgae}
                   alt="/"
-                  style={{ height: "75px", width: '100px' }} 
+                  // style={{ height: "75px", width: '100px' }} 
+                  className='playingmusicimage'
                 />
               </div>
-              <div style={{ float: 'left', width: '300px', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }} >
-                <h5 style={{ lineHeight: '40px' }}>{play}</h5>
+              <div className='playermusicdiv' 
+              // style={{ float: 'left', width: '300px', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }}
+               >
+                <h5 className='playermusich5' 
+                // style={{ lineHeight: '40px' }}
+                >{play}</h5>
                 <h6>{demo}</h6>
               </div>
             </div>
-            <div style={{ width: '70%', height: "75px", float: 'left' }}>
+            <div className= 'audioplayerdiv' 
+            // style={{ width: '70%', height: "75px", float: 'left' }}
+            >
               <AudioPlayer
-                style={{ height: "75px", textAlign: 'center', background: "black", color: 'white' }}
+                className='audioplayer'
+                // style={{ height: "75px", textAlign: 'center', background: "black", color: 'white' }}
                 autoPlay={true}
                 layout="horizontal"
                 controls={false}
