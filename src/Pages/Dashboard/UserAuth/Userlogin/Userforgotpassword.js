@@ -1,8 +1,10 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { forgot } from '../../Auth/EmailSlice';
 
 const updatetoast = () => {
     toast.success('OTP Successfully sent')
@@ -13,17 +15,21 @@ const WrongEmail = () => {
 }
 
 
+
 const Userforgetpassword = () => {
     const [email, setEmail] = useState('')
 
     const Navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const forgotpassword = (e) => {
+        const Email = email
+            dispatch(forgot(Email))
         e.preventDefault()
-        axios.post('http://43.205.187.52:5001/api/admin/forgetPassword', {
+        axios.post('http://43.205.187.52:5001/api/user/forgetPassword', {
             email: email
         }).then((Response) => {
             console.log(Response)
+            
             if (Response.status === 200) {
                 updatetoast();
                 setTimeout(() => {
@@ -66,7 +72,7 @@ const Userforgetpassword = () => {
                                     </div>
                                     <div className="mb-3 d-grid">
                                         <button type="submit" className="btn btn-secondary" onClick={forgotpassword}>
-                                            Reset Password
+                                           Get OTP
                                         </button>
                                     </div>
                                 </form>

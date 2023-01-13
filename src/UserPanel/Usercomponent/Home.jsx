@@ -10,9 +10,28 @@ import "react-h5-audio-player/lib/styles.css";
 import AudioPlayer from "react-h5-audio-player";
 import '../css/home.css'
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import FileSaver from 'file-saver';
 import { userbaseurl } from '../../Api/Config';
+import Footer from '../../Components/Adminlayout/Footer';
+import styled from '@emotion/styled';
+// import Footer from '../Userlayout/Footer';
+
+const Wrapper = styled.div`
+background: dark;
+margin-top: 517px;
+height: 50px;
+margin-bottom: -30px;
+`
+const Label  = styled.div`
+
+  display: flex;
+  position: center;
+  text-decoration: none;
+  color: silver;
+  font-size: 1.5em; 
+
+`
 
 const Home = () => {
   const musicinput = useRef();
@@ -40,6 +59,8 @@ const Home = () => {
   const [demo, updateDemo] = useState();
   const [first, setfirst] = useState('');
   const [second, setsecond] = useState('');
+
+  // const [value, setValue] = useState('');
 
   const token = useSelector(state => state.auth.userlogintoken);
 
@@ -176,18 +197,21 @@ const Home = () => {
       console.log(err);
     })
   }
+
+  // const handlechange = (e) => {
+  //   setValue(e.target.value)
+  // }  
   
   return (
-    <>
+    <>    
       <Navbar />
-
       <ToastContainer
         autoClose={2000}
         position="top-center"
         className="toast-container"
         toastClassName="dark-toast"
         theme="colored" />
-      {loading &&
+    {loading &&
         <div>
           <div className='loading'></div>
         </div>
@@ -196,6 +220,13 @@ const Home = () => {
         //    [ Please wait while song is spliting.... ]</span> 
         //  </Stack>
       }
+      {/* <select onChange={(e)=> setValue(e.target.value)} value={value}>
+  <option>Select one</option>
+  <option value="Orange">Orange</option>
+  <option value="Radish">Radish</option>
+  <option value="Cherry">Cherry</option>
+</select><p>You selected  {value}</p> */}
+      <div>
       <div style={{ float: 'left' }} >
         <form className="frame"
           onSubmit={twomodel}
@@ -230,7 +261,7 @@ const Home = () => {
           >Submit</button>
         </form>
       </div>
-
+      
        {/* 4Stems Section Start    */}
       <div style={{ float: 'left' }}>
         <form className="fram"
@@ -267,7 +298,7 @@ const Home = () => {
           <button className='btn btn-primary'
           >Submit</button>
         </form>
-      </div>
+      </div> </div>
        {/* 4Stems Section End     */}
       {vocals &&
         <div style={{ bottom: "0px", position: 'fixed', width: '100% ' }}>
@@ -281,11 +312,11 @@ const Home = () => {
               controls={false}
               src={data.vocals}
               layout="horizontal"
-
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(data.vocals)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(data.vocals)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
@@ -305,7 +336,8 @@ const Home = () => {
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(data.accompaniment)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(data.accompaniment)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
@@ -326,7 +358,8 @@ const Home = () => {
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(fourdata.fourStemsVocals)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(fourdata.fourStemsVocals)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
@@ -346,7 +379,8 @@ const Home = () => {
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(fourdata.bass)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(fourdata.bass)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
@@ -366,7 +400,8 @@ const Home = () => {
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(fourdata.drums)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(fourdata.drums)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
@@ -386,10 +421,58 @@ const Home = () => {
               showJumpControls={false} />
           </div>
           <div style={{ float: 'left', width: "10%" }}>
-            <button onClick={() => download(fourdata.other)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} className="btn btn-danger"  >download</button>
+            <button onClick={() => download(fourdata.other)} style={{ height: '70px', width: "100%", borderRadius: '0px' }} 
+            className="btn btn-danger"  >download</button>
           </div>
         </div>
       }
+      {/* <div>
+      <Footer />
+
+      </div> */}
+ 
+     {/* dgggjkfdgj
+     gdgkjdfgdgkjd
+     hhfhf
+     <footer className="page-footer font-small  darken-4 py-4 bg-secondary">
+  <div className="container">
+    <div className="row">
+      <div className="col-md-6 d-flex justify-content-start">
+        <div className="footer-copyright text-center bg-transparent">© 2019 Copyright:
+          <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+        </div>
+      </div>
+      <div className="col-md-6 d-flex justify-content-end">
+        <ul className="list-unstyled d-flex mb-0">
+          <li>
+            <a className="mr-3" role="button"><i className="fab fa-facebook-f" /></a>
+          </li>
+          <li>
+            <a className="mr-3" role="button"><i className="fab fa-twitter" /></a>
+          </li>
+          <li>
+            <a className="mr-3" role="button"><i className="fab fa-instagram" /></a>
+          </li>
+          <li>
+            <a className role="button"><i className="fab fa-youtube" /></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer> */}
+
+
+<Wrapper >
+<Label >
+  {/* <Link to="#" >Home</Link>
+  <Link to="#">Contact</Link>
+  <Link to="#">Services</Link>
+  <Link to="#">Details</Link> */}
+
+</Label>
+</Wrapper>
+
     </>
   );
 }

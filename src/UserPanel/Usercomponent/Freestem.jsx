@@ -403,8 +403,9 @@ const Freestem = () => {
               <div className='playermusicdiv' 
               // style={{ float: 'left', width: '300px', alignContent: 'center', justifyContent: 'center', textAlign: 'center' }}
                >
-                <h5 className='playermusich5' 
-                // style={{ lineHeight: '40px' }}
+                <h5 
+                 className='playermusich5' 
+                //  style={{ lineHeight: '10px' }}
                 >{play}</h5>
                 <h6>{demo}</h6>
               </div>
@@ -428,6 +429,7 @@ const Freestem = () => {
           </div>
         }
       </div>
+      
     </>
   )
 }

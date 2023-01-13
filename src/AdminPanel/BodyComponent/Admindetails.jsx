@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
+import styled from '@emotion/styled';
 
 const style = {
   position: 'absolute',
@@ -27,6 +28,18 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+
+const Label = styled.p`
+@media screen and (max-width: 600px){
+  width: Auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  // background-color: white;
+}
+
+`
 
 export default function AdminDetails() {
   let [data, updatedata] = useState([]);
@@ -175,7 +188,7 @@ export default function AdminDetails() {
                 <div className="col-6">
                   <h5>Email&nbsp;
                   <sup><EditIcon label='Edit Name & Email' onClick={handleOpen} sx={{height:'20px'}}/></sup></h5>
-                  <p >{data.email}</p>
+                  <Label >{data.email}</Label>
                 </div>
               </div>
               <div className='col-12'>

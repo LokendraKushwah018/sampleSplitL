@@ -33,14 +33,18 @@ const ViewBlogs = () => {
     const [pageData, setPageData] = useState(0)
     const [show, setShow] = useState(false);
 
+    const [selectedImage, setSelectedImage] = useState();
+    const [selectedVideo, setSelectedVideo] = useState();
+
     const handleClose = () => {
         setShow(false);
         setImageName(null)
+        setSelectedImage();
         console.log('successfully close', show, imageName);
     }
 
     const handleshow = () => {
-         setShow(true); 
+        setShow(true);
         console.log('successfully open', show, imageName);
     }
 
@@ -89,27 +93,27 @@ const ViewBlogs = () => {
     const editblogs = (id) => {
         // setShow(true);
         // setTimeout(() => {
-            axios({
-                url: `${adminbaseurl}getBlogById/${id}`,
-                method: "get",
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then((res) => {
-                console.log(res)
-                // console.log(res.data.findBlog)
-                setEditBlog(res.data.findBlog)
-                const setGetblog = res.data.findBlog
-                setTitle(setGetblog.title)
-                setDescription(setGetblog.description)
-                setImageName(setGetblog.imageName)
-                // setVideo(setGetblog.imageName)
-                setid(setGetblog.id)
-                setTypes(setGetblog.type)
-                console.log(id)
-            }).catch((err) => {
-                console.log(err)
-            })
+        axios({
+            url: `${adminbaseurl}getBlogById/${id}`,
+            method: "get",
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }).then((res) => {
+            console.log(res)
+            // console.log(res.data.findBlog)
+            setEditBlog(res.data.findBlog)
+            const setGetblog = res.data.findBlog
+            setTitle(setGetblog.title)
+            setDescription(setGetblog.description)
+            setImageName(setGetblog.imageName)
+            // setVideo(setGetblog.imageName)
+            setid(setGetblog.id)
+            setTypes(setGetblog.type)
+            console.log(id)
+        }).catch((err) => {
+            console.log(err)
+        })
         // }, 2000)
     }
 
@@ -160,6 +164,23 @@ const ViewBlogs = () => {
         adminblog();
     }, [])
 
+    const imageChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setSelectedImage(e.target.files[0]);
+        } else {
+            setSelectedImage();
+        }
+    };
+
+
+    const VideoChange = (e) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setSelectedVideo(e.target.files[0]);
+        } else {
+            setSelectedVideo();
+        }
+    };
+
     return (
         <>
             <Container>
@@ -173,9 +194,9 @@ const ViewBlogs = () => {
                 <table className="table" >
                     <thead>
                         <tr className='tabletr'>
-                            <th>S.No</th>
+                            {/* <th>#</th> */}
                             <th>Date</th>
-                            <th >Image/Video</th>
+                            <th>Image/Video</th>
                             <th>Title</th>
                             <th className='tablehead'>Description</th>
                             <th>Edit</th>
@@ -183,19 +204,32 @@ const ViewBlogs = () => {
                         </tr>
                     </thead>
                     {getblog.map((data, index) => {
-                        return <>
+                        return (
+
                             <tbody key={index}>
                                 <tr >
-                                    <th scope="row">{index + 1}</th>
+                                    {/* <th scope="row">{index + 1}.</th> */}
                                     {data.type === 'video' ?
                                         <>
-                                            <td><time className=" text-dark ">{data.Date}</time></td>
-                                            <td><video className="card___video"
-                                                controls controlsList='nodownload'>
-                                                <source src={data.imageName} type="video/mp4">
-                                                </source>
-                                            </video>  </td>
-                                            <td > <p  className='videotitle' 
+                                            <td><time className=" text-dark ">{data.Date}</time></td>                                            
+                                                {!selectedVideo ?
+                                                <td>
+                                                    <video className="card___video"
+                                                        controls controlsList='nodownload'>
+                                                        <source src={data.imageName} type="video/mp4">
+                                                        </source>
+                                                    </video></td> :
+                                                    <td>
+                                                    <video className="card___video"
+                                                        controls controlsList='nodownload'>
+                                                        <source
+                                                            src={URL.createObjectURL(selectedVideo)}
+                                                            type="video/mp4">
+                                                        </source>
+                                                    </video>
+                                            </td>    }
+                                            
+                                            <td > <p className='videotitle'
                                             // style={{
                                             //     width: '100px',
                                             //     overflow: 'hidden',
@@ -203,7 +237,7 @@ const ViewBlogs = () => {
                                             //     textOverflow: 'ellipsis',
                                             //     backgroundColor: 'white'}} 
                                             >{data.title} </p></td>
-                                            <td > <p className='videoDesc' 
+                                            <td > <p className='videoDesc'
                                             // style={{
                                             //     width: '150px',
                                             //     overflow: 'hidden',
@@ -218,7 +252,7 @@ const ViewBlogs = () => {
                                                 <>
                                                     <td><time className=" text-dark ">{data.Date}</time></td>
                                                     <td className='text-dark'>Not Uploaded</td>
-                                                    <td > <p className='videotitle'  
+                                                    <td > <p className='videotitle'
                                                     // style={{
                                                     //     width: '100px',
                                                     //     overflow: 'hidden',
@@ -273,7 +307,8 @@ const ViewBlogs = () => {
                                 </tr>
                                 <div className="modal fade" id="exampleModal" tabIndex="-1"
                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    successfully Close    <div className="modal-dialog">
+                                    successfully Close
+                                    <div className="modal-dialog">
                                         <div className="modal-content">
                                             <div className="modal-header">
                                                 <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Box</h1>
@@ -293,52 +328,76 @@ const ViewBlogs = () => {
                                                     <div >
                                                         <label htmlFor="message-text" className="col-form-label">Description</label>
                                                         <p className='inputmodel'>
-                                                        <textarea className="form-control" id="message-text" value={description}
-                                                            onChange={(e) => setDescription(e.target.value)} name="description"/>
-                                                    </p></div>
+                                                            <textarea className="form-control" id="message-text" value={description}
+                                                                onChange={(e) => setDescription(e.target.value)} name="description" />
+                                                        </p></div>
                                                     {types === "video" ?
                                                         <div >
                                                             <label className="col-form-label" >Video</label>
-                                                            <p className='inputmodel'>
-                                                            <input type="file" className="form-control" id="recipient-name"
-                                                                onChange={(e) => setImageName(e.target.files[0])} /></p>
-                                                            <video width="200" height="120"
-                                                                controls controlsList='nodownload'>
-                                                                <source src={imageName} type="video/mp4">
-                                                                </source>
-                                                            </video>
+                                                            <p className='inputmodel' onChange={VideoChange}>
+                                                                <input type="file" className="form-control" id="recipient-name"
+                                                                    onChange={(e) => setImageName(e.target.files[0])} /></p>
+                                                            {!selectedVideo ?
+                                                                <video width="200" height="120"
+                                                                    controls controlsList='nodownload'>
+                                                                    <source src={imageName} type="video/mp4">
+                                                                    </source>
+                                                                </video> :
+                                                                <div>
+                                                                    <video width="200" height="120"
+                                                                        controls controlsList='nodownload'>
+                                                                        <source
+                                                                            src={URL.createObjectURL(selectedVideo)}
+                                                                            type="video/mp4">
+                                                                        </source>
+                                                                    </video>
+                                                                </div>
+                                                            }
                                                         </div>
                                                         :
                                                         <div>
                                                             {types === "picture" ?
                                                                 <div >
                                                                     <label className="col-form-label" >Image</label>
-                                                                    <p className='inputmodel'>
-                                                                    <input type="file" className="form-control" id="recipient-name"
-                                                                        onChange={(e) => setImageName(e.target.files[0])} /></p>
-                                                                    <img src={imageName} alt="/" style={{ width: '120px', height: '80px', marginTop: '10px' }} />
+                                                                    <p className='inputmodel' onChange={imageChange}>
+                                                                        <input type="file" className="form-control" id="recipient-name"
+                                                                            onChange={(e) => setImageName(e.target.files[0])} /></p>
+                                                                    {/* {console.log(imageName)} */}
+                                                                    {/* <img src={imageName} alt="/" style={{ width: '120px', height: '80px', marginTop: '10px' }} /> */}
+
+                                                                    {!selectedImage ?
+                                                                        <img src={imageName} alt="/" style={{ width: '120px', height: '80px', marginTop: '10px' }} /> :
+                                                                        <div >
+                                                                            <img
+                                                                                src={URL.createObjectURL(selectedImage)}
+                                                                                style={{ width: '120px', height: '80px', marginTop: '10px' }}
+                                                                                alt="Thumb"
+                                                                            /></div>}
+
                                                                 </div>
                                                                 :
                                                                 <br />
                                                             }
                                                         </div>
                                                     }
-                                                    <div className="modal-footer ">                                                   
+                                                    <div className="modal-footer ">
                                                         <button type="button" className="btn btn-secondary " data-bs-dismiss="modal" onClick={handleClose}
                                                         > Close</button>
-                                                         {editBlog.title === title && editBlog.description === description && editBlog.imageName ?
-                                                         <button type="button" className="btn btn-primary mt-2 mb-0" disabled >Update</button>: 
-                                                        <button type="button" className="btn btn-primary mt-2 mb-0" data-bs-dismiss="modal"
-                                                            onClick={blogsubmit}
-                                                        >Update</button>}
+                                                        {editBlog.title === title && editBlog.description === description && editBlog.imageName === imageName ?
+                                                            <button type="button" className="btn btn-primary mt-2 mb-0" disabled >Update</button> :
+                                                            <button type="button" className="btn btn-primary mt-2 mb-0" data-bs-dismiss="modal"
+                                                                onClick={blogsubmit}
+                                                            >Update</button>}
                                                     </div>
+
+
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </tbody>
-                        </>
+                        )
                     })}
                 </table>
                 <ReactPaginate

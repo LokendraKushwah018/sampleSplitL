@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
+// import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import LockIcon from '@mui/icons-material/Lock';
 import Typography from "@material-ui/core/Typography";
@@ -15,7 +15,10 @@ import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/Welco
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // import { color } from "@mui/system";
-
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -52,6 +55,8 @@ export default function Usersignup() {
   let [data, updateData] = useState({ username: '', email: '', password: '' });
   let [formErrors, setformErrors] = useState({});
   let [isSubmit, setIsSubmit] = useState(false);
+  const [passwordType, setPasswordType] = useState("password");
+
   const display = (e) => {
     updateData({ ...data, [e.target.name]: e.target.value });
   };
@@ -61,6 +66,16 @@ export default function Usersignup() {
     setformErrors(validate(data));
     setIsSubmit(true);
   };
+
+  const togglePassword =()=>{
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
+  }
+
   const SingUpApi = () => {
     axios(
       {
@@ -134,14 +149,17 @@ export default function Usersignup() {
         <form className={classes.form} onSubmit={submit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
+            <InputLabel >
+            User Name
+      </InputLabel>
+              <Input
                sx={{backgroundColor:'white'}}
                 autoComplete="username"
                 name="username"
                 // variant="outlined"
                 required
                 fullWidth
-                label="User Name"
+                // label="User Name"
                 autoFocus
                 value={data.username}
                 onChange={display}
@@ -151,11 +169,14 @@ export default function Usersignup() {
 
             </Grid>
             <Grid item xs={12}>
-              <TextField
+            <InputLabel >
+            Email Address
+      </InputLabel>
+              <Input
                 // variant="outlined"
                 required
                 fullWidth
-                label="Email Address"
+                // label="Email Address"
                 name="email"
                 autoComplete="email"
                 value={data.email}
@@ -166,17 +187,29 @@ export default function Usersignup() {
 
             </Grid>
             <Grid item xs={12}>
-              <TextField
+            <InputLabel >
+            Password
+      </InputLabel>
+              <Input
                 // variant="outlined"
                 required
                 fullWidth
                 name="password"
-                label="Password"
-                type="password"
+               
+                type={passwordType==="password"? "password" : "text"}   
                 autoComplete="current-password"
                 value={data.password}
                 onChange={display}
-
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                     
+                      onMouseDown={togglePassword}
+                    >
+                      {passwordType==="text" ? <i className="fas fa-eye-slash"></i> :<i className="fas fa-eye"></i>}
+                    </IconButton>
+                  </InputAdornment>
+                }
               />
               <small style={{ color: 'red' }} >{formErrors.password}</small>
 
@@ -199,7 +232,7 @@ export default function Usersignup() {
             theme="colored" />
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link to="/userlogin" variant="body2">
+              <Link to="/userlogin" variant="body2" style={{textDecoration: 'none', color: 'white'}}>
                 Already have an account? LogIn
               </Link>
             </Grid>

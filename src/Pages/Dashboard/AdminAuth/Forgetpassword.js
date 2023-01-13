@@ -1,9 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { adminforgot } from '../Auth/AdminEmailSlice';
 
 
 const updatetoast = () => {
@@ -17,11 +18,14 @@ const InvalidID = () => {
 const Forgetpassword = () => {
 // const token = useSelector(state=>state.admin.adminlogintoken)
 
+   const dispatch = useDispatch()
     const [email, setEmail] = useState()
     // const [updateotp, setUpdateotp] = useState(false)
     let Navigate = useNavigate()
 
     const reset = (e) => {
+        const Email = email
+        dispatch(adminforgot(Email))
         console.log(email)
         e.preventDefault()
         // axios({

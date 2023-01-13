@@ -1,15 +1,20 @@
 .analytics{
     background: white; 
-    width: 1000px;
+    width: 1050px;
     height: 640px;
     box-shadow: 5px 10px 8px 10px #888888;
     margin-left:40;  
 }
 
+
 .tpimage {
     width: 200px;
     height: 100px; 
-    margin-left: 40px;
+    margin-left: 50px;
+}
+
+.toptrackp {
+    margin-left: 140px;
 }
 .topfanuser{
 
@@ -29,7 +34,7 @@
     height: 100px; 
     background: #1F2D5A;
     border-radius: 0px;
-    margin-left: 40px;
+    margin-left: 50px;
     /* width: '200px', height: '100px', background: '#1F2D5A', borderRadius: '0px',marginLeft: '40px' */
 }
 .avatar1 {
@@ -37,7 +42,7 @@
     height: 100px; 
     background: #2F76DB;
     border-radius: 0px;
-    margin-left: 40px;
+    margin-left: 50px;
     /* width: '200px', height: '100px', background: '#1F2D5A', borderRadius: '0px',marginLeft: '40px' */
 }
 
@@ -63,19 +68,22 @@
     .tpimage {
         width: 150px;
         height: 100px; 
-        margin-left: 20px;
+        margin-left: 30px;
+    }
+    .toptrackp {
+        margin-left: 100px;
     }
     .avatar {
         width: 150px;
         height: 100px; 
         background: #1F2D5A;
-        margin-left: 20px;
+        margin-left: 30px;
     }
     .avatar1 {
         width: 150px;
         height: 100px; 
         background: #2F76DB;
-        margin-left: 20px;
+        margin-left: 30px;
     }
     
     .toptrack{

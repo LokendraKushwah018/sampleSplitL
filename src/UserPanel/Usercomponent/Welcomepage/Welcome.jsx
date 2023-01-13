@@ -5,6 +5,29 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import styled from '@emotion/styled';
+
+
+
+const Wrapperdiv = styled.div`
+margin: 100px;
+margin-left: 120px;
+`
+
+const Wrapper = styled.img` 
+  @media only screen and (max-width: 600px){
+    Width:300px;
+    margin-left: -80px;
+    margin-top: 200px;
+  }
+`
+const Header = styled.img`
+ Height: 550px;
+
+@media only screen and (max-width: 600px){
+  Height:500px;
+}
+`
 
 const Welcome = () => {
 
@@ -16,21 +39,23 @@ const Welcome = () => {
       <WelcomeNavbar />
       <div className="nav bg-dark text-white "
         style={{
-          width: "Auto", height: "30%", marginTop: 0,
+          width: "Auto", 
           marginLeft: 0, textAlign: 'center'
         }}
       >
-        <img src="./bg2.jpg" className="card-img" alt="..."  style={{height: '800px'}}/>
-        <div className="card-img-overlay "
-          style={{ margin: 100, marginLeft: 120 }}>
-          <h1 className="display-1">SampleSplit</h1>
+        <Header src="./bg2.jpg" className="card-img" alt="..."  />
+        <Wrapperdiv className="card-img-overlay "
+          // style={{ margin: 100, marginLeft: 120 }}
+          >
+          {/* <h1 className="display-1">SampleSplit</h1> */}
+          <Wrapper src='./sample.png' alt='...' className="titleimage"></Wrapper>
           {/* <h4
           >
             SampleSplit is the streaming app where music is more than sound. Meet us on stage,
             in the studio and under the radar.
             For discovery from every angle, curated specifically for you.</h4> */}
           
-        </div>
+        </Wrapperdiv>
       </div>
       <h1 className="display-2 text-center text-black "
         style={{ marginTop: 0, fontFamily: "arial" }}

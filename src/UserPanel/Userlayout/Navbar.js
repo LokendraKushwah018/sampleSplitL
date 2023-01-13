@@ -1,10 +1,50 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-// import axios from 'axios'
+import styled from '@emotion/styled';
 import LogoutIcon from '@mui/icons-material/Logout'
 import './Navbar.css';
 import { logout } from '../../Pages/Dashboard/Auth/AuthSlice';
 import { useDispatch } from 'react-redux';
+
+
+const Section = styled.section`
+   Width: 100%;
+`
+
+const Wrapper = styled.img`
+Height: 25px;
+margin-bottom:10px;
+
+@media only screen and (max-width: 600px){
+  margin-right:130px;
+}
+`
+
+const Spacer = styled.span`
+background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+border-radius: 10px;
+
+button: hover{
+  background: #6c757e;
+}
+
+@media screen and (max-width:600px){
+  background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+  border-radius: 10px;
+  Width: 100px;
+  margin-left: 40px;
+}
+`
+const Wrapperdiv = styled.div`
+ a:hover{
+  background: #1F2D5A;
+  border-radius: 8px;
+ }
+//  .nav-link{
+//   background: red;
+//  }
+
+`
 
 const Navbar = () => {
   // const token = localStorage.getItem("userlogintoken")
@@ -66,8 +106,12 @@ const Navbar = () => {
     // </nav>  
 
     <nav className="navbar navbar-expand-lg navbar-light bg-dark ">
-      <div className="container-fluid text-white">
-        <div className="navbar-brand text-light">SampleSplit</div>
+      <Section className="container-fluid text-white">
+      <img src='./samplelogo.png' width={40} height={30} alt='...'/>
+        <Wrapper src='./sample.png' 
+        // width={150} height={25} style={{marginBottom: '9px'}} 
+        alt='...'/>
+        {/* <div className="navbar-brand text-light">SampleSplit</div> */}
         <button type="button"
           className="navbar-toggler "
           data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
@@ -75,7 +119,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse " id="navbarCollapse">
-          <div className="navbar-nav ml-5">
+          <Wrapperdiv className="navbar-nav ml-5">
             <Link className="nav-link active text-light" to="/Home">Home</Link>
             <Link className="nav-link active text-light" to="/Freestem">FreeStem</Link>
             {/* <Link className="nav-link active text-light" to="/Splitsong">SplitSong</Link> */}
@@ -83,17 +127,17 @@ const Navbar = () => {
             <Link className="nav-link active text-light" to="/About">About</Link>
             <Link className="nav-link active text-light" to="/Contact" >ContactUs</Link>
             <Link className="nav-link active text-light" to="/Useraccount" >My Account</Link>
-          </div>
+          </Wrapperdiv>
           <div className="navbar-nav ms-auto ">
-            <span className='navbutton'>
+            <Spacer>
               <button className="btn text-white"
                 type="submit"
                 onClick={userlogout}>
                 <LogoutIcon />Logout
-              </button></span>
+              </button></Spacer>
           </div>
         </div>
-      </div>
+      </Section>
     </nav>
   )
 }

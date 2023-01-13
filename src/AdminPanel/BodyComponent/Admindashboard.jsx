@@ -28,17 +28,20 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 const options = {
   indexAxis: 'x',
   elements: {
     bar: {
       borderWidth: 2,
+      
     },
   },
   responsive: true,
   plugins: {
     legend: {
       position: 'top',
+      
     },
     title: {
       display: true,
@@ -55,6 +58,7 @@ const BlogGraph = () => {
   const [todayData, setTodayData] = useState([])
   const [subammount , setSubammount] = useState([])
   const [subscriber , setSubscriber] = useState([])
+  const [donate, setDonate] = useState([])
 
   const tokenAPI = (token) => {
     return ({
@@ -95,10 +99,25 @@ const BlogGraph = () => {
       console.log(error)
     })
   }
+
+  const totaldonate = () => {
+    axios.get('http://43.205.187.52:5001/api/admin/getAllDonation',{
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
+    })
+    .then((response)=> {
+        console.log(response.data)
+        setDonate(response.data.data)
+    }).catch((error)=> {
+        console.log(error)
+    })
+}
  
   useEffect(() => {
     total();
     totalUser();
+    totaldonate();
     const todayData = [];
       const weekData = [];
       const monthData = [];
@@ -145,19 +164,19 @@ const BlogGraph = () => {
         label: 'TODAY',
         // button: {todayData},
         data: todayData,
-        borderColor: '#98b4db',
+        // borderColor: '#98b4db',
         backgroundColor :'#2F76DB',
       },
       {
         label: 'WEEK',
         data: weekData,
-        borderColor: 'rgb(146, 143, 143)',
-        backgroundColor: 'rgb(216, 212, 212)',
+        // borderColor: 'rgb(146, 143, 143)',
+        backgroundColor: '#6c757e',
       },
       {
         label: 'MONTH',
         data: monthData,
-        borderColor: '#373f5a',
+        // borderColor: '#373f5a',
         // backgroundColor: 'rgba(53, 162, 235, 0.5)',
         backgroundColor: '#1F2D5A',        
       },      
@@ -168,8 +187,8 @@ const BlogGraph = () => {
     <Container>
     <> 
     <PageHeader title='Dashboard' />
- <div className="row1 " >
-  <div className="col-lg-7 ">  
+ <div className="row " >
+  <div className="col-lg-6 ">  
     <div className="small-box bg-secondary text-dark">    
       <div className="inner">
         <h3 className='monthdata'>{monthData} </h3>
@@ -182,7 +201,7 @@ const BlogGraph = () => {
     </div>
   </div>  
   <div className="col-lg-6 ">
-    <div className="small-box text-dark " style={{backgroundColor:'#2F76DB'}}>
+    <div className="small-box bg-secondary text-dark " >
       <div className="inner">
         <h3>{subscriber}</h3>
         <p>User Subscription</p>
@@ -192,14 +211,25 @@ const BlogGraph = () => {
       </div>
     </div>
   </div>
-  <div className="col-lg-7 ">
-    <div className="small-box bg-secondary text-dark " >
+  <div className="col-lg-6 ">
+    <div className="small-box  text-dark " style={{backgroundColor:'#2F76DB'}}>
       <div className="inner">
         <h3>${subammount}</h3>
         <p>Sale This Month</p>
       </div>
       <div className="icon">
-        <i className="ion ion-pie-graph" />
+        <i className="fas fa-dollar-sign" />
+      </div>      
+    </div>
+  </div>
+  <div className="col-lg-6 ">
+    <div className="small-box text-dark" style={{backgroundColor:'#2F76DB'}}>
+      <div className="inner">
+        <h3>${donate}</h3>
+        <p>Donation This Month</p>
+      </div>
+      <div className="icon">
+        <i className="fas fa-dollar-sign" />
       </div>      
     </div>
   </div>

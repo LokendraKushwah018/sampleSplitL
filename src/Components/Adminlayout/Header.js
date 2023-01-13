@@ -1,13 +1,23 @@
-import React  from 'react'
+import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // import axios from 'axios';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useDispatch } from 'react-redux';
 import { adminlogout } from '../../Pages/Dashboard/Auth/AdminSlice';
+import styled from '@emotion/styled';
 // import { AdminAPI } from '../../Api/Config';
 
 
+const Span = styled.span`
+@media screen and (max-width: 600px){
+  // background: indigo;
+  margin-left: 250px;
+  // justify-content: center;
+ 
+}
+
+`
 
 
 
@@ -46,22 +56,30 @@ const Header = () => {
     dispatch(adminlogout())
     Navigate("/adminlogin")
   }
+// var width = window.innerWidth;
+// console.log(width);
+// if(width < 400){
+
+// }
 
   return (
     <div >
       <nav className="main-header navbar navbar-expand navbar-dark ">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link className="nav-link" data-widget="pushmenu" to="#" role="button">
-              <i className="fas fa-bars" /></Link>
+        <ul className="navbar-nav ">
+          <li className="nav-item ">
+            <Link className="nav-link "
+              data-widget="pushmenu"
+              to="#" role="button">
+              <Span className="fas fa-bars" /></Link>
           </li>
+
         </ul>
         <ul className="navbar-nav ml-auto">
           {/* <li className="nav-item"> */}
-            {/* <Link className="nav-link" data-widget="navbar-search" to="#" role="button">
+          {/* <Link className="nav-link" data-widget="navbar-search" to="#" role="button">
               <i className="fas fa-search" />
             </Link> */}
-            {/* <div className="navbar-search-block">
+          {/* <div className="navbar-search-block">
         <form className="form-inline">
           <div className="input-group input-group-sm">
             <input className="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" />
@@ -82,17 +100,17 @@ const Header = () => {
               <p> LogOut </p>
             </Link>
           </li> */}
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link className="nav-link" data-widget="fullscreen" to="#" role="button">
               <i className="fas fa-expand-arrows-alt" />
             </Link>
-          </li>
+          </li> */}
           <span>
-           <button className="btn btn-outline-secondary position-right"
+            <button className="btn btn-outline-secondary position-right"
               type="submit"
               onClick={Logout}>
               <LogoutIcon />Logout
-              </button></span>
+            </button></span>
         </ul>
       </nav>
     </div>

@@ -30,7 +30,7 @@
 }
 
 .card {
-  max-width: 960px;
+  max-width: 1200px;
   border-radius: var(--border-radius-primary);
   box-shadow: 24px 24px 80px rgba(0,0,0,0.1);
   padding: 20px 20px 28px 20px;
@@ -38,6 +38,10 @@
   margin: 20px;
   display: flex;
   flex-direction: column;
+  
+  
+  
+  
   
   @include mediaBig {
     flex-direction: row;
@@ -90,13 +94,12 @@
    white-space: nowrap;
    overflow: hidden; 
    text-overflow: ellipsis ;
-   width: 18px;
-   
+   width: 18px;   
 
 }
 
 ///Admin ViewBlog end ////
-/// 
+
 .card__video {
   width: 100%;
   max-height: 300px;
@@ -147,7 +150,7 @@
   margin-left: -4px;
 }
 .card__one {
-  max-width: 960px;
+  max-width: 1200px;
   border-radius: var(--border-radius-primary);
   box-shadow: 24px 24px 80px rgba(0,0,0,0.1);
   padding: 20px 20px 28px 20px;

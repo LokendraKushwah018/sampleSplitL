@@ -5,8 +5,8 @@ import axios from 'axios';
 import { adminbaseurl } from '../../Api/Config';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Avatar } from '@material-ui/core';
-import { Stack } from '@mui/system';
+// import { Avatar } from '@material-ui/core';
+// import { Stack } from '@mui/system';
 import Container from '../../Components/Adminlayout/Container';
 import { useSelector } from 'react-redux';
 import '../css/Analytics.css'
@@ -82,7 +82,7 @@ const Analytics = () => {
                   src={track.imageName} alt="/" />
                   {/* <p style={{ textAlign: "center" }}>
                     {track.trackTitle} */}
-                  <p style={{ textAlign: "center" }}>{track.musicPlayed}</p>
+                  <p className='toptrackp'>{track.musicPlayed}</p>
                   
                 </div>
               )
@@ -101,7 +101,7 @@ const Analytics = () => {
                       //  style={{ width: '200px', height: '100px', background: '#1F2D5A', borderRadius: '0px',marginLeft: '40px' }} 
                     ><h6 className='topfanuser'> <br/><br/>{fan.username}</h6></div>
                   </div>
-                  <p style={{ textAlign: "center" }}>{fan.topuser}</p>
+                  <p className='toptrackp'>{fan.topuser}</p>
                 </div>
               )
             })}
@@ -118,7 +118,7 @@ const Analytics = () => {
                     //  style={{ width: '200px', height: '100px', background: '#2F76DB' , borderRadius: '0px',marginLeft: '40px' }} 
                     ><h6 className='topfanuser1'> <br/><br/> {item.country}</h6></div>
                   </div>
-                  <p style={{ textAlign: "center" }}>&nbsp;&nbsp;&nbsp;&nbsp;{item.topuser}</p>
+                  <p className='toptrackp'>{item.topuser}</p>
                 </div>
               )
             })}

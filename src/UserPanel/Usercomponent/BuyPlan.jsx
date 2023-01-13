@@ -64,9 +64,11 @@ const BuyPlan = () => {
             console.log(id);
             const subcriptionid = id;
             localStorage.setItem("ID", subcriptionid);
+            console.log(res)
             // console.log(plan.links);
             if (res.status === 200) {
                 window.location.href = res.data.links
+
                 // window.location.href=("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3KS79219C60410104")
             }
         }).catch((err) => {

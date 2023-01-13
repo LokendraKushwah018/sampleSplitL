@@ -45,8 +45,10 @@ const UploadMusic = () => {
     e.preventDefault();
     setformErrors(validate(trackTitle));
     setIsSubmit(true);
+    viewdata();
   }
   const api = () => {
+    
     let formData = new FormData();
     formData.append('image', files);
     formData.append('music', music);
@@ -67,6 +69,7 @@ const UploadMusic = () => {
       }
     ).then((response) => {
       console.log(response);
+      viewdata();
       imageinput.current.value = "";
       musicinput.current.value = "";
       settrackTitle("");
@@ -127,7 +130,7 @@ const UploadMusic = () => {
 
     if (regex.test(trackTitle)) {
       console.log(false);
-      errors.trackTitle = "  Special Character Not Allowed (@#!$%^&*()_+)"
+      errors.trackTitle = "Special Character Not Allowed (@#!$%^&*()_+)"
     }
     else if (!regex.test(trackTitle)) {
       api();
@@ -140,8 +143,7 @@ const UploadMusic = () => {
   return (
     <>
       <Container>
-        <PageHeader title='Upload Music' />
-        
+        <PageHeader title='Upload Music' />        
         <div className="row"
         // style={{ width: 1050 , marginLeft:3}}
         >

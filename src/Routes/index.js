@@ -12,6 +12,7 @@ import UserLogIn from '../Pages/Dashboard/UserAuth/Userlogin/userlogin'
 import Userforgetpassword from '../Pages/Dashboard/UserAuth/Userlogin/Userforgotpassword'
 import About from '../UserPanel/Usercomponent/About'
 import Home from '../UserPanel/Usercomponent/Home'
+import UserInfo from '../AdminPanel/BodyComponent/UserInfo'
 import Freestem from '../UserPanel/Usercomponent/Freestem'
 import UserBlog from '../UserPanel/Usercomponent/UserBlog'
 import Contact from '../UserPanel/Usercomponent/Contact'
@@ -45,6 +46,7 @@ const Index = () => {
       <Route path='/Otp' element={<Otp />} />
       <Route element={<AdminPrivateroutes />}>
         <Route path='/dashboard' element={<BlogGraph />} />
+        <Route path='/UserInfo' element={<UserInfo />} />
         <Route path='/UploadMusic' element={<UploadMusic />} />
         <Route path='/ViewMusic' element={<ViewMusic />} />
         <Route path='/Blog' element={<Blog />} />
@@ -62,6 +64,7 @@ const Index = () => {
       <Route path='/Userresetpassword' element={<Userresetpassword />} />
       <Route element={<Privateroutes />} >
       <Route path='/donationsuccess' element={<DonationSuccess />} />
+     
       <Route path='/plansuccess' element={<PlanSuccess />} />
       <Route path='/donationcancell' element={<DonationCancell />} />
       <Route path='/plancancell' element={<PlanCancell />} />

@@ -28,14 +28,18 @@
     background-color: rgb(50, 48, 48);
     height: 40px;
     border-radius: 10px;
+    float: right;
+    display: inline;
     /* margin-bottom: 300px; */
-    margin-left: 300px;
-    margin-top: -10px;
+    /* margin-left: 300px;
+    margin-top: -10px; */
+    border: none;
 }
 
 .subslink {
     color:white;
     text-decoration: none;
+  
 }
 
 
@@ -44,6 +48,7 @@
 
       .information {
         margin-left: -25px;
+        
       }
 
       .row {
@@ -59,14 +64,16 @@
         display: flex;
     }
     .subsbutton {
-        width: 150px;
+        width: 100px;
         background-color: rgb(48, 49, 50);
         height: 40px;
-        border-radius: 10px;
-        /* margin-bottom: 300px; */
-        margin-left: 100px;
+        border-radius: 10px;       
+        float: right;
+        display: inline;
+         /* margin-bottom: 300px; */
+        /* margin-left: 100px;
         margin-top: 10px;
-         
+        margin-bottom: 2px; */ 
     }
     .subslink {
         color:white;

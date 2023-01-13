@@ -53,7 +53,7 @@ const ResetPassword = () => {
         
         setPassword({...adminnewPassword , [e.target.name]: e.target.value })
     }
-
+ 
 const updatenew = (e) => {
     e.preventDefault()
     axios.put('http://43.205.187.52:5001/api/admin/resetPassword',adminnewPassword)
@@ -81,7 +81,7 @@ const updatenew = (e) => {
       <Typography component="h1" variant="h5">
         Admin Reset Password
       </Typography>
-      <form className={classes.form}  noValidate>
+      <form className={classes.form}  noValidate onSubmit={updatenew}>
         <Grid container spacing={2}>
         <Grid item xs={12}>
             <TextField
@@ -126,7 +126,7 @@ const updatenew = (e) => {
           variant="contained"
           color="primary"
           className={classes.submit}
-          onClick={updatenew}
+          // onClick={updatenew}
         >
           Login
         </Button>

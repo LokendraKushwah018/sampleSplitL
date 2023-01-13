@@ -82,9 +82,10 @@ const ViewMusic = () => {
   let [selecttwoinput, setSelecttwoinput] = useState('')
   // const [donateid, setDonateID] = useState([])
   const [editmodel, setEditModel] = useState([])
-  const [datas, setdatas] = useState({amount: ''})  
+  const [datas, setdatas] = useState({ amount: '' })
   const token = useSelector(state => state.admin.adminlogintoken)
-
+  const [selectedImage, setSelectedImage] = useState();
+  const [selectedAudio, setSelectedAudio] = useState();
 
   // const style = {
   //   position: 'absolute',
@@ -177,7 +178,7 @@ const ViewMusic = () => {
         },
       }
     ).then((response) => {
-        console.log(response);
+      // console.log(response);
       setViewMusicdetails(response.data.allAudio);
       // setDataupdate(false)
       // setDataupdate(true)
@@ -248,7 +249,7 @@ const ViewMusic = () => {
       }
     ).then((response) => {
       console.log(response);
-      console.log(response.data.message)
+      // console.log(response.data.message)
       setSelecttwoinput(response.data.message)
       if (response.status === 201) {
         Edittoast();
@@ -290,6 +291,22 @@ const ViewMusic = () => {
     updatedata({ ...data, [e.target.name]: e.target.value });
   };
 
+  const imageChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    } else {
+      setSelectedImage();
+    }
+  };
+
+  const audioChange = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedAudio(e.target.files[0])
+    } else {
+      setSelectedAudio();
+    }
+  }
+
   // const musicinputselect = () => {
   //   WarningStatustoast()
   // }
@@ -297,32 +314,31 @@ const ViewMusic = () => {
 
 
   // Add Price On Song API
-  const display = (e) => {
-    setdatas({ ...datas, [e.target.name]: e.target.value });
-  };
-  const addpayment = (e, id) => {
-    e.preventDefault()
-    // console.log("amountttt", datas)
-    // console.log("updateeee", updateId)
-    axios(
-      {
-        url: `${adminbaseurl}AddPayment`,
-        method: "post",
-        data: {
-          amount: datas.amount,
-          audioId: updateId
-        },
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    ).then((response) => {
-      console.log(response);
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
+  // const display = (e) => {
+  //   setdatas({ ...datas, [e.target.name]: e.target.value });
+  // };
+  // const addpayment = (e, id) => {
+  //   e.preventDefault()
+
+  //   axios(
+  //     {
+  //       url: `${adminbaseurl}AddPayment`,
+  //       method: "post",
+  //       data: {
+  //         amount: datas.amount,
+  //         audioId: updateId
+  //       },
+  //       headers: {
+  //         "Authorization": `Bearer ${token}`,
+  //         'Content-Type': 'application/json',
+  //       },
+  //     }
+  //   ).then((response) => {
+  //     app();
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
   return (
     <>
       <Container >
@@ -431,29 +447,27 @@ const ViewMusic = () => {
                     console.log(res);
 
                   }}></DeleteIcon>
-                  {/* <button className="btn btn-outline-info" data-bs-target='#exampleModalToggle2'
+                {/* <button className="btn btn-outline-info" data-bs-target='#exampleModalToggle2'
             data-bs-toggle="modal" data-bs-dismiss="modal">Donate</button> */}
-               {songs.price ? <b className="text-dark  ml-4" style={{lineHeight: 3}}>₹{songs.price}</b>
+
+                {/* {songs.price ? <b className="text-dark  ml-4" style={{lineHeight: 3}}>₹{songs.price}</b>
                :  <AddIcon  className='editicon'
                data-bs-target={`#exampleModalToggle2${index}`}
              data-bs-toggle="modal" data-bs-dismiss="modal"
                 onClick={() => handleOpen(songs.id)}
-               > </AddIcon>}
-             
-                    {/* AddPayment Model Start */}   
-                 <div className="modal fade" id={`exampleModalToggle2${index}`} aria-hidden="true"
-          aria-labelledby="exampleModalToggleLabel2" tabIndex="-1">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title text-dark" id="exampleModalToggleLabel2">Add amount for this song</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body text-dark">
+               > </AddIcon>} */}
+
+                {/* AddPayment Model Start */}
+                <div className="modal fade" id={`exampleModalToggle2${index}`} aria-hidden="true"
+                  aria-labelledby="exampleModalToggleLabel2" tabIndex="-1">
+                  <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title text-dark" id="exampleModalToggleLabel2">Add amount for this song</h5>
+                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      {/* <div className="modal-body text-dark">
                 <form onSubmit={addpayment}>
-                  {/* <div className="form-group">
-                <label htmlFor="message-text text-dark" className="col-form-label">{songs.trackTitle} -- {songs.id}</label>
-              </div> */}
                   <div className="form-group">
                     <label htmlFor="message-text text-dark" className="col-form-label">Amount</label>
                     <input id="message-text"
@@ -463,16 +477,17 @@ const ViewMusic = () => {
                       onChange={display}
                       className="form-control"
                       required
-                    ></input>
+                    >
+                    </input>
                   </div>
                   <button className="btn btn-outline-secondary text-dark" data-bs-dismiss="modal">Submit</button>
                 </form>
-              </div>
-            </div>
-          </div>
-        </div> 
-        {/* AddPayment Model End */} 
-               
+              </div> */}
+                    </div>
+                  </div>
+                </div>
+                {/* AddPayment Model End */}
+
                 {/* <AddIcon className='editicon'/> */}
 
                 {/* >DELETE</Button>&nbsp;&nbsp;&nbsp;&nbsp; 
@@ -498,8 +513,8 @@ const ViewMusic = () => {
                       <MenuItem value="private" onClick={() => songstype(songs.id, 'private')} >Private</MenuItem>
                     </Select>
                   </FormControl></p>
-                 
-              
+
+
 
                 {/* Change Public Privet End  */}
 
@@ -546,34 +561,44 @@ const ViewMusic = () => {
                           <p className="viewmusicmodelimage">
                             <input value={type} type="text" onChange={(e) => setType(e.target.value)}
                               className="form-control" id="recipient-name" /></p>
-
-
                           <label className="col-form-label text-dark">Image</label>
-                          <p className="viewmusicmodel">
+                          <p className="viewmusicmodel" onChange={imageChange}>
                             <input type="file" className="form-control" id="recipient-name"
                               onChange={(e) => setImage(e.target.files[0])} /></p>
-                          <img src={imageName} alt="/" style={{ width: '80px', height: '80px' }} />
-
+                          {/* <img src={imageName} alt="/" style={{ width: '80px', height: '80px' }} /> */}
+                          {!selectedImage ?
+                            <img src={imageName} alt="/" style={{ width: '120px', height: '80px', marginTop: '10px' }} /> :
+                            <div >
+                              <img
+                                src={URL.createObjectURL(selectedImage)}
+                                style={{ width: '120px', height: '80px', marginTop: '10px' }}
+                                alt="Thumb"
+                              /></div>}
                           <div>
                             <label className="col-form-label text-dark">Music</label>
                             <p className="viewmusicmodel">
                               <input type="file" className="form-control mt-2" id="recipient-name"
                                 onChange={(e) => setMusic(e.target.files[0])} /></p>
                             <audio controls className="playeraudio">
-                              <source src={music} type="audio/ogg" />
-                            </audio></div>
-
+                              <source src={music} type="audio/mp3" />
+                              <source src={music} type="audio/mpeg" />
+                              <source src={music} type="audio/mp3" />
+                            </audio>
+                          </div>
                           <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            {/* {viewMusic.trackTitle === trackTitle && viewMusic.trackType === trackType && 
-                            viewMusic.bpm === bpm && viewMusic.keyOptional === keyOptional &&
-                            viewMusic.primaryGenre === primaryGenre && viewMusic.type === type &&
-                            viewMusic.imageName === imageName && viewMusic.music === music ? 
-                            <button type="button" className="btn btn-primary mt-2" disabled
-                            >Update</button>: */}
-                            <button type="submit"
-                              className="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close" id='close'
-                            >Update</button>
+                            <button type="submit"  
+                                className="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close" id='close'
+                              >Update</button> 
+                            {/* {songs.trackTitle === trackTitle && songs.trackType === trackType && songs.bpm === bpm
+                              && songs.keyOptional === keyOptional && songs.primaryGenre === primaryGenre && songs.type === type
+                              && songs.music === music && songs.imageName === imageName ? 
+                              <button type="button" className="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close" id='close'
+                             disabled >Update</button>                          
+                               :
+                              <button type="submit"  
+                                className="btn btn-primary mt-2" data-bs-dismiss="modal" aria-label="Close" id='close'
+                              >Testing</button>} */}
                           </div>
                         </div>
                       </form>
@@ -671,10 +696,10 @@ const ViewMusic = () => {
 
         </div> */}
         {/* <div className="modal-footer"> */}
-          {/* <button className="btn btn-outline-info" data-bs-target='#exampleModalToggle2'
+        {/* <button className="btn btn-outline-info" data-bs-target='#exampleModalToggle2'
             data-bs-toggle="modal" data-bs-dismiss="modal">Donate</button> */}
         {/* </div> */}
-    
+
 
       </Container>
     </>

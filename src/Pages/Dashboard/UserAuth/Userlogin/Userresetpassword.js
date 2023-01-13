@@ -60,8 +60,10 @@ const data = (e) => {
 }
 
 const update = (e) => {
+  console.log(createdata)
     e.preventDefault()
-    axios.put('http://43.205.187.52:5001/api/admin/resetPassword',createdata)
+    axios.post('http://43.205.187.52:5001/api/user/resetPassword',createdata)
+               
 .then((Response)=> {
     console.log(Response)
     if(Response.status === 200){
@@ -106,10 +108,11 @@ const update = (e) => {
                   fullWidth
                   label="Email Address"
                   name="email"
+                  type='email'
                   autoComplete="email"
                   value={createdata.email}
                   onChange={data}
-                  />               
+                   />               
               </Grid>
               <Grid item xs={12}>
                 <TextField

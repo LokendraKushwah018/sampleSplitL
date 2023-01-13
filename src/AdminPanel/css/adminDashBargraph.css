@@ -1,6 +1,7 @@
 .adminbargraph{
   width: 700px;
-  margin-left: 150px;
+ margin-left: 150px; 
+
 }
 
 .row1{
@@ -19,8 +20,6 @@
   display: grid;
 
 }
- 
-
 
 }
 

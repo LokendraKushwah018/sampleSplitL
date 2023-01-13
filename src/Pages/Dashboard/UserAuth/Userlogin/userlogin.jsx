@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import LockIcon from '@mui/icons-material/Lock';
 import Typography from "@material-ui/core/Typography";
@@ -10,12 +9,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { userbaseurl, userlogin } from "../../../../Api/Config";
+import { userbaseurl } from "../../../../Api/Config";
 import WelcomeNavbar from "../../../../UserPanel/Usercomponent/Welcomepage/WelcomeNavbar";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 import { login } from "../../Auth/AuthSlice";
+import IconButton from "@material-ui/core/IconButton";
+import InputLabel from "@material-ui/core/InputLabel";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -53,18 +56,36 @@ export default function UserLogIn() {
   const userlogintoast = () => {
     toast.success("Login Successfully !")
   };
+
+  const usererrortoast = () => {
+    toast.error("Invalid Credential ")
+  }
+
   let Navigate = useNavigate();
   const classes = useStyles();
   let [formErrors, setformErrors] = useState({});
   let [isSubmit, setIsSubmit] = useState(false);
+  // const [passwordShown, setPasswordShown] = useState(false);
+  const [passwordType, setPasswordType] = useState("password");
   let [data, updateData] = useState({ email: '', password: '' });
   const dispatch = useDispatch()
+
+  const togglePassword =()=>{
+    if(passwordType==="password")
+    {
+     setPasswordType("text")
+     return;
+    }
+    setPasswordType("password")
+  }
+
   const display = (e) => {
     updateData({ ...data, [e.target.name]: e.target.value });
   };
   const submit = (e) => {
     e.preventDefault();
     setformErrors(validate(data));
+    logInApi();
     setIsSubmit(true);
   };
   const logInApi = () => {
@@ -95,12 +116,15 @@ export default function UserLogIn() {
       })
       .catch((err) => {
         console.log(err);
+        if(err.response.status === 401){
+          usererrortoast();
+        }
 
       })
   }
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      logInApi();
+      
     }
 
   });
@@ -136,18 +160,19 @@ export default function UserLogIn() {
           <form className={classes.form} onSubmit={submit} noValidate>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <TextField
+              <InputLabel>
+        Enter your Email
+      </InputLabel>
+                <Input
                   // variant="outlined"
-                  InputLabelProps=
+                  inputlabelprops=
                   {{
                     className: classes.floatingLabelFocusStyle,
                   }}
                   // sx={{ input: { color: 'red !important' } }}
-                  className={classes.multilineColor}
-
+                 
                   required
-                  fullWidth
-                  label="Email Address"
+                  fullWidth                 
                   name="email"
                   autoComplete="email"
                   value={data.email}
@@ -156,35 +181,39 @@ export default function UserLogIn() {
                 />
                 <small style={{ color: 'red' }} >{formErrors.email}</small>
               </Grid>
-              <Grid item xs={12}>
-                <TextField
+           
+              <Grid item xs={12} >
+              <InputLabel >
+        Enter your Password
+      </InputLabel>
+                <Input
                   // variant="outlined"
-                  InputLabelProps=
+                  inputlabelprops=
                   {{
-                    className: classes.floatingLabelFocusStyle,            
-
+                    className: classes.floatingLabelFocusStyle,
                     // color : "white"
                   }}
                   required
                   fullWidth
                   name="password"
-                  label="Password"
-                  type="password"
+                  type={passwordType==="password"? "password" : "text"}   
                   autoComplete="current-password"
                   value={data.password}
                   onChange={display}
                   className={classes.input}
-
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                       
+                        onMouseDown={togglePassword}
+                      >
+                        {passwordType==="text" ? <i className="fas fa-eye"></i> :<i className="fas fa-eye-slash"></i>}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
                 <small style={{ color: 'red' }} >{formErrors.password}</small>
-
-              </Grid>
-              {/* <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid> */}
+              </Grid> 
             </Grid><br/>
          <Link to='/Userforgetpassword' style={{textDecoration: 'none', color: 'silver'}}><b 
          >Forgot Password?</b>

@@ -209,7 +209,7 @@ const Blog = () => {
                     <div className="row">
                         <div className="col-md-11">
                             <div className="md-form mb-0 ">
-                            <label for="subject" className="text">Subject</label>
+                            <label htmlFor="subject" className="text">Subject</label>
                             <input type="text" name="subject" className="form-control"
                                 value={title} onChange={(e) => setTitle(e.target.value)} />
                             </div>
@@ -218,7 +218,7 @@ const Blog = () => {
                     <div className="row">
                         <div className="col-md-11">
                             <div className="md-form ">
-                            <label for="message" className="text">Your Message</label>
+                            <label htmlFor="message" className="text">Your Message</label>
                             <textarea type="text" name="message" rows="8" className="form-control md-textarea mb-3"
                             value={description} onChange={(e) => setDescription(e.target.value)}/>
                             </div>

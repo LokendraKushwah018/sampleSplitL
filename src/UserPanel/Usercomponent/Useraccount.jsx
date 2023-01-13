@@ -16,15 +16,19 @@ const Useraccount = () => {
     const [plandetails, setPlandetails] = useState([]);
     const [subscribe, setSubscribe] = useState('')
     
+    console.log(token) 
+    
     const plan = () => {
         axios(  
             {
                 url: `${userbaseurl}getUserDetail`,
                 method: 'get',
                 headers: {
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type":  "application/json"
                 },
             }
+           
         ).then((res) => {
             console.log(res);
             setData(res.data.getData);
@@ -32,6 +36,7 @@ const Useraccount = () => {
                 setPlandata(true)
                 setPlandetails(res.data.PlanData)
             }
+            
             console.log(res.data.PlanData.subscriptionPlanDays);
             setSubscribe(res.data.PlanData.subscriptionPlanDays)
             console.log(plandata)
@@ -48,8 +53,10 @@ const Useraccount = () => {
         <>
             <Navbar />
             
-            <section className="vh-100" style={{ fontFamily: 'proxima nova'}}>
-                <div className="container py-5 h-100">                
+            <section 
+            // className="vh-100" 
+            style={{ fontFamily: 'proxima nova'}}>
+                <div className="container mt-5 ">                
                     <div className="row d-flex justify-content-center align-items-center h-100" >
                     
                         <div className="col-div " 
@@ -66,16 +73,24 @@ const Useraccount = () => {
                                         <h5 style={{marginRight: '-18px'}}><b className='text-white'>{data.username}</b></h5>
                                     </div>
                                    
-                                    <div className="col-md-8">
-                                        {subscribe === "30 Days" ?  ""
+                                     <div className="col-md-8">
+                                      {/*  {subscribe === "30 Days" ?  ""
                                          : <button  className='subsbutton'>
                                         <Link to='/Buyplan' className='subslink'>
                                         Subscription</Link></button>
-                                        }
+                                        } */}
                                    
                                         <div className="card-body p-4">
-                                            <h6><b className='information'>Information</b></h6>
-                                            <hr className="mt-0 mb-4" />
+                                            <h6 style={{display:'inline'}}><b className='information'>Information</b></h6>                                            
+                                            {subscribe === "30 Days" ?  ""
+                                         : <button  
+                                          className='subsbutton' 
+                                        //  style={{display:'inline', float:'right', }}
+                                        >
+                                        <Link to='/Buyplan' className='subslink'>
+                                        Subscription</Link></button>
+                                        }
+                                            <hr className=" mb-4 mt-3" />
                                             {/* <div className="row pt-1"> */}
                                             <div className="usercard">
                                                 <div className="col-6 mb-3">

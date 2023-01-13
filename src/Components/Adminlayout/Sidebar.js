@@ -12,8 +12,9 @@ const Sidebar = () => {
           <img src='./mlsa.jpg'
           // src="dist/img/AdminLTELogo.png" 
           alt="..." className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
-          <span className="brand-text font-weight-light">SampleSplit</span>
-        </div>
+          {/* <span className="brand-text font-weight-light">SampleSplit</span> */}
+          <img src='./sample.png' width={150} height={25} style={{marginBottom: '9px'}} alt='...'/>
+             </div>
         <div className="sidebar">
           <nav className="mt-2">
             <ul className="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -24,31 +25,33 @@ const Sidebar = () => {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/UserInfo" className="nav-link">
+                  <i className="nav-icon fas fa-users"/>
+                  <p>User Info </p>
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/UploadMusic" className="nav-link">
                   <i className="nav-icon fa fa-upload" />
-                  <p>
-                    Upload Music
-                  </p>
+                  <p> Upload Music </p>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/ViewMusic" className="nav-link">
                   <i className="nav-icon fas fa-copy" />
-                  <p> View Music</p>
+                  <p> View Music </p>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/Analytics" className="nav-link">
                   <i className="nav-icon fas fa-chart-pie" />
-                  <p>
-                    Analytics
-                  </p>
+                  <p> Analytics </p>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/AdminDetails" className="nav-link">
                   <i className="nav-icon fa fa-user" />
-                  <p>Admin Details </p>
+                  <p> Admin Details </p>
                 </Link>
               </li>
               <li className="nav-item">
@@ -61,7 +64,7 @@ const Sidebar = () => {
               <li className="nav-item">
                 <Link to="/ViewBlogs" className="nav-link">
                   <i className="nav-icon fas fa-copy" />
-                  <p> View Blogs</p>
+                  <p> View Blogs </p>
                 </Link>
               </li>
           

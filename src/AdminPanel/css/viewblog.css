@@ -4,7 +4,7 @@
 }
 
 .videotitle {
-    width: 100px;
+    width: 150px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -17,7 +17,7 @@
 }
 
 .videoDesc {
-    width: 150px;
+    width: 350px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -25,12 +25,12 @@
 }
 
 .card___video {
-    height: 65px;
+    height: 58px;
     width: 100px;
 }
 
 .card___image{
-    height: 65px;
+    height: 58px;
     width: 100px; 
 }
 

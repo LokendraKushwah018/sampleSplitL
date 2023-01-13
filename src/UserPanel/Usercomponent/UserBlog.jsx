@@ -5,9 +5,9 @@ import axios from 'axios';
 import { userbaseurl } from '../../Api/Config';
 import Navbar from '../Userlayout/Navbar';
 import '../css/userblog.scss';
-import { PaginationItem } from '@mui/material';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+// import { PaginationItem } from '@mui/material';
+// import Pagination from '@mui/material/Pagination';
+// import Stack from '@mui/material/Stack';
 import ReactPaginate from 'react-paginate';
 
 const UserBlog = () => {
@@ -86,7 +86,6 @@ const UserBlog = () => {
                                         <img
                                             src={item.imageName}
                                             className="card__image" alt="brown couch" />
-
                                         <div className="card__content">
                                             <time className="card__date">{item.Date}</time>
                                             <span className="card__title" >{item.title}</span>

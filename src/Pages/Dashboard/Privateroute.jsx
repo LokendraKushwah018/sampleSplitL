@@ -16,7 +16,8 @@ const Privateroutes = () => {
                 url: `${userbaseurl}token`,
                 method: "get",
                 headers: {
-                    "Authorization": `Bearer ${user}`
+                    "Authorization": `Bearer ${user}`,
+                    "Content-Type" : "application/json"
                 },
             }
         )

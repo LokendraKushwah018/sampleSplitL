@@ -23,6 +23,7 @@ audio::-webkit-media-controls-panel{
 .btn_button
 {
   background: linear-gradient(to top right, rgb(29, 28, 28) 0%, rgb(124, 122, 122) 100%);
+  border: none;
 
 }
 .details {
@@ -64,6 +65,7 @@ audio::-webkit-media-controls-panel{
   border-radius: 10px;
   height: 35px;
   margin-left: 150px;
+  border: none;
 }
 
 @media screen and (max-width: 600px) {
@@ -89,6 +91,7 @@ audio::-webkit-media-controls-panel{
   width: 100px;  
   height: 35px;
   margin-left: 100px;
+  border: none;
 }
 .adminupdatepass {
   margin-left: 35px;

@@ -47,7 +47,7 @@
  .label {
    background: linear-gradient(to top right, rgb(80, 79, 79) 0%, rgb(136, 135, 135) 100%);
    /* margin-left: 50px; */
-   color: #000;
+   /* color: #000; */
 
   }
   .labelp {
@@ -189,7 +189,7 @@
    }
  }
 
- @media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 550px) {
    .btn-primary {
      box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
      width: 120px;
