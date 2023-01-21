@@ -9,10 +9,11 @@ import '../css/userblog.scss';
 // import Pagination from '@mui/material/Pagination';
 // import Stack from '@mui/material/Stack';
 import ReactPaginate from 'react-paginate';
+import Footer from '../Userlayout/Footer';
 
 const UserBlog = () => {
     const [Blog, SetBlog] = useState([]);
-    const [pageCount,setpageCount] = useState(0);
+    const [pageCount, setpageCount] = useState(0);
 
     useEffect(() => {
         const BlogApi = () => {
@@ -24,7 +25,7 @@ const UserBlog = () => {
             ).then((res) => {
                 console.log(res);
                 const Total = res.data.findBlog.count;
-                setpageCount(Math.ceil(Total/5));
+                setpageCount(Math.ceil(Total / 5));
                 console.log(Total)
                 SetBlog(res.data.findBlog.rows);
             }).catch((err) => {
@@ -45,8 +46,8 @@ const UserBlog = () => {
     const handelPageClick = async (d) => {
         console.log(d.selected)
         window.scrollTo(0, 0);
-        var CurruntPage = d.selected +1;
-       
+        var CurruntPage = d.selected + 1;
+
         const Comments = await fecthComments(CurruntPage);
         SetBlog(Comments)
         // console.log("clicked")
@@ -92,15 +93,15 @@ const UserBlog = () => {
                                             <p>{item.description}</p>
                                         </div>
                                     </div>
-                                }                               
+                                }
                             </div>
                         }
                     </div>
                 )
             })}
-        
+
             <ReactPaginate
-            style={{background:'red'}}
+                style={{ background: 'red' }}
                 previousLabel={"Previous"}
                 nextLabel={'Next'}
                 breakLabel={"..."}
@@ -119,6 +120,8 @@ const UserBlog = () => {
                 breakLinkClassName={'page-link'}
                 activeClassName={'active'}
             />
+            <h6 style={{ color: "#343a40" }}>fs</h6>
+            <Footer />
         </>
     );
 }

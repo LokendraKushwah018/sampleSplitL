@@ -171,7 +171,6 @@ const BuyPlan = () => {
                     </div>
                 </div>
             </div>
-
         </>
     )
 }

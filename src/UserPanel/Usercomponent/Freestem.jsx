@@ -17,6 +17,7 @@ import '../css/search.css'
 import InfoIcon from '@mui/icons-material/Info';
 import { useSelector } from 'react-redux'
 import axios from 'axios'
+import Footer from '../Userlayout/Footer'
 
 const Freestem = () => {
 
@@ -256,7 +257,7 @@ const Freestem = () => {
               <div className='musicresponse' 
               // style={{ margin: '10px', float: 'left', width: '400px', height: '60px' }}
                 key={index}>  
-                {/* {value.id === Id && }                 */}
+                {/* {value.id === Id && }  */}
                 <div
                   className="img-div"
                   style={{ float: 'left' }}                   
@@ -428,8 +429,14 @@ const Freestem = () => {
             </div>
           </div>
         }
-      </div>
       
+      
+      </div>
+          <h6 style={{color:"#343a40"}}>
+ fssffsfsd
+ fssffsfsdfsdfs
+</h6>  
+        <Footer />
     </>
   )
 }

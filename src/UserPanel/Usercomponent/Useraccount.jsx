@@ -7,6 +7,7 @@ import {  userbaseurl } from '../../Api/Config'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Footer from '../Userlayout/Footer'
 
 const Useraccount = () => {
     // const token = localStorage.getItem("userlogintoken")
@@ -128,6 +129,8 @@ const Useraccount = () => {
                     </div>
                 </div>
             </section>
+            <h6 style={{color:"#343a40"}}>fs</h6>  
+        <Footer />
         </>
     )
 }

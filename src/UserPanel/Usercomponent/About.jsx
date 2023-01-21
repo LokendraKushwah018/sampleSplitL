@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../Userlayout/Navbar'
 // import '../css/about.css'
+import Footer from '../Userlayout/Footer'
 
 const About = () => {
  
@@ -87,6 +88,8 @@ const About = () => {
     </div>
   </div>
 </div>
+<h6 style={{color:"#343a40"}}>fs</h6>  
+        <Footer />
         </>
     );
 }

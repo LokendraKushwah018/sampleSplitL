@@ -93,7 +93,7 @@ const UserInfo = () => {
                     activeClassName={'active'}
                 />
              {/* <button className="userbtn">Users {total.count}</button> */}
-             <table className="table table-hover ">
+             <table className="table table-hover" >
                 <thead className='bg-dark'>
                     <tr>
                         <th>#</th>

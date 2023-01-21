@@ -2,6 +2,7 @@ import React from 'react'
 import emailjs from 'emailjs-com'
 import Navbar from '../Userlayout/Navbar';
 import '../css/contact.css'
+import Footer from '../Userlayout/Footer';
 
 const Contact = () => {
 
@@ -138,6 +139,8 @@ const Contact = () => {
     </div> */}
   {/* </div> */}
 </section> 
+<h6 style={{color:"#343a40"}}>fs</h6>  
+        <Footer />
     </>
   )
 }

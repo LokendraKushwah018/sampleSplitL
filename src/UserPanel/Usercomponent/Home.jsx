@@ -13,8 +13,9 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import FileSaver from 'file-saver';
 import { userbaseurl } from '../../Api/Config';
-import Footer from '../../Components/Adminlayout/Footer';
+// import Footer from '../../Components/Adminlayout/Footer';
 import styled from '@emotion/styled';
+import Footer from '../Userlayout/Footer';
 // import Footer from '../Userlayout/Footer';
 
 const Wrapper = styled.div`
@@ -298,8 +299,12 @@ const Home = () => {
           <button className='btn btn-primary'
           >Submit</button>
         </form>
-      </div> </div>
+      </div> 
+      </div>
        {/* 4Stems Section End     */}
+
+
+       {/* Audio Section Start  */}
       {vocals &&
         <div style={{ bottom: "0px", position: 'fixed', width: '100% ' }}>
           <div style={{ float: 'left', width: '90%' }}>
@@ -426,10 +431,19 @@ const Home = () => {
           </div>
         </div>
       }
-      {/* <div>
-      <Footer />
 
-      </div> */}
+             {/* Audio Section End  */}
+   <h6 style={{color:"#343a40"}}>
+ fssffsfsd
+ fssffsfsdfsdfs
+</h6>          
+ 
+ 
+<div>
+      
+<Footer style={{margin: '0px 0px 30px 0px'}}></Footer> </div>
+
+     
  
      {/* dgggjkfdgj
      gdgkjdfgdgkjd
@@ -461,18 +475,6 @@ const Home = () => {
     </div>
   </div>
 </footer> */}
-
-
-<Wrapper >
-<Label >
-  {/* <Link to="#" >Home</Link>
-  <Link to="#">Contact</Link>
-  <Link to="#">Services</Link>
-  <Link to="#">Details</Link> */}
-
-</Label>
-</Wrapper>
-
     </>
   );
 }
